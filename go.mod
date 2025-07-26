@@ -9,7 +9,7 @@ replace (
 
 require (
 	github.com/BurntSushi/toml v1.5.0
-	github.com/dzjyyds666/Allspark-go v0.0.0-20250720145437-5d1e16c1c417
+	github.com/dzjyyds666/Allspark-go v0.0.0-20250726101904-c957bdf200df
 	github.com/dzjyyds666/vortex/v2 v2.0.0-00010101000000-000000000000
 )
 
