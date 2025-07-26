@@ -3,25 +3,24 @@ package main
 import (
 	"context"
 	"flag"
-	"os"
-	"os/signal"
-	"syscall"
 
+	"github.com/dzjyyds666/Allspark-go/system"
+	"github.com/dzjyyds666/mediaStorage/core"
 	"github.com/dzjyyds666/mediaStorage/server"
 )
 
 func main() {
-	// var confPath = flag.String("c", "./conf/media.toml", "config path")
+	var confPath = flag.String("c", "./conf/media.toml", "config path")
 	flag.Parse()
 
+	cfg, err := core.LoadConfig(*confPath)
+	if nil != err {
+		panic(err)
+	}
+
 	ctx := context.Background()
-	mediaServer := server.NewMediaServer(ctx)
+	mediaServer := server.NewMediaServer(ctx, cfg)
 	go mediaServer.Start()
-
-	// 监听退出信号
-	quit := make(chan os.Signal, 1)
-	// 注册要监听的信号:SIGINT(Ctrl+C)和SIGTERM
-	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-	<-quit
-
+	// 优雅推出
+	system.GracefulShutdown(mediaServer.ShutDown)
 }

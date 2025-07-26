@@ -2,10 +2,18 @@ module github.com/dzjyyds666/mediaStorage
 
 go 1.23.3
 
+replace (
+	github.com/dzjyyds666/Allspark-go => ../Allspark-go
+	github.com/dzjyyds666/vortex/v2 => ../vortex/v2
+)
+
 require (
-	github.com/dzjyyds666/Allspark-go v0.0.0-20250720145437-5d1e16c1c417 // indirect
-	github.com/dzjyyds666/vortex/v2 v2.0.0-20250720153943-47c0fdc9140c // indirect
-	github.com/dzjyyds666/vortex_pro v0.0.0-20250720153943-47c0fdc9140c // indirect
+	github.com/BurntSushi/toml v1.5.0
+	github.com/dzjyyds666/Allspark-go v0.0.0-20250720145437-5d1e16c1c417
+	github.com/dzjyyds666/vortex/v2 v2.0.0-00010101000000-000000000000
+)
+
+require (
 	github.com/golang-jwt/jwt/v5 v5.2.3 // indirect
 	github.com/labstack/echo/v4 v4.13.4 // indirect
 	github.com/labstack/gommon v0.4.2 // indirect
