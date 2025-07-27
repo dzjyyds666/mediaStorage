@@ -1,0 +1,29 @@
+port = "18080"
+domain = "127.0.0.1"
+group = "default"
+
+[server]
+    [server.ds_config]
+        [server.ds_config.redis]
+        host = "127.0.0.1"
+        port = 6380
+        username = ""
+        password = ""
+        [server.ds_config.mongo]
+        host = "127.0.0.1"
+        port = 27018
+        username = ""
+        password = ""
+    [server.jwt]
+    secret = "123456"
+    expire = 3600
+    [server.console_jwt]
+    secret = "123456"
+    expire = 3600
+
+[s3]
+    bucket = "file-storage"
+    endpoint = "http://127.0.0.1:9005"
+    access_key = "admin"
+    secret_key = "admin@123"
+    region = "cn-north"
