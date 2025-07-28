@@ -9,6 +9,7 @@ import (
 func PrepareRouters(h *StorageServer) []*vortex.VortexHttpRouter {
 
 	return []*vortex.VortexHttpRouter{
-		vortex.AppendHttpRouter([]string{http.MethodGet}, "/test", h.HandleRouterTest, "测试路由"),
+		vortex.AppendHttpRouter([]string{http.MethodPost}, "/media/upload/apply", h.HandleApplyUpload, "申请上传"),
 	}
+
 }

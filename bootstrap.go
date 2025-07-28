@@ -27,6 +27,7 @@ func main() {
 	dsServer := ds.InitDatabaseServer(ctx, cfg.Server.DBConfig, func(dbIdxs map[string]interface{}) {
 		dbIdxs["system"] = 0
 		dbIdxs["user"] = 1
+		dbIdxs["depot"] = 2
 		dbIdxs["file"] = 3
 		dbIdxs["box"] = 5
 		dbIdxs["media_storage"] = "media_storage"

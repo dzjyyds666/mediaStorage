@@ -7,7 +7,6 @@ import (
 	"github.com/dzjyyds666/Allspark-go/ptr"
 	"github.com/dzjyyds666/mediaStorage/core"
 	"github.com/dzjyyds666/vortex/v2"
-	"github.com/labstack/echo/v4"
 )
 
 type StorageServer struct {
@@ -19,7 +18,9 @@ type StorageServer struct {
 func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.DatabaseServer) *StorageServer {
 
 	s3Server := core.NewS3Server(ctx, cfg)
-	fileIndexServer := core.NewFileIndexServer(ctx, cfg, dsServer, s3Server)
+	boxServer := core.NewBoxServer(ctx, cfg, dsServer)
+	depotServer := core.NewDepotServer(ctx, cfg, dsServer, boxServer)
+	fileIndexServer := core.NewFileIndexServer(ctx, cfg, dsServer, s3Server, boxServer, depotServer)
 
 	server := &StorageServer{
 		ctx:        ctx,
@@ -46,7 +47,8 @@ func (s *StorageServer) ShutDown(ctx context.Context) error {
 	return nil
 }
 
-// HandleRouterTest 测试路由
-func (s *StorageServer) HandleRouterTest(ctx *vortex.Context) error {
-	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{"message": "hello world"})
+// 申请上传
+func (s *StorageServer) HandleApplyUpload(ctx *vortex.Context) error {
+
+	return nil
 }
