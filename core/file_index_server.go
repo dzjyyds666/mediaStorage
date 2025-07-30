@@ -3,6 +3,7 @@ package core
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/url"
@@ -17,23 +18,27 @@ import (
 )
 
 const (
-	filePrepareKey = "file:upload:%s:prepare"
+	filePrepareKey = "file:%s:%s:%s:prepare"
 )
 
-func buildFilePrepareKey(fid string) string {
-	return fmt.Sprintf(filePrepareKey, fid)
+func buildFilePrepareKey(depot, box, fid string) string {
+	return fmt.Sprintf(filePrepareKey, depot, box, fid)
 }
 
+type FileOption func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error
+
 type MediaFileInfo struct {
-	Fid           string     `json:"fid"`
+	Fid           string     `json:"fid"` // 文件的fid
 	FileName      string     `json:"file_name,omitempty"`
 	ContentMd5    *string    `json:"content_md5,omitempty"`
 	ContentType   *string    `json:"content_type,omitempty"`
 	ContentLength *int64     `json:"content_length,omitempty"`
 	CreatedTs     *int64     `json:"created_ts,omitempty"`
-	Header        url.Values `json:"header,omitempty"`
+	MetaData      url.Values `json:"meta_data,omitempty"`
 	Box           *string    `json:"box,omitempty"`
 	Slice         *string    `json:"slice,omitempty"`
+	Uploader      *string    `json:"uploader,omitempty"`
+	BoxInfo       *Box       `json:"box_info,omitempty"` // 属于哪个box
 
 	r io.Reader // 文件的流
 }
@@ -74,41 +79,40 @@ func NewFileIndexServer(ctx context.Context, cfg *Config, dsServer *ds.DatabaseS
 }
 
 // 申请上传
-func (fs *FileIndexServer) ApplyUpload(ctx context.Context, uploadInfo *InitUpload) (string, error) {
-	if uploadInfo.FileName == nil {
-		return "", proto.ErrorEnums.ErrFileNameCanNotBeEmpty
-	}
-	if uploadInfo.FileSize == nil {
-		return "", proto.ErrorEnums.ErrFileSizeCanNotBeZero
-	}
-	if uploadInfo.ContentType == nil {
-		return "", proto.ErrorEnums.ErrFileTypeCanNotBeEmpty
-	}
-	// 把文件信息存储到redis中
-	fileInfo := &MediaFileInfo{
-		FileName:      *uploadInfo.FileName,
-		ContentMd5:    uploadInfo.ContentMd5,
-		ContentType:   uploadInfo.ContentType,
-		ContentLength: uploadInfo.FileSize,
-	}
-	raw, err := json.Marshal(fileInfo)
+func (fs *FileIndexServer) CreatePrepareFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+	raw, err := json.Marshal(info)
 	if err != nil {
-		logx.Errorf("FileIndexServer|ApplyUpload|Marshal|err: %v", err)
-		return "", err
+		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|Marshal|err: %v", err)
+		return err
 	}
-
-	fid := fs.randFid()
-
 	// 把文件信息存储到redis中,1个小时之内进行上传
-	err = fs.fileRedis.Set(ctx, buildFilePrepareKey(fid), raw, time.Hour).Err()
+	err = fs.fileRedis.Set(ctx, buildFilePrepareKey(info.Fid), raw, time.Hour).Err()
 	if err != nil {
-		logx.Errorf("FileIndexServer|ApplyUpload|Set|err: %v", err)
-		return "", err
+		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|Set|err: %v", err)
+		return err
 	}
-	return fid, nil
+	return nil
 }
 
 // randFid 随机生成文件id
 func (fs *FileIndexServer) randFid() string {
 	return "v1-" + uuid.NewString()
+}
+
+// 查询文件的prepare信息
+func (fs *FileIndexServer) QueryPerpareFileInfo(ctx context.Context, fid string) (*MediaFileInfo, error) {
+	raw, err := fs.fileRedis.Get(ctx, buildFilePrepareKey(fid)).Bytes()
+	if err != nil {
+		logx.Errorf("FileIndexServer|QueryPerpareFileInfo|Get|err: %v", err)
+		if errors.Is(err, redis.Nil) {
+			return nil, proto.ErrorEnums.ErrNoPrepareFileInfo
+		}
+		return nil, err
+	}
+	var info *MediaFileInfo
+	err = json.Unmarshal(raw, &info)
+	if err != nil {
+		logx.Errorf("FileIndexServer|QueryPerpareFileInfo|Unmarshal|err: %v", err)
+	}
+	return info, nil
 }
