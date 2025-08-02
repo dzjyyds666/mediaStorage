@@ -1,0 +1,13 @@
+code_for_bad_request = "bad request"
+code_for_internal_error = "internal error"
+code_for_permission_deny = "permission deny"
+
+code_for_file_exists = "file exists"
+code_for_file_not_exists = "file not exists"
+code_for_file_no_prepare_info= "file no prepare info"
+
+
+code_for_box_not_exists = "box not exists"
+
+
+

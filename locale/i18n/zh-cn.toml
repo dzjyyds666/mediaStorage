@@ -1,0 +1,11 @@
+code_for_bad_request = "错误请求"
+code_for_internal_error = "服务器内部错误"
+code_for_permission_deny = "权限不足"
+
+
+code_for_file_exists = "文件已存在"
+code_for_file_not_exists = "文件不存在"
+code_for_file_no_prepare_info = "文件未初始化上传"
+
+
+code_for_box_not_exists = "box不存在"

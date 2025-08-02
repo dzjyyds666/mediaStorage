@@ -9,8 +9,7 @@ import (
 )
 
 type S3Server struct {
-	ctx context.Context
-
+	ctx    context.Context
 	client *s3.Client // s3客户端
 }
 
