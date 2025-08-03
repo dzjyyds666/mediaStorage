@@ -20,6 +20,9 @@ group = "default"
     [server.console_jwt]
     secret = "123456"
     expire = 3600
+    [server.admin]
+    username = "aaron"
+    password = "aaron519"
 
 [s3]
     bucket = "file-storage"

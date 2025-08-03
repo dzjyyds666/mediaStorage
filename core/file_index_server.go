@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/url"
+	"path"
 	"time"
 
 	"github.com/dzjyyds666/Allspark-go/conv"
@@ -35,11 +36,15 @@ type MediaFileInfo struct {
 	CreatedTs     *int64     `json:"created_ts,omitempty" bson:"created_ts,omitempty"`
 	MetaData      url.Values `json:"meta_data,omitempty" bson:"meta_data,omitempty"`
 	Box           *string    `json:"box,omitempty" bson:"box,omitempty"`
-	Slice         *string    `json:"slice,omitempty" bson:"slice,omitempty"`
 	Uploader      *string    `json:"uploader,omitempty" bson:"uploader,omitempty"`
 	BoxInfo       *Box       `json:"box_info,omitempty" bson:"box_info,omitempty"` // 属于哪个box
 
 	r io.Reader // 文件的流
+}
+
+// 构建对象的key
+func (mfi *MediaFileInfo) BuildObjectKey() string {
+	return path.Join(mfi.GetDepot().DepotId, mfi.BoxInfo.BoxId, mfi.Fid)
 }
 
 func (mfi *MediaFileInfo) GetDepot() *Depot {
@@ -53,6 +58,7 @@ type InitUpload struct {
 	ContentMd5    *string    `json:"content_md5,omitempty"`
 	ContentType   *string    `json:"content_type,omitempty"`
 	Header        url.Values `json:"header,omitempty"`
+	Uploader      *string    `json:"uploader,omitempty"`
 }
 
 // 转换为媒体文件信息
@@ -164,4 +170,37 @@ func (fs *FileIndexServer) GetFileInfo(ctx context.Context, fileId string) (*Med
 	}
 	logx.Infof("FileIndexServer|GetFileInfo|info: %s", conv.ToJsonWithoutError(info))
 	return &info, nil
+}
+
+// 保存文件到s3
+func (fs *FileIndexServer) SaveFileData(ctx context.Context, info *MediaFileInfo, file io.Reader) error {
+	info.r = file
+	return fs.s3Server.SaveFileData(ctx, info)
+}
+
+// 完成文件上传
+func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+	// 把文件补全文件信息
+	prepareInfo, err := fs.QueryPerpareFileInfo(ctx, info.GetDepot().DepotId, info.BoxInfo.BoxId, info.Fid)
+	if err != nil {
+		logx.Errorf("FileIndexServer|CompleteUpload|QueryPerpareFileInfo|err: %v", err)
+		return err
+	}
+
+	prepareInfo.CreatedTs = ptr.Int64(time.Now().Unix())
+	prepareInfo.BoxInfo = info.BoxInfo
+	prepareInfo.MetaData = info.MetaData
+
+	_, err = fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).InsertOne(ctx, prepareInfo)
+	if err != nil {
+		logx.Errorf("FileIndexServer|CompleteUpload|InsertOne|err: %v", err)
+		return err
+	}
+
+	// 删除存储在redis中的数据
+	err = fs.fileRedis.Del(ctx, buildFilePrepareKey(info.GetDepot().DepotId, info.BoxInfo.BoxId, info.Fid)).Err()
+	if err != nil {
+		logx.Errorf("FileIndexServer|CompleteUpload|Del|err: %v", err)
+	}
+	return nil
 }

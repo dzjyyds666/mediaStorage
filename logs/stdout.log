@@ -220,3 +220,4 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
+[1;32m[INFO] 2025-08-03 21:21:15 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m

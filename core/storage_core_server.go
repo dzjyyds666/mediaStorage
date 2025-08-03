@@ -84,6 +84,14 @@ func (ss *StorageCoreServer) SingleUpload(ctx context.Context, boxId, fid string
 	}
 
 	return ss.do(
-	// 开始上传文件
+		// 开始上传文件
+		func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+			err := ss.fileServer.SaveFileData(ctx, info, r)
+			if nil != err {
+				logx.Errorf("StorageCoreServer|SingleUpload|SaveFileData|boxId: %s|fid: %s|err: %s", boxId, fid, err.Error())
+				return err
+			}
+			return nil
+		},
 	)(ctx, prepareFileInfo)
 }

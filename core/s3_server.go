@@ -2,14 +2,18 @@ package core
 
 import (
 	"context"
+	"errors"
 
+	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/dzjyyds666/Allspark-go/logx"
 )
 
 type S3Server struct {
 	ctx    context.Context
+	bucket string
 	client *s3.Client // s3客户端
 }
 
@@ -28,6 +32,27 @@ func NewS3Server(ctx context.Context, cfg *Config) *S3Server {
 	s3Client := s3.NewFromConfig(s3Cfg)
 	return &S3Server{
 		ctx:    ctx,
+		bucket: cfg.S3.Bucket,
 		client: s3Client,
 	}
+}
+
+// SaveFileData 保存文件信息到s3
+func (ss *S3Server) SaveFileData(ctx context.Context, info *MediaFileInfo) error {
+	if info.r == nil {
+		return errors.New("file data is nil")
+	}
+	objKey := info.BuildObjectKey()
+
+	_, err := ss.client.PutObject(ctx, &s3.PutObjectInput{
+		Bucket:      aws.String(ss.bucket),
+		Key:         aws.String(objKey),
+		Body:        info.r,
+		ContentType: info.ContentType,
+	})
+	if nil != err {
+		logx.Errorf("S3Server|SaveFileData|PutObject|err: %v", err)
+		return err
+	}
+	return nil
 }
