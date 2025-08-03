@@ -111,6 +111,11 @@ func (s *StorageServer) HandleLogin(ctx *vortex.Context) error {
 	})
 }
 
+// 获取文件
+func (s *StorageServer) HandleFile(ctx *vortex.Context) error {
+	return nil
+}
+
 // 申请上传
 func (s *StorageServer) HandleApplyUpload(ctx *vortex.Context) error {
 	var init core.InitUpload
