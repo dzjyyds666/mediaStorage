@@ -6,6 +6,7 @@ import (
 
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/logx"
+	"github.com/dzjyyds666/Allspark-go/ptr"
 )
 
 type StorageCoreServer struct {
@@ -13,39 +14,41 @@ type StorageCoreServer struct {
 	fileServer *FileIndexServer
 	boxServ    *BoxServer
 	depotServ  *DepotServer
+	s3Server   *S3Server
 }
 
-func NewStorageCoreServer(ctx context.Context, cfg *Config, fileServer *FileIndexServer, boxServ *BoxServer, depotServ *DepotServer) *StorageCoreServer {
-	return &StorageCoreServer{ctx: ctx, fileServer: fileServer, boxServ: boxServ, depotServ: depotServ}
+func NewStorageCoreServer(ctx context.Context, cfg *Config, fileServer *FileIndexServer, boxServ *BoxServer, depotServ *DepotServer, s3Server *S3Server) *StorageCoreServer {
+	return &StorageCoreServer{ctx: ctx, fileServer: fileServer, boxServ: boxServ, depotServ: depotServ, s3Server: s3Server}
 }
 
 // 申请文件上传
 func (ss *StorageCoreServer) ApplyUpload(ctx context.Context, init *InitUpload) (string, error) {
 	// 生成文件的fid
 	info := init.ToMediaFileInfo()
-
-	info.Fid = ss.fileServer.randFid()
+	info.Fid = randFid()
 	init.Fid = info.Fid
 
 	return info.Fid, ss.do(
-		// 检查存储文件的depot是不是创建了
-		func(ctx context.Context, f *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
-			depotInfo, err := ss.depotServ.QueryDepotInfo(ctx, info.GetDepot().DepotId)
-			if err != nil {
-				logx.Errorf("StorageCoreServer|ApplyUpload|QueryDepotInfo|depotId: %s|err: %s", info.BoxInfo.GetDepotId(), err.Error())
-				return err
-			}
-			logx.Infof("StorageCoreServer|ApplyUpload|QueryDepotInfo|depotInfo: %v", conv.ToJsonWithoutError(depotInfo))
-			return nil
-		},
 		// 检查存储文件的box是不是创建了
 		func(ctx context.Context, f *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
-			boxInfo, err := ss.boxServ.QueryBoxInfo(ctx, info.BoxInfo.BoxId)
+			boxInfo, err := ss.boxServ.QueryBoxInfo(ctx, ptr.ToString(init.BoxId))
 			if err != nil {
 				logx.Errorf("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxId: %s|err: %s", info.BoxInfo.BoxId, err.Error())
 				return err
 			}
+
 			logx.Infof("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxInfo: %v", conv.ToJsonWithoutError(boxInfo))
+			return nil
+		},
+		// 检查存储文件的depot是不是创建了
+		func(ctx context.Context, f *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+			depotInfo, err := ss.depotServ.QueryDepotInfo(ctx, ptr.ToString(init.DepotId))
+			if err != nil {
+				logx.Errorf("StorageCoreServer|ApplyUpload|QueryDepotInfo|depotId: %s|err: %s", ptr.ToString(init.DepotId), err.Error())
+				return err
+			}
+			logx.Infof("StorageCoreServer|ApplyUpload|QueryDepotInfo|depotInfo: %v", conv.ToJsonWithoutError(depotInfo))
+
 			return nil
 		},
 		ss.fileServer.CreatePrepareFileInfo,
@@ -94,4 +97,26 @@ func (ss *StorageCoreServer) SingleUpload(ctx context.Context, boxId, fid string
 			return nil
 		},
 	)(ctx, prepareFileInfo)
+}
+
+func (ss *StorageCoreServer) SignGetFileUrl(ctx context.Context, info *MediaFileInfo) (string, error) {
+	objectKey := info.BuildObjectKey()
+	presignedURL, err := ss.s3Server.GetPresignedURL(ctx, objectKey)
+	if err != nil {
+		logx.Errorf("StorageCoreServer|SignGetFileUrl|GetPresignedURL|fid: %s|err: %s", info.Fid, err.Error())
+		return "", err
+	}
+	return presignedURL, nil
+}
+
+// 查询文件的信息
+func (ss *StorageCoreServer) QueryFileInfo(ctx context.Context, fid string) (*MediaFileInfo, error) {
+	return ss.fileServer.QueryFileInfo(ctx, fid)
+}
+
+// 创建depot
+func (ss *StorageCoreServer) CreateDepot(ctx context.Context, info *Depot) error {
+	id := randDepotId()
+	info.DepotId = id
+	return ss.depotServ.CreateDepot(ctx, info)
 }

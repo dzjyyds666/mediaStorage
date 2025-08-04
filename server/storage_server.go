@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"net/http"
 	"time"
 
 	"github.com/dzjyyds666/Allspark-go/conv"
@@ -28,6 +29,7 @@ type StorageServer struct {
 		Username string `toml:"username"`
 		Password string `toml:"password"`
 	}
+	hcli *http.Client
 }
 
 func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.DatabaseServer) *StorageServer {
@@ -39,7 +41,7 @@ func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.Databa
 
 	server := &StorageServer{
 		ctx:        ctx,
-		coreServer: core.NewStorageCoreServer(ctx, cfg, fileIndexServer, boxServer, depotServer),
+		coreServer: core.NewStorageCoreServer(ctx, cfg, fileIndexServer, boxServer, depotServer, s3Server),
 		jwtToken:   cfg.Server.Jwt,
 		consoleJwt: cfg.Server.ConsoleJwt,
 		admin: struct {
@@ -48,6 +50,9 @@ func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.Databa
 		}{
 			Username: cfg.Admin.Username,
 			Password: cfg.Admin.Password,
+		},
+		hcli: &http.Client{
+			Timeout: 30 * time.Second,
 		},
 	}
 	routers := PrepareRouters(server) // 创建路由
@@ -113,7 +118,50 @@ func (s *StorageServer) HandleLogin(ctx *vortex.Context) error {
 
 // 获取文件
 func (s *StorageServer) HandleFile(ctx *vortex.Context) error {
-	return nil
+	fid := ctx.Param("fid")
+	if len(fid) == 0 {
+		logx.Errorf("HandleFile|fid is empty")
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BadRequest), echo.Map{
+			"msg": "fid not be null",
+		})
+	}
+
+	fileInfo, err := s.coreServer.QueryFileInfo(ctx.GetContext(), fid)
+	if nil != err {
+		logx.Errorf("HandleFile|QueryFileInfo|fid: %s|err: %v", fid, err)
+		if errors.Is(err, proto.ErrorEnums.ErrFileNotExist) {
+			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.FileNotExist), echo.Map{
+				"msg": "file not exist",
+			})
+		} else {
+			return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(proto.SubStatusCodes.InternalError), echo.Map{
+				"msg": "query file info error",
+			})
+		}
+	}
+
+	url, err := s.coreServer.SignGetFileUrl(ctx.GetContext(), fileInfo)
+	if nil != err {
+		logx.Errorf("HandleFile|SignGetFileUrl|fid: %s|err: %v", fid, err)
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(proto.SubStatusCodes.InternalError), echo.Map{
+			"msg": "get file url error",
+		})
+	}
+
+	resp, err := s.hcli.Get(url)
+	if nil != err {
+		logx.Errorf("HandleFile|Get|url: %s|err: %v", url, err)
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(proto.SubStatusCodes.InternalError), echo.Map{
+			"msg": "get file url error",
+		})
+	}
+	defer resp.Body.Close()
+
+	if fileInfo.ContentType == nil {
+		return vortex.HttpStreamResponse(ctx, "application/octet-stream", resp.Body)
+	} else {
+		return vortex.HttpStreamResponse(ctx, ptr.ToString(fileInfo.ContentType), resp.Body)
+	}
 }
 
 // 申请上传
@@ -168,5 +216,24 @@ func (s *StorageServer) HandleSingleUpload(ctx *vortex.Context) error {
 
 	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
 		"fid": fid,
+	})
+}
+
+// 创建deport
+func (s *StorageServer) HandleDeportCreate(ctx *vortex.Context) error {
+	var info core.Depot
+	decoder := json.NewDecoder(ctx.Request().Body)
+	if err := decoder.Decode(&info); err != nil {
+		logx.Errorf("HandleDeportCreate|ParamsError|decoder err: %v", err)
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BadRequest), nil)
+	}
+
+	err := s.coreServer.CreateDepot(ctx.GetContext(), &info)
+	if nil != err {
+		logx.Errorf("HandleDeportCreate|CreateDepot|depotInfo: %s|err: %v", conv.ToJsonWithoutError(info), err)
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(proto.SubStatusCodes.InternalError), nil)
+	}
+	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
+		"depot_id": info.DepotId,
 	})
 }

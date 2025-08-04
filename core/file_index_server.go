@@ -59,6 +59,8 @@ type InitUpload struct {
 	ContentType   *string    `json:"content_type,omitempty"`
 	Header        url.Values `json:"header,omitempty"`
 	Uploader      *string    `json:"uploader,omitempty"`
+	DepotId       *string    `json:"depot_id,omitempty"`
+	BoxId         *string    `json:"box_id,omitempty"`
 }
 
 // 转换为媒体文件信息
@@ -121,7 +123,7 @@ func (fs *FileIndexServer) CreatePrepareFileInfo(ctx context.Context, info *Medi
 }
 
 // randFid 随机生成文件id
-func (fs *FileIndexServer) randFid() string {
+func randFid() string {
 	return "v1-" + uuid.NewString()
 }
 
@@ -158,17 +160,17 @@ func (fs *FileIndexServer) CreateFileInfo(ctx context.Context, info *MediaFileIn
 }
 
 // 查询文件的信息
-func (fs *FileIndexServer) GetFileInfo(ctx context.Context, fileId string) (*MediaFileInfo, error) {
+func (fs *FileIndexServer) QueryFileInfo(ctx context.Context, fileId string) (*MediaFileInfo, error) {
 	var info MediaFileInfo
 	err := fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"fid": fileId}).Decode(&info)
 	if err != nil {
-		logx.Errorf("FileIndexServer|GetFileInfo|FindOne|err: %v", err)
+		logx.Errorf("FileIndexServer|QueryFileInfo|FindOne|err: %v", err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
 			return nil, proto.ErrorEnums.ErrFileNotExist
 		}
 		return nil, err
 	}
-	logx.Infof("FileIndexServer|GetFileInfo|info: %s", conv.ToJsonWithoutError(info))
+	logx.Infof("FileIndexServer|QueryFileInfo|info: %s", conv.ToJsonWithoutError(info))
 	return &info, nil
 }
 

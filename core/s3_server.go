@@ -56,3 +56,17 @@ func (ss *S3Server) SaveFileData(ctx context.Context, info *MediaFileInfo) error
 	}
 	return nil
 }
+
+// 获取s3的访问预签名url
+func (ss *S3Server) GetPresignedURL(ctx context.Context, objectKey string) (string, error) {
+	presignClient := s3.NewPresignClient(ss.client)
+	presignedURL, err := presignClient.PresignGetObject(ctx, &s3.GetObjectInput{
+		Bucket: aws.String(ss.bucket),
+		Key:    aws.String(objectKey),
+	})
+	if nil != err {
+		logx.Errorf("S3Server|GetPresignedURL|GetPresignedURL|err: %v", err)
+		return "", err
+	}
+	return presignedURL.URL, nil
+}

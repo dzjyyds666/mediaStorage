@@ -10,6 +10,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/mediaStorage/proto"
+	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -28,6 +29,10 @@ var DepotPermissions = struct {
 // 仓库的信息
 func buildDepotInfoKey(id string) string {
 	return fmt.Sprintf("media:depot:%s:info", id)
+}
+
+func randDepotId() string {
+	return "di_" + uuid.NewString()
 }
 
 type Depot struct {
@@ -77,6 +82,9 @@ func (ds *DepotServer) CreateDepot(ctx context.Context, depot *Depot) error {
 
 // 查询仓库信息
 func (ds *DepotServer) QueryDepotInfo(ctx context.Context, depotId string) (*Depot, error) {
+	if depotId == "" {
+		return nil, proto.ErrorEnums.ErrDepotNotExist
+	}
 	var depot Depot
 	err := ds.depotMongo.Collection(proto.DatabaseName.DepotDataBaseName).FindOne(ctx, bson.M{"_id": depotId}).Decode(&depot)
 	if err != nil {

@@ -43,9 +43,9 @@ func NewBoxServer(ctx context.Context, conf *Config, dsServer *ds.DatabaseServer
 	if !ok {
 		panic("redis [box] not found")
 	}
-	boxMongo, ok := dsServer.GetMongo("box")
+	boxMongo, ok := dsServer.GetMongo("media_storage")
 	if !ok {
-		panic("mongo [box] not found")
+		panic("mongo [media_storage] not found")
 	}
 	return &BoxServer{
 		ctx:      ctx,
