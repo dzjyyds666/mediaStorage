@@ -2,8 +2,10 @@ package core
 
 import (
 	"context"
+	"crypto/rand"
 	"errors"
 	"fmt"
+	"math/big"
 	"net/url"
 
 	"github.com/dzjyyds666/Allspark-go/conv"
@@ -31,8 +33,57 @@ func buildDepotInfoKey(id string) string {
 	return fmt.Sprintf("media:depot:%s:info", id)
 }
 
+// generateRandomString 生成指定长度的随机字符串
+// length: 字符串长度
+// charset: 字符集，如果为空则使用默认字符集（数字+字母）
+func generateRandomString(length int, charset ...string) string {
+	if length <= 0 {
+		return ""
+	}
+
+	// 默认字符集：数字+大小写字母
+	defaultCharset := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+	charSet := defaultCharset
+
+	if len(charset) > 0 && charset[0] != "" {
+		charSet = charset[0]
+	}
+
+	result := make([]byte, length)
+	for i := 0; i < length; i++ {
+		num, err := rand.Int(rand.Reader, big.NewInt(int64(len(charSet))))
+		if err != nil {
+			// 如果随机数生成失败，回退到UUID方式
+			uuidStr := uuid.NewString()
+			uuidStr = uuid.NewString() + uuid.NewString() // 确保有足够长度
+			if len(uuidStr) >= length {
+				return uuidStr[:length]
+			}
+			return uuidStr
+		}
+		result[i] = charSet[num.Int64()]
+	}
+	return string(result)
+}
+
+// generateHexString 生成指定长度的十六进制字符串
+func generateHexString(length int) string {
+	return generateRandomString(length, "0123456789abcdef")
+}
+
+// generateNumericString 生成指定长度的数字字符串
+func generateNumericString(length int) string {
+	return generateRandomString(length, "0123456789")
+}
+
+// generateAlphaString 生成指定长度的字母字符串
+func generateAlphaString(length int) string {
+	return generateRandomString(length, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+}
+
 func randDepotId() string {
-	return "di_" + uuid.NewString()
+	// 使用新的函数生成12位随机字符串，降低碰撞概率
+	return "di_" + generateRandomString(8)
 }
 
 type Depot struct {

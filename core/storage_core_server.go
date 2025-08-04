@@ -48,7 +48,6 @@ func (ss *StorageCoreServer) ApplyUpload(ctx context.Context, init *InitUpload) 
 				return err
 			}
 			logx.Infof("StorageCoreServer|ApplyUpload|QueryDepotInfo|depotInfo: %v", conv.ToJsonWithoutError(depotInfo))
-
 			return nil
 		},
 		ss.fileServer.CreatePrepareFileInfo,
@@ -116,7 +115,16 @@ func (ss *StorageCoreServer) QueryFileInfo(ctx context.Context, fid string) (*Me
 
 // 创建depot
 func (ss *StorageCoreServer) CreateDepot(ctx context.Context, info *Depot) error {
-	id := randDepotId()
-	info.DepotId = id
+	if len(info.DepotId) == 0 {
+		info.DepotId = "di_" + generateRandomString(8)
+	}
 	return ss.depotServ.CreateDepot(ctx, info)
+}
+
+// 创建box
+func (ss *StorageCoreServer) CreateBox(ctx context.Context, info *Box) error {
+	if len(info.BoxId) == 0 {
+		info.BoxId = "bi_" + generateRandomString(8)
+	}
+	return ss.boxServ.CreateBox(ctx, info)
 }

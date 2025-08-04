@@ -237,3 +237,22 @@ func (s *StorageServer) HandleDeportCreate(ctx *vortex.Context) error {
 		"depot_id": info.DepotId,
 	})
 }
+
+// 创建box
+func (s *StorageServer) HandleBoxCreate(ctx *vortex.Context) error {
+	var info core.Box
+	decoder := json.NewDecoder(ctx.Request().Body)
+	if err := decoder.Decode(&info); err != nil {
+		logx.Errorf("HandleBoxCreate|ParamsError|decoder err: %v", err)
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BadRequest), nil)
+	}
+
+	err := s.coreServer.CreateBox(ctx.GetContext(), &info)
+	if nil != err {
+		logx.Errorf("HandleBoxCreate|CreateBox|boxInfo: %s|err: %v", conv.ToJsonWithoutError(info), err)
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(proto.SubStatusCodes.InternalError), nil)
+	}
+	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
+		"box_id": info.BoxId,
+	})
+}
