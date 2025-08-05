@@ -59,7 +59,6 @@ type InitUpload struct {
 	ContentType   *string    `json:"content_type,omitempty"`
 	Header        url.Values `json:"header,omitempty"`
 	Uploader      *string    `json:"uploader,omitempty"`
-	DepotId       *string    `json:"depot_id,omitempty"`
 	BoxId         *string    `json:"box_id,omitempty"`
 }
 

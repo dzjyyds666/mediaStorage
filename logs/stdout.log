@@ -370,3 +370,65 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
+[1;32m[INFO] 2025-08-05 14:25:39 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
+[1;31m[ERROR] 2025-08-05 14:25:39 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-05 14:25:39 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
+[0m
+[1;32m[INFO] 2025-08-05 14:25:39 
+ __     __                 _                 
+ \ \   / /   ___    _ __  | |_    ___  __  __
+  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
+   \ V /   | (_) | | |    | |_  |  __/  >  < 
+    \_/     \___/  |_|     \__|  \___| /_/\_\
+----------------------------------------------
+ Vortex Server Start Success on 18080
+==============================================
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
+[1;31m[ERROR] 2025-08-05 14:29:48 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-05 14:29:48 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
+[0m
+[1;32m[INFO] 2025-08-05 14:29:48 
+ __     __                 _                 
+ \ \   / /   ___    _ __  | |_    ___  __  __
+  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
+   \ V /   | (_) | | |    | |_  |  __/  >  < 
+    \_/     \___/  |_|     \__|  \___| /_/\_\
+----------------------------------------------
+ Vortex Server Start Success on 18080
+==============================================
+[0m

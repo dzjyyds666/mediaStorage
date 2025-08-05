@@ -28,28 +28,14 @@ func (ss *StorageCoreServer) ApplyUpload(ctx context.Context, init *InitUpload) 
 	info.Fid = randFid()
 	init.Fid = info.Fid
 
-	return info.Fid, ss.do(
-		// 检查存储文件的box是不是创建了
-		func(ctx context.Context, f *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
-			boxInfo, err := ss.boxServ.QueryBoxInfo(ctx, ptr.ToString(init.BoxId))
-			if err != nil {
-				logx.Errorf("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxId: %s|err: %s", info.BoxInfo.BoxId, err.Error())
-				return err
-			}
+	boxInfo, err := ss.boxServ.QueryBoxInfo(ctx, ptr.ToString(init.BoxId))
+	if err != nil {
+		logx.Errorf("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxId: %s|err: %s", ptr.ToString(init.BoxId), err.Error())
+		return "", err
+	}
+	info.BoxInfo = boxInfo
 
-			logx.Infof("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxInfo: %v", conv.ToJsonWithoutError(boxInfo))
-			return nil
-		},
-		// 检查存储文件的depot是不是创建了
-		func(ctx context.Context, f *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
-			depotInfo, err := ss.depotServ.QueryDepotInfo(ctx, ptr.ToString(init.DepotId))
-			if err != nil {
-				logx.Errorf("StorageCoreServer|ApplyUpload|QueryDepotInfo|depotId: %s|err: %s", ptr.ToString(init.DepotId), err.Error())
-				return err
-			}
-			logx.Infof("StorageCoreServer|ApplyUpload|QueryDepotInfo|depotInfo: %v", conv.ToJsonWithoutError(depotInfo))
-			return nil
-		},
+	return info.Fid, ss.do(
 		ss.fileServer.CreatePrepareFileInfo,
 		func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 			logx.Infof("StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: %v", conv.ToJsonWithoutError(info))
