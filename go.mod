@@ -60,8 +60,6 @@ require (
 	golang.org/x/text v0.25.0 // indirect
 )
 
-
-
 replace(
 	github.com/dzjyyds666/Allspark-go => ../Allspark-go
 	github.com/dzjyyds666/vortex/v2 => ../vortex/v2
