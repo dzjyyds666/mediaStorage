@@ -19,9 +19,9 @@ group = "default"
     expire = 3600
     
     [server.console_jwt]
-    secret = "123456"
+    secret = "console"
     expire = 3600
-    [server.admin]
+[admin]
     username = "aaron"
     password = "aaron519"
 

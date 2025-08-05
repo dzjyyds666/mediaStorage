@@ -14,7 +14,7 @@ type Config struct {
 	Admin  struct {
 		Username string `toml:"username"`
 		Password string `toml:"password"`
-	}
+	} `toml:"admin"`
 }
 
 // S3 结构体定义了S3存储的配置

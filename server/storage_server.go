@@ -10,6 +10,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/jwtx"
+
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/Allspark-go/ptr"
 	"github.com/dzjyyds666/mediaStorage/core"
@@ -26,13 +27,15 @@ type StorageServer struct {
 	jwtToken   *core.Jwt
 	consoleJwt *core.Jwt
 	admin      struct {
-		Username string `toml:"username"`
-		Password string `toml:"password"`
+		Username string `toml:"username" json:"username"`
+		Password string `toml:"password" json:"password"`
 	}
 	hcli *http.Client
 }
 
 func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.DatabaseServer) *StorageServer {
+
+	logx.Warnf("config:%s", conv.ToJsonWithoutError(cfg.Admin))
 
 	s3Server := core.NewS3Server(ctx, cfg)
 	boxServer := core.NewBoxServer(ctx, cfg, dsServer)
@@ -45,8 +48,8 @@ func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.Databa
 		jwtToken:   cfg.Server.Jwt,
 		consoleJwt: cfg.Server.ConsoleJwt,
 		admin: struct {
-			Username string `toml:"username"`
-			Password string `toml:"password"`
+			Username string `toml:"username" json:"username"`
+			Password string `toml:"password" json:"password"`
 		}{
 			Username: cfg.Admin.Username,
 			Password: cfg.Admin.Password,
@@ -55,6 +58,7 @@ func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.Databa
 			Timeout: 30 * time.Second,
 		},
 	}
+	logx.Debugf("admin: %s|password: %s", server.admin.Username, server.admin.Password)
 	routers := PrepareRouters(server) // 创建路由
 	v := vortex.BootStrap(
 		ctx,
@@ -77,7 +81,7 @@ func (s *StorageServer) ShutDown(ctx context.Context) error {
 }
 
 type loginReq struct {
-	UserName string `json:"user_name"`
+	UserName string `json:"username"`
 	Password string `json:"password"`
 }
 
@@ -93,7 +97,7 @@ func (s *StorageServer) HandleLogin(ctx *vortex.Context) error {
 	}
 
 	if req.UserName != s.admin.Username || req.Password != s.admin.Password {
-		logx.Errorf("StorageServer|HandleLogin|login error: %v", err)
+		logx.Errorf("StorageServer|HandleLogin|username: %s|password: %s", req.UserName, req.Password)
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.ParamsInvaild, echo.Map{
 			"msg": "用户名或密码错误",
 		})
@@ -109,6 +113,7 @@ func (s *StorageServer) HandleLogin(ctx *vortex.Context) error {
 			"msg": "登录失败",
 		})
 	}
+
 	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
 		"msg":  "登录成功",
 		"jwt":  jwtToken,
@@ -172,6 +177,17 @@ func (s *StorageServer) HandleApplyUpload(ctx *vortex.Context) error {
 		logx.Errorf("HandleApplyUpload|ParamsError|decoder err: %v", err)
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BadRequest), nil)
 	}
+
+	if init.BoxId == nil {
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BadRequest), nil)
+	}
+
+	payload := ctx.GetSessionPayload()
+	if payload == nil {
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.PermissionDeny), nil)
+	}
+
+	init.Uploader = ptr.String(payload.Uid)
 
 	// 开始申请文件信息
 	fid, err := s.coreServer.ApplyUpload(ctx.GetContext(), &init)

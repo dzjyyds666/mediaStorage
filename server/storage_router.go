@@ -9,7 +9,7 @@ import (
 func PrepareRouters(h *StorageServer) []*vortex.VortexHttpRouter {
 
 	return []*vortex.VortexHttpRouter{
-		vortex.AppendHttpRouter([]string{http.MethodGet}, "/login", h.HandleLogin, "登录接口"),
+		vortex.AppendHttpRouter([]string{http.MethodPost}, "/login", h.HandleLogin, "登录接口"),
 
 		vortex.AppendHttpRouter([]string{http.MethodPost}, "/media/deport/create", h.HandleDeportCreate, "创建 depot"),
 		vortex.AppendHttpRouter([]string{http.MethodPost}, "/media/box/create", h.HandleBoxCreate, "创建 box"),
