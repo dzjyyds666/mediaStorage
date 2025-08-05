@@ -145,9 +145,14 @@ func (ds *DepotServer) CreateDepot(ctx context.Context, depot *Depot) error {
 	if depot.Permission == nil {
 		depot.Permission = ptr.String(DepotPermissions.Public)
 	}
+
 	_, err := ds.depotMongo.Collection(proto.DatabaseName.DepotDataBaseName).InsertOne(ctx, depot)
 	if nil != err {
 		logx.Errorf("DepotServer|CreateDepot|InsertOne|err: %v", err)
+		if mongo.IsDuplicateKeyError(err) {
+			// 存在了就不插入新的
+			return nil
+		}
 		return err
 	}
 	logx.Infof("DepotServer|CreateDepot|success|depot_info: %s", conv.ToJsonWithoutError(depot))

@@ -71,6 +71,10 @@ func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
 	_, err := bs.boxMongo.Collection(proto.DatabaseName.BoxDataBaseName).InsertOne(ctx, box)
 	if nil != err {
 		logx.Errorf("BoxServer|CreateBox|InsertOne|err: %v", err)
+		if mongo.IsDuplicateKeyError(err) {
+			// 存在即不插入
+			return nil
+		}
 		return err
 	}
 	logx.Infof("BoxServer|CreateBox|box: %s", conv.ToJsonWithoutError(box))

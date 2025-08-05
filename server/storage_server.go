@@ -256,3 +256,18 @@ func (s *StorageServer) HandleBoxCreate(ctx *vortex.Context) error {
 		"box_id": info.BoxId,
 	})
 }
+
+// 获取到仓库id
+func (s *StorageServer) GetDepotId(ctx *vortex.Context) string {
+	id := ctx.Param("depot_id")
+	if len(id) == 0 {
+		id = ctx.QueryParam("depot_id")
+		if len(id) == 0 {
+			id = ctx.Request().Header.Get("Depot-Id")
+		}
+	}
+	if len(id) == 0 {
+		id = "default"
+	}
+	return id
+}

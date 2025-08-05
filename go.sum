@@ -50,6 +50,8 @@ github.com/dzjyyds666/Allspark-go v0.0.0-20250727072658-5a86180481ef h1:HLSn6L7T
 github.com/dzjyyds666/Allspark-go v0.0.0-20250727072658-5a86180481ef/go.mod h1:FF0+XRQeLZe7vYy1W1Xwqim2lNeibg0GkYXmfEeM79s=
 github.com/dzjyyds666/Allspark-go v0.0.0-20250802155638-c1b3d80b002a h1:gODhFmQbIMmzjYwkpneGkE2Npe6HAcBf2YAx8JuqjGM=
 github.com/dzjyyds666/Allspark-go v0.0.0-20250802155638-c1b3d80b002a/go.mod h1:FF0+XRQeLZe7vYy1W1Xwqim2lNeibg0GkYXmfEeM79s=
+github.com/dzjyyds666/Allspark-go v0.0.0-20250805061127-2074985475f3 h1:Ddk1elx4KaI4HwYfia6E2mwydeFJ6bb+Ei+pjVIS+Uk=
+github.com/dzjyyds666/Allspark-go v0.0.0-20250805061127-2074985475f3/go.mod h1:FF0+XRQeLZe7vYy1W1Xwqim2lNeibg0GkYXmfEeM79s=
 github.com/dzjyyds666/vortex/v2 v2.0.0-20250727061855-6dd35b4d4948 h1:5ZT0wxExIOa5Nv/XE+6J4dJF8TfqCyV/SvbzAflPolI=
 github.com/dzjyyds666/vortex/v2 v2.0.0-20250727061855-6dd35b4d4948/go.mod h1:+VJHLOaOpdziV5kWxxp0SEh9SoXuED3tynElXN82abY=
 github.com/golang-jwt/jwt/v5 v5.2.3 h1:kkGXqQOBSDDWRhWNXTFpqGSCMyh/PLnqUvMGJPDJDs0=
