@@ -8,6 +8,7 @@ import (
 	"math/big"
 	"net/url"
 
+	"github.com/aws/smithy-go/ptr"
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
@@ -112,16 +113,38 @@ func NewDepotServer(ctx context.Context, cfg *Config, dsServer *ds.DatabaseServe
 	if !ok {
 		panic("mongo [media_storage] not found")
 	}
-	return &DepotServer{
+
+	ds := &DepotServer{
 		ctx:        ctx,
 		depotRDB:   depotRedis,
 		depotMongo: depotMongo,
 		boxServ:    boxServer,
 	}
+
+	err := ds.StartCheck()
+	if nil != err {
+		panic(err)
+	}
+
+	return ds
+}
+
+// 启动检查
+func (ds *DepotServer) StartCheck() error {
+	// 创建默认的depot
+	defaultDepot := &Depot{
+		DepotId:    "default",
+		DepotName:  ptr.String("default"),
+		Permission: ptr.String(DepotPermissions.Public),
+	}
+	return ds.CreateDepot(ds.ctx, defaultDepot)
 }
 
 // 创建仓库
 func (ds *DepotServer) CreateDepot(ctx context.Context, depot *Depot) error {
+	if depot.Permission == nil {
+		depot.Permission = ptr.String(DepotPermissions.Public)
+	}
 	_, err := ds.depotMongo.Collection(proto.DatabaseName.DepotDataBaseName).InsertOne(ctx, depot)
 	if nil != err {
 		logx.Errorf("DepotServer|CreateDepot|InsertOne|err: %v", err)

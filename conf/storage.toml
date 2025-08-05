@@ -17,6 +17,7 @@ group = "default"
     [server.jwt]
     secret = "123456"
     expire = 3600
+    
     [server.console_jwt]
     secret = "123456"
     expire = 3600

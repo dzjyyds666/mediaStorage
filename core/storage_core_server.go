@@ -79,7 +79,7 @@ func (ss *StorageCoreServer) SingleUpload(ctx context.Context, boxId, fid string
 	}
 
 	// 查询文件的初始化上传信息
-	prepareFileInfo, err := ss.fileServer.QueryPerpareFileInfo(ctx, boxInfo.GetDepotId(), boxId, fid)
+	prepareFileInfo, err := ss.fileServer.QueryPerpareFileInfo(ctx, ptr.ToString(boxInfo.DepotId), boxId, fid)
 	if err != nil {
 		logx.Errorf("StorageCoreServer|SingleUpload|QueryPerpareFileInfo|boxId: %s|fid: %s|err: %s", boxId, fid, err.Error())
 		return err

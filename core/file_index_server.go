@@ -44,11 +44,11 @@ type MediaFileInfo struct {
 
 // 构建对象的key
 func (mfi *MediaFileInfo) BuildObjectKey() string {
-	return path.Join(mfi.GetDepot().DepotId, mfi.BoxInfo.BoxId, mfi.Fid)
+	return path.Join(mfi.GetDepotId(), mfi.BoxInfo.BoxId, mfi.Fid)
 }
 
-func (mfi *MediaFileInfo) GetDepot() *Depot {
-	return mfi.BoxInfo.Depot
+func (mfi *MediaFileInfo) GetDepotId() string {
+	return ptr.ToString(mfi.BoxInfo.DepotId)
 }
 
 type InitUpload struct {
@@ -110,7 +110,7 @@ func (fs *FileIndexServer) CreatePrepareFileInfo(ctx context.Context, info *Medi
 		return err
 	}
 	// 把文件信息存储到redis中,1个小时之内进行上传
-	ok, err := fs.fileRedis.SetNX(ctx, buildFilePrepareKey(info.BoxInfo.GetDepotId(), info.BoxInfo.BoxId, info.Fid), raw, time.Hour).Result()
+	ok, err := fs.fileRedis.SetNX(ctx, buildFilePrepareKey(info.GetDepotId(), info.BoxInfo.BoxId, info.Fid), raw, time.Hour).Result()
 	if err != nil {
 		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|Set|err: %v", err)
 		return err
@@ -183,7 +183,7 @@ func (fs *FileIndexServer) SaveFileData(ctx context.Context, info *MediaFileInfo
 // 完成文件上传
 func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 	// 把文件补全文件信息
-	prepareInfo, err := fs.QueryPerpareFileInfo(ctx, info.GetDepot().DepotId, info.BoxInfo.BoxId, info.Fid)
+	prepareInfo, err := fs.QueryPerpareFileInfo(ctx, info.GetDepotId(), info.BoxInfo.BoxId, info.Fid)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|QueryPerpareFileInfo|err: %v", err)
 		return err
@@ -200,7 +200,7 @@ func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileIn
 	}
 
 	// 删除存储在redis中的数据
-	err = fs.fileRedis.Del(ctx, buildFilePrepareKey(info.GetDepot().DepotId, info.BoxInfo.BoxId, info.Fid)).Err()
+	err = fs.fileRedis.Del(ctx, buildFilePrepareKey(info.GetDepotId(), info.BoxInfo.BoxId, info.Fid)).Err()
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|Del|err: %v", err)
 	}

@@ -5,6 +5,7 @@ import (
 	"errors"
 	"net/url"
 
+	"github.com/aws/smithy-go/ptr"
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
@@ -21,15 +22,7 @@ type Box struct {
 	FileNumber *int64     `json:"file_number,omitempty" bson:"file_number,omitempty"`
 	SpaceUsed  *int64     `json:"space_used,omitempty" bson:"space_used,omitempty"`
 	MetaData   url.Values `json:"meta_data,omitempty" bson:"meta_data,omitempty"`
-	Depot      *Depot     `json:"depot,omitempty" bson:"depot,omitempty"` // 属于哪个仓库
-}
-
-// 获取到仓库信息
-func (b *Box) GetDepotId() string {
-	if b.Depot == nil {
-		return ""
-	}
-	return b.Depot.DepotId
+	DepotId    *string    `json:"depot_id,omitempty" bson:"depot_id,omitempty"`
 }
 
 type BoxServer struct {
@@ -47,15 +40,34 @@ func NewBoxServer(ctx context.Context, conf *Config, dsServer *ds.DatabaseServer
 	if !ok {
 		panic("mongo [media_storage] not found")
 	}
-	return &BoxServer{
+	bs := &BoxServer{
 		ctx:      ctx,
 		boxRDB:   boxRedis,
 		boxMongo: boxMongo,
 	}
+
+	err := bs.StartCheck()
+	if nil != err {
+		panic(err)
+	}
+	return bs
+}
+
+func (bs *BoxServer) StartCheck() error {
+	// 创建默认的box
+	defaultBox := &Box{
+		BoxId:   "default",
+		BoxName: ptr.String("default"),
+		DepotId: ptr.String("default"),
+	}
+	return bs.CreateBox(bs.ctx, defaultBox)
 }
 
 // 创建盒子
 func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
+	if box.DepotId == nil {
+		box.DepotId = ptr.String("default")
+	}
 	_, err := bs.boxMongo.Collection(proto.DatabaseName.BoxDataBaseName).InsertOne(ctx, box)
 	if nil != err {
 		logx.Errorf("BoxServer|CreateBox|InsertOne|err: %v", err)
