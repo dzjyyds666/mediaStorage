@@ -161,15 +161,15 @@ func (fs *FileIndexServer) CreateFileInfo(ctx context.Context, info *MediaFileIn
 // 查询文件的信息
 func (fs *FileIndexServer) QueryFileInfo(ctx context.Context, fileId string) (*MediaFileInfo, error) {
 	var info MediaFileInfo
-	err := fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"fid": fileId}).Decode(&info)
+	err := fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"_id": fileId}).Decode(&info)
 	if err != nil {
-		logx.Errorf("FileIndexServer|QueryFileInfo|FindOne|err: %v", err)
+		logx.Errorf("FileIndexServer|QueryFileInfo|FindOne|fileId: %s|err: %v", fileId, err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
 			return nil, proto.ErrorEnums.ErrFileNotExist
 		}
 		return nil, err
 	}
-	logx.Infof("FileIndexServer|QueryFileInfo|info: %s", conv.ToJsonWithoutError(info))
+	logx.Infof("FileIndexServer|QueryFileInfo|info|%s", conv.ToJsonWithoutError(info))
 	return &info, nil
 }
 

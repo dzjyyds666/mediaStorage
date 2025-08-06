@@ -30,6 +30,21 @@ func NewS3Server(ctx context.Context, cfg *Config) *S3Server {
 	}
 
 	s3Client := s3.NewFromConfig(s3Cfg)
+
+	// 检查bucket是否存在
+	_, err = s3Client.HeadBucket(ctx, &s3.HeadBucketInput{
+		Bucket: aws.String(cfg.S3.Bucket),
+	})
+	if err != nil {
+		// bucket不存在，创建新的bucket
+		_, err = s3Client.CreateBucket(ctx, &s3.CreateBucketInput{
+			Bucket: aws.String(cfg.S3.Bucket),
+		})
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	return &S3Server{
 		ctx:    ctx,
 		bucket: cfg.S3.Bucket,

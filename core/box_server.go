@@ -86,12 +86,12 @@ func (bs *BoxServer) QueryBoxInfo(ctx context.Context, boxId string) (*Box, erro
 	var box Box
 	err := bs.boxMongo.Collection(proto.DatabaseName.BoxDataBaseName).FindOne(ctx, bson.M{"_id": boxId}).Decode(&box)
 	if err != nil {
-		logx.Errorf("BoxServer|QueryBoxInfo|FindOne|err: %v", err)
+		logx.Errorf("BoxServer|QueryBoxInfo|FindOne|boxId: %s|err: %v", boxId, err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
 			return nil, proto.ErrorEnums.ErrBoxNotExist
 		}
 		return nil, err
 	}
-	logx.Infof("BoxServer|QueryBoxInfo|box: %s", conv.ToJsonWithoutError(box))
+	logx.Infof("BoxServer|QueryBoxInfo|box|%s", conv.ToJsonWithoutError(box))
 	return &box, nil
 }

@@ -81,6 +81,8 @@ func (ss *StorageCoreServer) SingleUpload(ctx context.Context, boxId, fid string
 			}
 			return nil
 		},
+		// 完成上传之后的文件信息构建
+		ss.fileServer.CompleteUpload,
 	)(ctx, prepareFileInfo)
 }
 

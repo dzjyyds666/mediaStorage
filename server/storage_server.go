@@ -35,9 +35,6 @@ type StorageServer struct {
 }
 
 func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.DatabaseServer) *StorageServer {
-
-	logx.Warnf("config:%s", conv.ToJsonWithoutError(cfg.Admin))
-
 	s3Server := core.NewS3Server(ctx, cfg)
 	boxServer := core.NewBoxServer(ctx, cfg, dsServer)
 	depotServer := core.NewDepotServer(ctx, cfg, dsServer, boxServer)
@@ -59,7 +56,6 @@ func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.Databa
 			Timeout: 30 * time.Second,
 		},
 	}
-	logx.Debugf("admin: %s|password: %s", server.admin.Username, server.admin.Password)
 	routers := PrepareRouters(server) // 创建路由
 	v := vortex.BootStrap(
 		ctx,
@@ -203,7 +199,7 @@ func (s *StorageServer) HandleApplyUpload(ctx *vortex.Context) error {
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.InternalError), nil)
 	}
 	logx.Infof("HandleApplyUpload|ApplyUpload|fid: %s|fileInfo: %s", fid, conv.ToJsonWithoutError(init))
-	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.InternalError), echo.Map{
+	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
 		"init_info": init,
 	})
 }
@@ -211,7 +207,7 @@ func (s *StorageServer) HandleApplyUpload(ctx *vortex.Context) error {
 // 文件直接上传
 func (s *StorageServer) HandleSingleUpload(ctx *vortex.Context) error {
 	fid := ctx.Param("fid")
-	boxId := ctx.QueryParam("box_id")
+	boxId := ctx.QueryParam("boxId")
 	file, err := ctx.FormFile("file")
 	if err != nil {
 		logx.Errorf("HandleSingleUpload|FormFile|fid: %s|err: %v", fid, err)
@@ -231,6 +227,8 @@ func (s *StorageServer) HandleSingleUpload(ctx *vortex.Context) error {
 			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BoxNotExist), nil)
 		} else if errors.Is(err, proto.ErrorEnums.ErrNoPrepareFileInfo) {
 			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.NoPrepareFileInfo), nil)
+		} else {
+			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.InternalError), nil)
 		}
 	}
 
@@ -290,4 +288,23 @@ func (s *StorageServer) GetDepotId(ctx *vortex.Context) string {
 		id = "default"
 	}
 	return id
+}
+
+// 查询文件信息
+func (s *StorageServer) HandleFileInfo(ctx *vortex.Context) error {
+	fid := ctx.Param("fid")
+	if len(fid) == 0 {
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BadRequest), nil)
+	}
+
+	info, err := s.coreServer.QueryFileInfo(ctx.GetContext(), fid)
+	if err != nil {
+		logx.Errorf("HandleFileInfo|QueryFileInfo|fid: %s|err: %v", fid, err)
+		if errors.Is(err, proto.ErrorEnums.ErrFileNotExist) {
+			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.FileNotExist), nil)
+		}
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.InternalError), nil)
+	}
+	logx.Infof("HandleFileInfo|QueryFileInfo|fid: %s|info: %s", fid, conv.ToJsonWithoutError(info))
+	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, info)
 }

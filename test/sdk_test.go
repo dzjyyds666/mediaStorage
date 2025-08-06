@@ -6,8 +6,10 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"io"
+	"mime/multipart"
 	"net/http"
 	"os"
+	"path/filepath"
 	"testing"
 	"time"
 
@@ -110,6 +112,65 @@ func Test_ApplyUpload(t *testing.T) {
 		convey.So(err, convey.ShouldBeNil)
 		req.Header.Set("Authorization", jwtToken)
 
+		resp, err := hcli.Do(req)
+		convey.So(err, convey.ShouldBeNil)
+		defer resp.Body.Close()
+		raw, err := io.ReadAll(resp.Body)
+		convey.So(err, convey.ShouldBeNil)
+		t.Logf("raw: %s", string(raw))
+	})
+}
+
+func Test_SingleUpload(t *testing.T) {
+	convey.Convey("单文件上传", t, func() {
+		path := "/Users/aaron/Downloads/assets/photoes/头像01.jpg"
+		f, err := os.Open(path)
+		convey.So(err, convey.ShouldBeNil)
+		defer f.Close()
+		// 创建multipart表单
+		body := &bytes.Buffer{}
+		writer := multipart.NewWriter(body)
+
+		// 添加文件字段
+		part, err := writer.CreateFormFile("file", filepath.Base(path))
+		convey.So(err, convey.ShouldBeNil)
+
+		// 将文件内容复制到表单
+		_, err = io.Copy(part, f)
+		convey.So(err, convey.ShouldBeNil)
+
+		// 关闭writer
+		err = writer.Close()
+		convey.So(err, convey.ShouldBeNil)
+
+		// 创建请求
+		req, err := http.NewRequest(http.MethodPost, endpoint+"/media/upload/single/v1-138e12ff-a2b0-4752-b361-aec47a51b602?boxId=default", body)
+		convey.So(err, convey.ShouldBeNil)
+
+		// 设置请求头
+		req.Header.Set("Content-Type", writer.FormDataContentType())
+		req.Header.Set("Authorization", jwtToken)
+
+		// 发送请求
+		resp, err := hcli.Do(req)
+		convey.So(err, convey.ShouldBeNil)
+		defer resp.Body.Close()
+
+		// 读取响应
+		raw, err := io.ReadAll(resp.Body)
+		convey.So(err, convey.ShouldBeNil)
+		t.Logf("raw: %s", string(raw))
+	})
+}
+
+// 查询文件信息
+func Test_QueryFileInfo(t *testing.T) {
+	convey.Convey("查询文件信息", t, func() {
+		req, err := http.NewRequest(http.MethodGet, endpoint+"/v1/media/file/info/v1-138e12ff-a2b0-4752-b361-aec47a51b602", nil)
+		convey.So(err, convey.ShouldBeNil)
+		req.Header.Set("Authorization", jwtToken)
+
+		// 发送请求
 		resp, err := hcli.Do(req)
 		convey.So(err, convey.ShouldBeNil)
 		defer resp.Body.Close()

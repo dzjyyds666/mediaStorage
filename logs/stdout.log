@@ -1,33 +1,19 @@
-[1;32m[INFO] 2025-07-27 14:11:17 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"Redis":"redis://127.0.0.1:6379","Mongo":"mongodb://127.0.0.1:27017","Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:11:17 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:11:17 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:11:17 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:11:17 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:11:17 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-}
-[0m
-[1;32m[INFO] 2025-07-27 14:12:11 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"Redis":"redis://127.0.0.1:6379","Mongo":"mongodb://127.0.0.1:27017","Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:12:11 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:12:11 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:12:11 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:12:11 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:12:11 
+[1;32m[INFO] 2025-08-06 22:46:06 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;33m[WARN] 2025-08-06 22:46:06 config:{"Username":"aaron","Password":"aaron519"}[0m
+[1;31m[ERROR] 2025-08-06 22:46:06 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 22:46:06 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;34m[DEBUG] 2025-08-06 22:46:06 admin: aaron|password: aaron519[0m
+[1;34m[DEBUG] 2025-08-06 22:46:06 I18n文件为:{"code_for_bad_request.en-us":"bad request","code_for_bad_request.zh-cn":"错误请求","code_for_box_not_exists.en-us":"box not exists","code_for_box_not_exists.zh-cn":"box不存在","code_for_file_exists.en-us":"file exists","code_for_file_exists.zh-cn":"文件已存在","code_for_file_no_prepare_info.en-us":"file no prepare info","code_for_file_no_prepare_info.zh-cn":"文件未初始化上传","code_for_file_not_exists.en-us":"file not exists","code_for_file_not_exists.zh-cn":"文件不存在","code_for_internal_error.en-us":"internal error","code_for_internal_error.zh-cn":"服务器内部错误","code_for_permission_deny.en-us":"permission deny","code_for_permission_deny.zh-cn":"权限不足"}[0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 22:46:06 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 22:46:06 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -37,16 +23,31 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 14:14:30 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"Redis":"redis://127.0.0.1:6379","Mongo":"mongodb://127.0.0.1:27017","Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:14:30 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:14:30 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:14:30 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:14:30 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:14:30 
+[1;32m[INFO] 2025-08-06 22:46:12 req ==>> [ POST /media/upload/apply ][0m
+[1;32m[INFO] 2025-08-06 22:46:12 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 22:46:12 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 22:46:12 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-68e8077f-71c1-42a4-8609-df5c46bfbad5","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-06 22:46:12 HandleApplyUpload|ApplyUpload|fid: v1-68e8077f-71c1-42a4-8609-df5c46bfbad5|fileInfo: {"fid":"v1-68e8077f-71c1-42a4-8609-df5c46bfbad5","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 22:46:12 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-06 22:46:12 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_success"}[0m
+[1;32m[INFO] 2025-08-06 22:46:12 rsp ==>> [ 200 /media/upload/apply ][0m
+[1;32m[INFO] 2025-08-06 22:49:58 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;33m[WARN] 2025-08-06 22:49:58 config:{"Username":"aaron","Password":"aaron519"}[0m
+[1;31m[ERROR] 2025-08-06 22:49:58 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 22:49:58 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;34m[DEBUG] 2025-08-06 22:49:58 admin: aaron|password: aaron519[0m
+[1;31m[ERROR] 2025-08-06 22:49:58 WithI18n|i18n:{"code_for_bad_request.en-us":"bad request","code_for_bad_request.zh-cn":"错误请求","code_for_box_not_exists.en-us":"box not exists","code_for_box_not_exists.zh-cn":"box不存在","code_for_file_exists.en-us":"file exists","code_for_file_exists.zh-cn":"文件已存在","code_for_file_no_prepare_info.en-us":"file no prepare info","code_for_file_no_prepare_info.zh-cn":"文件未初始化上传","code_for_file_not_exists.en-us":"file not exists","code_for_file_not_exists.zh-cn":"文件不存在","code_for_internal_error.en-us":"internal error","code_for_internal_error.zh-cn":"服务器内部错误","code_for_permission_deny.en-us":"permission deny","code_for_permission_deny.zh-cn":"权限不足"}[0m
+[1;34m[DEBUG] 2025-08-06 22:49:58 I18n文件为:{"code_for_bad_request.en-us":"bad request","code_for_bad_request.zh-cn":"错误请求","code_for_box_not_exists.en-us":"box not exists","code_for_box_not_exists.zh-cn":"box不存在","code_for_file_exists.en-us":"file exists","code_for_file_exists.zh-cn":"文件已存在","code_for_file_no_prepare_info.en-us":"file no prepare info","code_for_file_no_prepare_info.zh-cn":"文件未初始化上传","code_for_file_not_exists.en-us":"file not exists","code_for_file_not_exists.zh-cn":"文件不存在","code_for_internal_error.en-us":"internal error","code_for_internal_error.zh-cn":"服务器内部错误","code_for_permission_deny.en-us":"permission deny","code_for_permission_deny.zh-cn":"权限不足"}[0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 22:49:58 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 22:49:58 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -56,18 +57,24 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 14:15:56 req ==>> [ GET /test ][0m
-[1;32m[INFO] 2025-07-27 14:15:56 rsp ==>> [ 200 /test ][0m
-[1;32m[INFO] 2025-07-27 14:19:20 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"Redis":"redis://127.0.0.1:6379","Mongo":"mongodb://127.0.0.1:27017","Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:19:20 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:19:20 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:19:20 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:19:20 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:19:20 
+[1;32m[INFO] 2025-08-06 22:51:08 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;33m[WARN] 2025-08-06 22:51:08 config:{"Username":"aaron","Password":"aaron519"}[0m
+[1;31m[ERROR] 2025-08-06 22:51:08 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 22:51:08 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;34m[DEBUG] 2025-08-06 22:51:08 admin: aaron|password: aaron519[0m
+[1;31m[ERROR] 2025-08-06 22:51:08 WithI18n|i18n:{"code_for_internal_error.zh-cn":"系统内部故障","code_for_params_invaild.zh-cn":"参数错误","code_for_permission_deny.zh-cn":"权限不足","code_for_success.en-us":"sucess","code_for_success.zh-cn":"请求成功","code_for_unauthorized.zh-cn":"未授权或token无效"}[0m
+[1;31m[ERROR] 2025-08-06 22:51:08 WithI18n|i18n:{"code_for_bad_request.en-us":"bad request","code_for_bad_request.zh-cn":"错误请求","code_for_box_not_exists.en-us":"box not exists","code_for_box_not_exists.zh-cn":"box不存在","code_for_file_exists.en-us":"file exists","code_for_file_exists.zh-cn":"文件已存在","code_for_file_no_prepare_info.en-us":"file no prepare info","code_for_file_no_prepare_info.zh-cn":"文件未初始化上传","code_for_file_not_exists.en-us":"file not exists","code_for_file_not_exists.zh-cn":"文件不存在","code_for_internal_error.en-us":"internal error","code_for_internal_error.zh-cn":"系统内部故障","code_for_params_invaild.zh-cn":"参数错误","code_for_permission_deny.en-us":"permission deny","code_for_permission_deny.zh-cn":"权限不足","code_for_success.en-us":"sucess","code_for_success.zh-cn":"请求成功","code_for_unauthorized.zh-cn":"未授权或token无效"}[0m
+[1;34m[DEBUG] 2025-08-06 22:51:08 I18n文件为:{"code_for_bad_request.en-us":"bad request","code_for_bad_request.zh-cn":"错误请求","code_for_box_not_exists.en-us":"box not exists","code_for_box_not_exists.zh-cn":"box不存在","code_for_file_exists.en-us":"file exists","code_for_file_exists.zh-cn":"文件已存在","code_for_file_no_prepare_info.en-us":"file no prepare info","code_for_file_no_prepare_info.zh-cn":"文件未初始化上传","code_for_file_not_exists.en-us":"file not exists","code_for_file_not_exists.zh-cn":"文件不存在","code_for_internal_error.en-us":"internal error","code_for_internal_error.zh-cn":"系统内部故障","code_for_params_invaild.zh-cn":"参数错误","code_for_permission_deny.en-us":"permission deny","code_for_permission_deny.zh-cn":"权限不足","code_for_success.en-us":"sucess","code_for_success.zh-cn":"请求成功","code_for_unauthorized.zh-cn":"未授权或token无效"}[0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 22:51:08 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 22:51:08 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -77,18 +84,21 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 14:19:24 req ==>> [ GET /test ][0m
-[1;32m[INFO] 2025-07-27 14:19:24 rsp ==>> [ 200 /test ][0m
-[1;32m[INFO] 2025-07-27 14:20:23 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"Redis":"redis://127.0.0.1:6379","Mongo":"mongodb://127.0.0.1:27017","Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:20:23 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:20:23 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:20:23 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:20:23 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:20:23 
+[1;32m[INFO] 2025-08-06 22:52:02 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;33m[WARN] 2025-08-06 22:52:02 config:{"Username":"aaron","Password":"aaron519"}[0m
+[1;31m[ERROR] 2025-08-06 22:52:02 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 22:52:02 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;34m[DEBUG] 2025-08-06 22:52:02 admin: aaron|password: aaron519[0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 22:52:02 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 22:52:02 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -98,19 +108,20 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 14:20:26 req ==>> [ GET /test ][0m
-[1;32m[INFO] 2025-07-27 14:20:26 rsp ==>> [ 200 /test ][0m
-[1;32m[INFO] 2025-07-27 14:22:48 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"Redis":"redis://127.0.0.1:6379","Mongo":"mongodb://127.0.0.1:27017","Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:22:48 vortex server start at port 18080[0m
-[1;32m[INFO] 2025-07-27 14:22:48 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:22:48 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:22:48 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:22:48 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:22:48 
+[1;32m[INFO] 2025-08-06 22:55:01 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;33m[WARN] 2025-08-06 22:55:01 config:{"Username":"aaron","Password":"aaron519"}[0m
+[1;31m[ERROR] 2025-08-06 22:55:01 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 22:55:01 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 22:55:01 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 22:55:01 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -120,17 +131,19 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 14:23:26 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"Redis":"redis://127.0.0.1:6379","Mongo":"mongodb://127.0.0.1:27017","Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:23:26 成啦：18080[0m
-[1;32m[INFO] 2025-07-27 14:23:26 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:23:26 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:23:26 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:23:26 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:23:26 
+[1;32m[INFO] 2025-08-06 22:55:36 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 22:55:36 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 22:55:36 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 22:55:36 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 22:55:36 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -140,16 +153,43 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 14:54:11 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:54:11 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:11 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:11 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:11 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:11 
+[1;32m[INFO] 2025-08-06 23:08:54 req ==>> [ POST /media/upload/apply ][0m
+[1;32m[INFO] 2025-08-06 23:08:54 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 23:08:54 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 23:08:54 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-1be819fb-6e30-4b2b-9184-dec251e74d91","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-06 23:08:54 HandleApplyUpload|ApplyUpload|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|fileInfo: {"fid":"v1-1be819fb-6e30-4b2b-9184-dec251e74d91","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 23:08:54 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:08:54 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_success"}[0m
+[1;32m[INFO] 2025-08-06 23:08:54 rsp ==>> [ 200 /media/upload/apply ][0m
+[1;32m[INFO] 2025-08-06 23:16:18 req ==>> [ POST /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91 ][0m
+[1;32m[INFO] 2025-08-06 23:16:18 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;31m[ERROR] 2025-08-06 23:16:18 BoxServer|QueryBoxInfo|FindOne|err: mongo: no documents in result[0m
+[1;31m[ERROR] 2025-08-06 23:16:18 StorageCoreServer|SingleUpload|QueryBoxInfo|boxId: |err: box not exist[0m
+[1;31m[ERROR] 2025-08-06 23:16:18 HandleSingleUpload|SingleUpload|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: box not exist[0m
+[1;32m[INFO] 2025-08-06 23:16:18 getEmByLang|key:code_for_box_not_exists.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:16:18 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_box_not_exists"}[0m
+[1;32m[INFO] 2025-08-06 23:16:18 rsp ==>> [ 200 /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91 ][0m
+[1;32m[INFO] 2025-08-06 23:22:29 req ==>> [ POST /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:22:29 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;31m[ERROR] 2025-08-06 23:22:29 BoxServer|QueryBoxInfo|FindOne|err: mongo: no documents in result[0m
+[1;31m[ERROR] 2025-08-06 23:22:29 StorageCoreServer|SingleUpload|QueryBoxInfo|boxId: |err: box not exist[0m
+[1;31m[ERROR] 2025-08-06 23:22:29 HandleSingleUpload|SingleUpload|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: box not exist[0m
+[1;32m[INFO] 2025-08-06 23:22:29 getEmByLang|key:code_for_box_not_exists.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:22:29 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_box_not_exists"}[0m
+[1;32m[INFO] 2025-08-06 23:22:29 rsp ==>> [ 200 /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:23:11 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:23:11 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:23:11 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:23:11 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:23:11 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -159,16 +199,27 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 14:54:54 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 14:54:54 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:54 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:54 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:54 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 14:54:54 
+[1;32m[INFO] 2025-08-06 23:23:16 req ==>> [ POST /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:23:16 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;31m[ERROR] 2025-08-06 23:23:16 BoxServer|QueryBoxInfo|FindOne|boxId: |err: mongo: no documents in result[0m
+[1;31m[ERROR] 2025-08-06 23:23:16 StorageCoreServer|SingleUpload|QueryBoxInfo|boxId: |err: box not exist[0m
+[1;31m[ERROR] 2025-08-06 23:23:16 HandleSingleUpload|SingleUpload|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: box not exist[0m
+[1;32m[INFO] 2025-08-06 23:23:16 getEmByLang|key:code_for_box_not_exists.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:23:16 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_box_not_exists"}[0m
+[1;32m[INFO] 2025-08-06 23:23:16 rsp ==>> [ 200 /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:23:52 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:23:52 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:23:52 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:23:52 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:23:52 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -178,39 +229,28 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-07-27 15:04:00 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:05:20 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:06:27 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:06:55 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:08:23 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:08:31 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:08:54 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:09:06 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:09:27 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:10:14 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:10:38 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:11:06 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:11:28 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:13:09 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:14:28 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:15:06 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:16:13 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:16:55 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9000","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:18:42 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:19:48 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:20:31 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6379,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27017,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:20:45 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:26:29 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:26:46 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}}}[0m
-[1;32m[INFO] 2025-07-27 15:26:46 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-07-27 15:26:46 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-07-27 15:26:46 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-07-27 15:26:46 methods=>[["GET"]]	api=>[测试路由]	path=>[/test]	desc=>[测试路由]
-[0m
-[1;32m[INFO] 2025-07-27 15:26:46 
+[1;32m[INFO] 2025-08-06 23:23:58 req ==>> [ POST /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:23:58 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 23:23:58 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;31m[ERROR] 2025-08-06 23:23:58 S3Server|SaveFileData|PutObject|err: operation error S3: PutObject, https response error StatusCode: 403, RequestID: 185936D9A921E555, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, api error SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. Check your key and signing method.[0m
+[1;31m[ERROR] 2025-08-06 23:23:58 StorageCoreServer|SingleUpload|SaveFileData|boxId: default|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: operation error S3: PutObject, https response error StatusCode: 403, RequestID: 185936D9A921E555, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, api error SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. Check your key and signing method.[0m
+[1;31m[ERROR] 2025-08-06 23:23:58 HandleSingleUpload|SingleUpload|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: operation error S3: PutObject, https response error StatusCode: 403, RequestID: 185936D9A921E555, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, api error SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. Check your key and signing method.[0m
+[1;32m[INFO] 2025-08-06 23:23:58 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:23:58 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_success"}[0m
+[1;32m[INFO] 2025-08-06 23:23:58 rsp ==>> [ 200 /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:25:25 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:25:25 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:25:25 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:25:25 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:25:25 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -220,24 +260,29 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-03 21:21:15 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-04 13:50:28 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-04 13:51:15 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-04 13:51:15 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:15 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:15 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:15 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:15 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:15 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:15 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:15 
+[1;32m[INFO] 2025-08-06 23:25:30 req ==>> [ POST /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:25:30 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 23:25:30 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;31m[ERROR] 2025-08-06 23:25:30 S3Server|SaveFileData|PutObject|err: operation error S3: PutObject, https response error StatusCode: 403, RequestID: 185936EF10F434D5, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, api error SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. Check your key and signing method.[0m
+[1;31m[ERROR] 2025-08-06 23:25:30 StorageCoreServer|SingleUpload|SaveFileData|boxId: default|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: operation error S3: PutObject, https response error StatusCode: 403, RequestID: 185936EF10F434D5, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, api error SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. Check your key and signing method.[0m
+[1;31m[ERROR] 2025-08-06 23:25:30 HandleSingleUpload|SingleUpload|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: operation error S3: PutObject, https response error StatusCode: 403, RequestID: 185936EF10F434D5, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, api error SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. Check your key and signing method.[0m
+[1;32m[INFO] 2025-08-06 23:25:30 getEmByLang|key:code_for_internal_error.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:25:30 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_internal_error"}[0m
+[1;32m[INFO] 2025-08-06 23:25:30 rsp ==>> [ 200 /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:26:48 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;32m[INFO] 2025-08-06 23:27:18 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:27:18 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:27:18 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:27:18 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:27:18 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -247,22 +292,31 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-04 13:51:25 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-04 13:51:25 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:25 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:25 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:25 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:25 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:25 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:25 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-04 13:51:25 
+[1;32m[INFO] 2025-08-06 23:27:27 req ==>> [ POST /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:27:27 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 23:27:27 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 23:27:27 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:27:27 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_success"}[0m
+[1;32m[INFO] 2025-08-06 23:27:27 rsp ==>> [ 200 /media/upload/single/v1-1be819fb-6e30-4b2b-9184-dec251e74d91?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:29:43 req ==>> [ GET /media/file/v1-1be819fb-6e30-4b2b-9184-dec251e74d91 ][0m
+[1;31m[ERROR] 2025-08-06 23:29:43 FileIndexServer|QueryFileInfo|FindOne|err: mongo: no documents in result[0m
+[1;31m[ERROR] 2025-08-06 23:29:43 HandleFile|QueryFileInfo|fid: v1-1be819fb-6e30-4b2b-9184-dec251e74d91|err: file not exist[0m
+[1;32m[INFO] 2025-08-06 23:29:43 getEmByLang|key:code_for_file_not_exists.zh-cn,zh;q=0.9,en;q=0.8[0m
+[1;32m[INFO] 2025-08-06 23:29:43 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_file_not_exists"}[0m
+[1;32m[INFO] 2025-08-06 23:29:43 rsp ==>> [ 200 /media/file/v1-1be819fb-6e30-4b2b-9184-dec251e74d91 ][0m
+[1;32m[INFO] 2025-08-06 23:32:09 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:32:09 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:32:09 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:32:09 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:32:09 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -272,22 +326,39 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-04 22:59:05 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-04 22:59:05 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-04 22:59:05 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-04 22:59:05 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-04 22:59:05 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-04 22:59:05 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-04 22:59:05 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-04 22:59:05 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-04 22:59:05 
+[1;32m[INFO] 2025-08-06 23:32:18 req ==>> [ POST /media/upload/apply ][0m
+[1;32m[INFO] 2025-08-06 23:32:18 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 23:32:18 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 23:32:18 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-138e12ff-a2b0-4752-b361-aec47a51b602","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-06 23:32:18 HandleApplyUpload|ApplyUpload|fid: v1-138e12ff-a2b0-4752-b361-aec47a51b602|fileInfo: {"fid":"v1-138e12ff-a2b0-4752-b361-aec47a51b602","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 23:32:18 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:32:18 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_success"}[0m
+[1;32m[INFO] 2025-08-06 23:32:18 rsp ==>> [ 200 /media/upload/apply ][0m
+[1;32m[INFO] 2025-08-06 23:32:38 req ==>> [ POST /media/upload/single/v1-138e12ff-a2b0-4752-b361-aec47a51b602?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:32:38 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 23:32:38 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-06 23:32:38 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:32:38 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_success"}[0m
+[1;32m[INFO] 2025-08-06 23:32:38 rsp ==>> [ 200 /media/upload/single/v1-138e12ff-a2b0-4752-b361-aec47a51b602?boxId=default ][0m
+[1;32m[INFO] 2025-08-06 23:32:49 req ==>> [ GET /media/file/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;31m[ERROR] 2025-08-06 23:32:49 FileIndexServer|QueryFileInfo|FindOne|err: mongo: no documents in result[0m
+[1;31m[ERROR] 2025-08-06 23:32:49 HandleFile|QueryFileInfo|fid: v1-138e12ff-a2b0-4752-b361-aec47a51b602|err: file not exist[0m
+[1;32m[INFO] 2025-08-06 23:32:49 getEmByLang|key:code_for_file_not_exists.zh-cn,zh;q=0.9,en;q=0.8[0m
+[1;32m[INFO] 2025-08-06 23:32:49 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_file_not_exists"}[0m
+[1;32m[INFO] 2025-08-06 23:32:49 rsp ==>> [ 200 /media/file/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;32m[INFO] 2025-08-06 23:34:09 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:34:09 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:34:09 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:34:09 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:34:09 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -297,37 +368,25 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-04 22:59:58 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-05 10:10:18 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:9005","AccessKey":"admin","SecretKey":"admin@123","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":6380,"username":"","password":""},"mongo":{"host":"127.0.0.1","port":27018,"username":"","password":""},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 10:10:18 BoxServer|CreateBox|InsertOne|err: (Unauthorized) Command insert requires authentication[0m
-[1;32m[INFO] 2025-08-05 14:05:06 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-05 14:07:42 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-05 14:12:19 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 14:12:19 BoxServer|CreateBox|InsertOne|err: connection() error occurred during connection handshake: auth error: sasl conversation error: unable to authenticate using mechanism "SCRAM-SHA-1": (AuthenticationFailed) Authentication failed.[0m
-[1;32m[INFO] 2025-08-05 14:15:41 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 14:15:41 BoxServer|CreateBox|InsertOne|err: connection() error occurred during connection handshake: auth error: sasl conversation error: unable to authenticate using mechanism "SCRAM-SHA-1": (AuthenticationFailed) Authentication failed.[0m
-[1;32m[INFO] 2025-08-05 14:16:06 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-05 14:16:06 BoxServer|CreateBox|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;32m[INFO] 2025-08-05 14:16:06 DepotServer|CreateDepot|success|depot_info: {"depot_id":"default","depot_name":"default","permission":"public"}[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:16:06 
+[1;32m[INFO] 2025-08-06 23:34:16 req ==>> [ GET /media/file/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;31m[ERROR] 2025-08-06 23:34:16 FileIndexServer|QueryFileInfo|FindOne|fileId: v1-138e12ff-a2b0-4752-b361-aec47a51b602|err: mongo: no documents in result[0m
+[1;31m[ERROR] 2025-08-06 23:34:16 HandleFile|QueryFileInfo|fid: v1-138e12ff-a2b0-4752-b361-aec47a51b602|err: file not exist[0m
+[1;32m[INFO] 2025-08-06 23:34:16 getEmByLang|key:code_for_file_not_exists.zh-cn,zh;q=0.9,en;q=0.8[0m
+[1;32m[INFO] 2025-08-06 23:34:16 HttpJsonResponse|status:{"RespCode":200,"I18nKey":"code_for_file_not_exists"}[0m
+[1;32m[INFO] 2025-08-06 23:34:16 rsp ==>> [ 200 /media/file/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;32m[INFO] 2025-08-06 23:34:32 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:34:32 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:34:32 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:34:32 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:34:32 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -337,30 +396,23 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-05 14:21:43 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 14:21:43 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 14:23:18 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 14:23:18 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 14:23:18 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:23:18 
+[1;32m[INFO] 2025-08-06 23:34:34 req ==>> [ GET /media/file/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;32m[INFO] 2025-08-06 23:34:34 FileIndexServer|QueryFileInfo|info|{"fid":"v1-138e12ff-a2b0-4752-b361-aec47a51b602","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"created_ts":1754494358,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-06 23:34:34 rsp ==>> [ 200 /media/file/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;32m[INFO] 2025-08-06 23:41:26 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:41:26 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:41:26 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["POST"]]	api=>[登录接口]	path=>[/v1/login]	desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["POST"]]	api=>[创建 depot]	path=>[/v1/media/deport/create]	desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["POST"]]	api=>[创建 box]	path=>[/v1/media/box/create]	desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/v1/media/file/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["GET"]]	api=>[查看文件]	path=>[/v1/media/file/info/:fid]	desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["POST"]]	api=>[申请上传]	path=>[/v1/media/upload/apply]	desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:41:26 methods=>[["POST"]]	api=>[单文件上传]	path=>[/v1/media/upload/single/:fid]	desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:41:26 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -370,28 +422,20 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-05 14:25:39 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 14:25:39 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 14:25:39 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:25:39 
+[1;32m[INFO] 2025-08-06 23:42:28 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:42:28 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:42:28 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["POST","GET"]] 	 api=>[处理websocket的handle] 	 path=>[/v1/ws] 	 desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["GET"]] 	 api=>[程序健康检查] 	 path=>[/v1/checkalive] 	 desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["GET","POST"]] 	 api=>[cmd接口，使用统一的结构] 	 path=>[/v1/cmd] 	 desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["POST"]] 	 api=>[登录接口] 	 path=>[/v1/login] 	 desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["POST"]] 	 api=>[创建 depot] 	 path=>[/v1/media/deport/create] 	 desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["POST"]] 	 api=>[创建 box] 	 path=>[/v1/media/box/create] 	 desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["POST","GET","HEAD"]] 	 api=>[查看文件] 	 path=>[/v1/media/file/:fid] 	 desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["GET"]] 	 api=>[查看文件] 	 path=>[/v1/media/file/info/:fid] 	 desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["POST"]] 	 api=>[申请上传] 	 path=>[/v1/media/upload/apply] 	 desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:42:28 methods=>[["POST"]] 	 api=>[单文件上传] 	 path=>[/v1/media/upload/single/:fid] 	 desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:42:28 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -401,28 +445,20 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-05 14:29:48 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 14:29:48 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 14:29:48 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 14:29:48 
+[1;32m[INFO] 2025-08-06 23:42:48 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:42:48 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:42:48 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["POST","GET"]] api=>[处理websocket的handle] path=>[/v1/ws] desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["GET"]] api=>[程序健康检查] path=>[/v1/checkalive] desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["GET","POST"]] api=>[cmd接口，使用统一的结构] path=>[/v1/cmd] desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["POST"]] api=>[登录接口] path=>[/v1/login] desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["POST"]] api=>[创建 depot] path=>[/v1/media/deport/create] desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["POST"]] api=>[创建 box] path=>[/v1/media/box/create] desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["POST","GET","HEAD"]] api=>[查看文件] path=>[/v1/media/file/:fid] desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["GET"]] api=>[查看文件] path=>[/v1/media/file/info/:fid] desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["POST"]] api=>[申请上传] path=>[/v1/media/upload/apply] desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:42:48 methods=>[["POST"]] api=>[单文件上传] path=>[/v1/media/upload/single/:fid] desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:42:48 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -432,29 +468,20 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-05 22:40:07 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;32m[INFO] 2025-08-05 22:40:27 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 22:40:27 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:40:27 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["GET"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:40:27 
+[1;32m[INFO] 2025-08-06 23:43:10 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:43:10 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:43:10 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["POST","GET"]] | api=>[处理websocket的handle] | path=>[/v1/ws] | desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["GET"]] | api=>[程序健康检查] | path=>[/v1/checkalive] | desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["GET","POST"]] | api=>[cmd接口，使用统一的结构] | path=>[/v1/cmd] | desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["POST"]] | api=>[登录接口] | path=>[/v1/login] | desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["POST"]] | api=>[创建 depot] | path=>[/v1/media/deport/create] | desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["POST"]] | api=>[创建 box] | path=>[/v1/media/box/create] | desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["POST","GET","HEAD"]] | api=>[查看文件] | path=>[/v1/media/file/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["GET"]] | api=>[查看文件] | path=>[/v1/media/file/info/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["POST"]] | api=>[申请上传] | path=>[/v1/media/upload/apply] | desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:43:10 methods=>[["POST"]] | api=>[单文件上传] | path=>[/v1/media/upload/single/:fid] | desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:43:10 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -464,28 +491,20 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-05 22:46:25 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 22:46:25 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:46:25 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:46:25 
+[1;32m[INFO] 2025-08-06 23:46:48 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-06 23:46:48 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-06 23:46:48 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["POST","GET"]] | api=>[处理websocket的handle] | path=>[/v1/ws] | desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["GET"]] | api=>[程序健康检查] | path=>[/v1/checkalive] | desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["GET","POST"]] | api=>[cmd接口，使用统一的结构] | path=>[/v1/cmd] | desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["POST"]] | api=>[登录接口] | path=>[/v1/login] | desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["POST"]] | api=>[创建 depot] | path=>[/v1/media/deport/create] | desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["POST"]] | api=>[创建 box] | path=>[/v1/media/box/create] | desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["POST","GET","HEAD"]] | api=>[查看文件] | path=>[/v1/media/file/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["GET"]] | api=>[查看文件] | path=>[/v1/media/file/info/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["POST"]] | api=>[申请上传] | path=>[/v1/media/upload/apply] | desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-06 23:46:48 methods=>[["POST"]] | api=>[单文件上传] | path=>[/v1/media/upload/single/:fid] | desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-06 23:46:48 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -495,31 +514,26 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-05 22:46:31 req ==>> [ POST /login ][0m
-[1;31m[ERROR] 2025-08-05 22:46:31 StorageServer|HandleLogin|login error: <nil>[0m
-[1;32m[INFO] 2025-08-05 22:46:31 rsp ==>> [ 400 /login ][0m
-[1;32m[INFO] 2025-08-05 22:47:29 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 22:47:29 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:47:29 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:47:29 
+[1;32m[INFO] 2025-08-06 23:48:22 req ==>> [ GET /v1/media/file/info/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;32m[INFO] 2025-08-06 23:48:22 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-06 23:48:22 FileIndexServer|QueryFileInfo|info|{"fid":"v1-138e12ff-a2b0-4752-b361-aec47a51b602","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"created_ts":1754494358,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-06 23:48:22 HandleFileInfo|QueryFileInfo|fid: v1-138e12ff-a2b0-4752-b361-aec47a51b602|info: {"fid":"v1-138e12ff-a2b0-4752-b361-aec47a51b602","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"created_ts":1754494358,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-06 23:48:22 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-06 23:48:22 rsp ==>> [ 200 /v1/media/file/info/v1-138e12ff-a2b0-4752-b361-aec47a51b602 ][0m
+[1;32m[INFO] 2025-08-07 00:06:59 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-07 00:06:59 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-07 00:06:59 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["POST","GET"]] | api=>[处理websocket的handle] | path=>[/v1/ws] | desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["GET"]] | api=>[程序健康检查] | path=>[/v1/checkalive] | desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["GET","POST"]] | api=>[cmd接口，使用统一的结构] | path=>[/v1/cmd] | desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["POST"]] | api=>[登录接口] | path=>[/v1/login] | desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["POST"]] | api=>[创建 depot] | path=>[/v1/media/deport/create] | desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["POST"]] | api=>[创建 box] | path=>[/v1/media/box/create] | desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["POST","GET","HEAD"]] | api=>[查看文件] | path=>[/v1/media/file/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["GET"]] | api=>[查看文件] | path=>[/v1/media/file/info/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["POST"]] | api=>[申请上传] | path=>[/v1/media/upload/apply] | desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-07 00:06:59 methods=>[["POST"]] | api=>[单文件上传] | path=>[/v1/media/upload/single/:fid] | desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-07 00:06:59 
  __     __                 _                 
  \ \   / /   ___    _ __  | |_    ___  __  __
   \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
@@ -529,657 +543,3 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
-[1;32m[INFO] 2025-08-05 22:47:33 req ==>> [ POST /login ][0m
-[1;31m[ERROR] 2025-08-05 22:47:33 StorageServer|HandleLogin|login error: <nil>[0m
-[1;32m[INFO] 2025-08-05 22:47:33 rsp ==>> [ 400 /login ][0m
-[1;32m[INFO] 2025-08-05 22:48:02 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 22:48:02 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:48:02 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:48:02 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 22:48:11 req ==>> [ POST /media/upload/apply ][0m
-[1;31m[ERROR] 2025-08-05 22:48:11 BoxServer|QueryBoxInfo|FindOne|err: mongo: no documents in result[0m
-[1;31m[ERROR] 2025-08-05 22:48:11 StorageCoreServer|ApplyUpload|QueryBoxInfo|boxId: |err: box not exist[0m
-[1;31m[ERROR] 2025-08-05 22:48:11 HandleApplyUpload|ApplyUpload|fid: |err: box not exist[0m
-[1;32m[INFO] 2025-08-05 22:48:11 rsp ==>> [ 500 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-05 22:48:54 req ==>> [ POST /login ][0m
-[1;31m[ERROR] 2025-08-05 22:48:54 StorageServer|HandleLogin|login error: <nil>[0m
-[1;32m[INFO] 2025-08-05 22:48:54 rsp ==>> [ 400 /login ][0m
-[1;32m[INFO] 2025-08-05 22:50:27 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 22:50:27 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:50:27 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 22:50:27 admin: |password: [0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:50:27 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 22:51:00 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:51:00 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 22:51:00 admin: |password: [0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:51:00 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;33m[WARN] 2025-08-05 22:52:17 config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;31m[ERROR] 2025-08-05 22:52:17 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:52:17 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 22:52:17 admin: |password: [0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:52:17 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;33m[WARN] 2025-08-05 22:53:18 config:{"Username":"","Password":""}[0m
-[1;31m[ERROR] 2025-08-05 22:53:18 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:53:18 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 22:53:18 admin: |password: [0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:53:18 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 22:53:35 req ==>> [ POST /login ][0m
-[1;31m[ERROR] 2025-08-05 22:53:35 StorageServer|HandleLogin|login error: <nil>[0m
-[1;32m[INFO] 2025-08-05 22:53:35 rsp ==>> [ 400 /login ][0m
-[1;32m[INFO] 2025-08-05 22:54:28 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"","Password":""}}[0m
-[1;33m[WARN] 2025-08-05 22:54:28 config:{"Username":"","Password":""}[0m
-[1;31m[ERROR] 2025-08-05 22:54:28 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:54:28 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 22:54:28 admin: |password: [0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:54:28 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 22:54:32 req ==>> [ POST /login ][0m
-[1;31m[ERROR] 2025-08-05 22:54:32 StorageServer|HandleLogin|username: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-05 22:54:32 rsp ==>> [ 400 /login ][0m
-[1;32m[INFO] 2025-08-05 22:56:18 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"123456","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-05 22:56:18 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-05 22:56:18 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 22:56:18 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 22:56:18 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 22:56:18 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 22:56:22 req ==>> [ POST /login ][0m
-[1;31m[ERROR] 2025-08-05 22:56:22 StorageServer|HandleLogin|SignJwt|err: key is of invalid type: ECDSA sign expects *ecdsa.PrivateKey[0m
-[1;32m[INFO] 2025-08-05 22:56:22 rsp ==>> [ 500 /login ][0m
-[1;32m[INFO] 2025-08-05 22:59:29 req ==>> [ POST /login ][0m
-[1;31m[ERROR] 2025-08-05 22:59:29 StorageServer|HandleLogin|SignJwt|err: key is of invalid type: ECDSA sign expects *ecdsa.PrivateKey[0m
-[1;32m[INFO] 2025-08-05 22:59:29 rsp ==>> [ 500 /login ][0m
-[1;32m[INFO] 2025-08-05 23:05:44 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-05 23:05:44 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-05 23:05:44 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 23:05:44 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 23:05:44 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 23:05:44 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 23:05:50 req ==>> [ POST /login ][0m
-[1;32m[INFO] 2025-08-05 23:05:50 rsp ==>> [ 200 /login ][0m
-[1;32m[INFO] 2025-08-05 23:24:55 req ==>> [ POST /media/upload/apply ][0m
-[1;31m[ERROR] 2025-08-05 23:24:55 vortex|VerifyMw|VerifyJwt ParseToken err:token is malformed: could not base64 decode header: illegal base64 data at input byte 6[0m
-[1;32m[INFO] 2025-08-05 23:27:45 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-05 23:27:45 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-05 23:27:45 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 23:27:45 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 23:27:45 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 23:27:45 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 23:27:53 req ==>> [ POST /media/upload/apply ][0m
-[1;31m[ERROR] 2025-08-05 23:27:53 vortex|VerifyMw|VerifyJwt ParseToken err:token is malformed: could not base64 decode header: illegal base64 data at input byte 6[0m
-[1;32m[INFO] 2025-08-05 23:34:13 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-05 23:34:13 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-05 23:34:13 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 23:34:13 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 23:34:13 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传]
-[0m
-[1;32m[INFO] 2025-08-05 23:34:13 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 23:34:27 req ==>> [ POST /media/upload/apply ][0m
-[1;31m[ERROR] 2025-08-05 23:34:27 vortex|VerifyMw|VerifyJwt ParseToken err:token signature is invalid: signature is invalid, token length: 129[0m
-[1;32m[INFO] 2025-08-05 23:34:27 rsp ==>> [ 401 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-05 23:38:06 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-05 23:38:06 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-05 23:38:06 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 23:38:06 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 23:38:06 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-05 23:38:06 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-05 23:38:06 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 23:38:12 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-05 23:38:12 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;31m[ERROR] 2025-08-05 23:38:12 vortex|VerifyMw|VerifyJwt ParseToken err:token signature is invalid: signature is invalid, token length: 129[0m
-[1;32m[INFO] 2025-08-05 23:38:12 rsp ==>> [ 401 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-05 23:45:02 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-05 23:45:02 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-05 23:45:02 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-05 23:45:02 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-05 23:45:02 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-05 23:45:02 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-05 23:45:02 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-05 23:45:31 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-05 23:45:31 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;31m[ERROR] 2025-08-05 23:45:31 vortex|VerifyMw|SecretKey|VerifyJwt ParseToken err:token signature is invalid: signature is invalid[0m
-[1;31m[ERROR] 2025-08-05 23:45:31 vortex|VerifyMw|ConsoleSecretKey|VerifyJwt ParseToken err:token signature is invalid: signature is invalid[0m
-[1;32m[INFO] 2025-08-05 23:45:31 rsp ==>> [ 401 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:29:10 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:29:10 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;32m[INFO] 2025-08-06 14:29:22 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:29:22 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:29:22 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:29:22 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:29:22 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:29:22 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:29:22 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:29:33 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:29:33 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:33:23 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:33:23 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:33:23 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:33:23 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:33:23 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:33:23 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:33:23 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:33:29 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:33:29 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:33:29 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:33:29 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-0d2db4bd-e2cd-44a9-926f-3547748a3826","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
-[1;32m[INFO] 2025-08-06 14:33:29 HandleApplyUpload|ApplyUpload|fid: v1-0d2db4bd-e2cd-44a9-926f-3547748a3826|fileInfo: {"fid":"v1-0d2db4bd-e2cd-44a9-926f-3547748a3826","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:37:52 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:37:52 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:37:52 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:37:52 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:37:52 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:37:52 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:37:52 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:37:57 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:37:57 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:37:57 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:37:57 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-8f9b479b-1425-453e-87ed-b0c8179b69b1","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
-[1;32m[INFO] 2025-08-06 14:37:57 HandleApplyUpload|ApplyUpload|fid: v1-8f9b479b-1425-453e-87ed-b0c8179b69b1|fileInfo: {"fid":"v1-8f9b479b-1425-453e-87ed-b0c8179b69b1","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:37:57 rsp ==>> [ 200 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:40:52 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:40:52 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:40:52 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:40:52 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-a7a07cce-b8aa-47d3-9d41-a3663bb4ff7e","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
-[1;32m[INFO] 2025-08-06 14:40:52 HandleApplyUpload|ApplyUpload|fid: v1-a7a07cce-b8aa-47d3-9d41-a3663bb4ff7e|fileInfo: {"fid":"v1-a7a07cce-b8aa-47d3-9d41-a3663bb4ff7e","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:40:52 rsp ==>> [ 200 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:43:32 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:43:32 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:43:32 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:43:32 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:43:32 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:43:32 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:43:32 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:43:39 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:43:39 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:43:39 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;31m[ERROR] 2025-08-06 14:43:39 FileIndexServer|CreatePrepareFileInfo|SetNX|fid: v1-dfe08cd1-8bf7-4dfd-9032-619678667f7a|ok: true[0m
-[1;32m[INFO] 2025-08-06 14:43:39 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-dfe08cd1-8bf7-4dfd-9032-619678667f7a","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
-[1;32m[INFO] 2025-08-06 14:43:39 HandleApplyUpload|ApplyUpload|fid: v1-dfe08cd1-8bf7-4dfd-9032-619678667f7a|fileInfo: {"fid":"v1-dfe08cd1-8bf7-4dfd-9032-619678667f7a","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:43:39 rsp ==>> [ 200 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:44:22 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:44:22 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:44:22 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:44:22 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:44:22 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:44:22 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:44:22 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:44:32 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:44:32 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:44:32 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;31m[ERROR] 2025-08-06 14:44:32 FileIndexServer|CreatePrepareFileInfo|SetNX|fid: v1-cb05cd06-b1e7-4db2-a524-c69eef762d37|ok: true[0m
-[1;32m[INFO] 2025-08-06 14:44:32 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-cb05cd06-b1e7-4db2-a524-c69eef762d37","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
-[1;32m[INFO] 2025-08-06 14:44:32 HandleApplyUpload|ApplyUpload|fid: v1-cb05cd06-b1e7-4db2-a524-c69eef762d37|fileInfo: {"fid":"v1-cb05cd06-b1e7-4db2-a524-c69eef762d37","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:44:32 rsp ==>> [ 200 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:54:12 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:54:12 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:54:12 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:54:12 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:54:12 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:54:12 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:54:12 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:54:45 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:54:45 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:54:45 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:54:45 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:54:45 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:54:45 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:54:45 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:54:52 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:54:52 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:54:52 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:54:52 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-56ea8c51-9b6d-44a9-b4e5-47e9f91f8f91","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
-[1;32m[INFO] 2025-08-06 14:54:52 HandleApplyUpload|ApplyUpload|fid: v1-56ea8c51-9b6d-44a9-b4e5-47e9f91f8f91|fileInfo: {"fid":"v1-56ea8c51-9b6d-44a9-b4e5-47e9f91f8f91","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:54:52 rsp ==>> [ 200 /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:55:21 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"1433223","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
-[1;33m[WARN] 2025-08-06 14:55:21 config:{"Username":"aaron","Password":"aaron519"}[0m
-[1;31m[ERROR] 2025-08-06 14:55:21 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
-[1;31m[ERROR] 2025-08-06 14:55:21 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
-[1;34m[DEBUG] 2025-08-06 14:55:21 admin: aaron|password: aaron519[0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["POST","GET"]]	api=>[处理websocket的handle]	path=>[/v1/ws]	desc=>[处理websocket的handle][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["GET"]]	api=>[程序健康检查]	path=>[/v1/checkalive]	desc=>[程序健康检查][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["GET","POST"]]	api=>[cmd接口，使用统一的结构]	path=>[/v1/cmd]	desc=>[cmd接口，使用统一的结构][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["POST"]]	api=>[登录接口]	path=>[/login]	desc=>[登录接口][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["POST"]]	api=>[创建 depot]	path=>[/media/deport/create]	desc=>[创建 depot][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["POST"]]	api=>[创建 box]	path=>[/media/box/create]	desc=>[创建 box][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["POST","GET","HEAD"]]	api=>[查看文件]	path=>[/media/file/:fid]	desc=>[查看文件][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["POST"]]	api=>[申请上传]	path=>[/media/upload/apply]	desc=>[申请上传][0m
-[1;32m[INFO] 2025-08-06 14:55:21 methods=>[["POST"]]	api=>[单文件上传]	path=>[/media/upload/single/:fid]	desc=>[单文件上传][0m
-[1;32m[INFO] 2025-08-06 14:55:21 
- __     __                 _                 
- \ \   / /   ___    _ __  | |_    ___  __  __
-  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
-   \ V /   | (_) | | |    | |_  |  __/  >  < 
-    \_/     \___/  |_|     \__|  \___| /_/\_\
-----------------------------------------------
- Vortex Server Start Success on 18080
-==============================================
-[0m
-[1;32m[INFO] 2025-08-06 14:55:32 req ==>> [ POST /media/upload/apply ][0m
-[1;32m[INFO] 2025-08-06 14:55:32 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
-[1;32m[INFO] 2025-08-06 14:55:32 BoxServer|QueryBoxInfo|box: {"box_id":"default","box_name":"default","depot_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:55:32 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-6df7b8cf-6c66-4e0a-967f-2ba48b3660ed","file_name":"头像01.jpg","content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","content_length":39432,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
-[1;32m[INFO] 2025-08-06 14:55:32 HandleApplyUpload|ApplyUpload|fid: v1-6df7b8cf-6c66-4e0a-967f-2ba48b3660ed|fileInfo: {"fid":"v1-6df7b8cf-6c66-4e0a-967f-2ba48b3660ed","file_name":"头像01.jpg","content_length":39432,"content_md5":"30fd5ded6213e0b66d77f035ef301999","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
-[1;32m[INFO] 2025-08-06 14:55:32 rsp ==>> [ 200 /media/upload/apply ][0m
