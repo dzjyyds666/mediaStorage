@@ -14,6 +14,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/Allspark-go/ptr"
 	"github.com/dzjyyds666/mediaStorage/core"
+	"github.com/dzjyyds666/mediaStorage/locale"
 	"github.com/dzjyyds666/mediaStorage/proto"
 	"github.com/dzjyyds666/vortex/v2"
 	"github.com/golang-jwt/jwt/v5"
@@ -64,6 +65,9 @@ func NewStorageServer(ctx context.Context, cfg *core.Config, dsServer *ds.Databa
 		ctx,
 		vortex.WithPort(ptr.ToString(cfg.Port)),
 		vortex.WithRouters(routers),
+		vortex.WithJwtSecretKey(cfg.Server.Jwt.Secret),
+		vortex.WithConsoleSecretKey(cfg.Server.ConsoleJwt.Secret),
+		vortex.WithI18n(locale.V),
 	)
 	server.v = v
 
@@ -196,10 +200,10 @@ func (s *StorageServer) HandleApplyUpload(ctx *vortex.Context) error {
 		if errors.Is(err, proto.ErrorEnums.ErrFileExist) {
 			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.FileExist), nil)
 		}
-		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(proto.SubStatusCodes.InternalError), nil)
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.InternalError), nil)
 	}
 	logx.Infof("HandleApplyUpload|ApplyUpload|fid: %s|fileInfo: %s", fid, conv.ToJsonWithoutError(init))
-	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.FileExist), echo.Map{
+	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.InternalError), echo.Map{
 		"init_info": init,
 	})
 }

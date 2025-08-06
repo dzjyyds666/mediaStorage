@@ -6,7 +6,7 @@ require (
 	github.com/BurntSushi/toml v1.5.0
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.71
 	github.com/dzjyyds666/Allspark-go v0.0.0-20250805150453-48f9acec8323
-	github.com/dzjyyds666/vortex/v2 v2.0.0-20250805154333-0f964f9af2e7
+	github.com/dzjyyds666/vortex/v2 v2.0.0-20250806065323-ad3d91987817
 	github.com/google/uuid v1.6.0
 	github.com/redis/go-redis/v9 v9.11.0
 	github.com/smartystreets/goconvey v1.8.1
