@@ -543,3 +543,163 @@
  Vortex Server Start Success on 18080
 ==============================================
 [0m
+[1;32m[INFO] 2025-08-17 15:25:53 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;32m[INFO] 2025-08-17 15:26:15 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-17 15:26:15 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-17 15:26:15 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["POST","GET"]] | api=>[处理websocket的handle] | path=>[/v1/ws] | desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["GET"]] | api=>[程序健康检查] | path=>[/v1/checkalive] | desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["GET","POST"]] | api=>[cmd接口，使用统一的结构] | path=>[/v1/cmd] | desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["POST"]] | api=>[登录接口] | path=>[/v1/login] | desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["POST"]] | api=>[创建 depot] | path=>[/v1/media/deport/create] | desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["POST"]] | api=>[创建 box] | path=>[/v1/media/box/create] | desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["POST","GET","HEAD"]] | api=>[查看文件] | path=>[/v1/media/file/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["GET"]] | api=>[查看文件] | path=>[/v1/media/file/info/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["POST"]] | api=>[申请上传] | path=>[/v1/media/upload/apply] | desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-17 15:26:15 methods=>[["POST"]] | api=>[单文件上传] | path=>[/v1/media/upload/single/:fid] | desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-17 15:26:15 
+ __     __                 _                 
+ \ \   / /   ___    _ __  | |_    ___  __  __
+  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
+   \ V /   | (_) | | |    | |_  |  __/  >  < 
+    \_/     \___/  |_|     \__|  \___| /_/\_\
+----------------------------------------------
+ Vortex Server Start Success on 18080
+==============================================
+[0m
+[1;32m[INFO] 2025-08-17 15:32:34 req ==>> [ POST /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:32:34 getEmByLang|key:code_for_permission_deny.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:32:34 rsp ==>> [ 200 /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:34:38 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-17 15:34:38 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-17 15:34:38 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["POST","GET"]] | api=>[处理websocket的handle] | path=>[/v1/ws] | desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["GET"]] | api=>[程序健康检查] | path=>[/v1/checkalive] | desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["GET","POST"]] | api=>[cmd接口，使用统一的结构] | path=>[/v1/cmd] | desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["POST"]] | api=>[登录接口] | path=>[/v1/login] | desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["POST"]] | api=>[创建 depot] | path=>[/v1/media/deport/create] | desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["POST"]] | api=>[创建 box] | path=>[/v1/media/box/create] | desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["POST","GET","HEAD"]] | api=>[查看文件] | path=>[/v1/media/file/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["GET"]] | api=>[查看文件] | path=>[/v1/media/file/info/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["POST"]] | api=>[申请上传] | path=>[/v1/media/upload/apply] | desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-17 15:34:38 methods=>[["POST"]] | api=>[单文件上传] | path=>[/v1/media/upload/single/:fid] | desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-17 15:34:38 
+ __     __                 _                 
+ \ \   / /   ___    _ __  | |_    ___  __  __
+  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
+   \ V /   | (_) | | |    | |_  |  __/  >  < 
+    \_/     \___/  |_|     \__|  \___| /_/\_\
+----------------------------------------------
+ Vortex Server Start Success on 18080
+==============================================
+[0m
+[1;32m[INFO] 2025-08-17 15:34:47 req ==>> [ POST /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:34:47 getEmByLang|key:code_for_permission_deny.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:34:47 rsp ==>> [ 200 /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:37:04 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-17 15:37:04 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-17 15:37:04 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["POST","GET"]] | api=>[处理websocket的handle] | path=>[/v1/ws] | desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["GET"]] | api=>[程序健康检查] | path=>[/v1/checkalive] | desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["GET","POST"]] | api=>[cmd接口，使用统一的结构] | path=>[/v1/cmd] | desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["POST"]] | api=>[登录接口] | path=>[/v1/login] | desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["POST"]] | api=>[创建 depot] | path=>[/v1/media/deport/create] | desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["POST"]] | api=>[创建 box] | path=>[/v1/media/box/create] | desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["POST","GET","HEAD"]] | api=>[查看文件] | path=>[/v1/media/file/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["GET"]] | api=>[查看文件] | path=>[/v1/media/file/info/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["POST"]] | api=>[申请上传] | path=>[/v1/media/upload/apply] | desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-17 15:37:04 methods=>[["POST"]] | api=>[单文件上传] | path=>[/v1/media/upload/single/:fid] | desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-17 15:37:04 
+ __     __                 _                 
+ \ \   / /   ___    _ __  | |_    ___  __  __
+  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
+   \ V /   | (_) | | |    | |_  |  __/  >  < 
+    \_/     \___/  |_|     \__|  \___| /_/\_\
+----------------------------------------------
+ Vortex Server Start Success on 18080
+==============================================
+[0m
+[1;32m[INFO] 2025-08-17 15:39:51 req ==>> [ POST /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:39:51 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-17 15:39:51 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:39:51 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-6154eb08-5cb1-4929-8506-7b075fc874a9","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:39:51 HandleApplyUpload|ApplyUpload|fid: v1-6154eb08-5cb1-4929-8506-7b075fc874a9|fileInfo: {"fid":"v1-6154eb08-5cb1-4929-8506-7b075fc874a9","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_length":2527949,"content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:39:51 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:39:51 rsp ==>> [ 200 /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:40:40 req ==>> [ POST /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:40:40 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-17 15:40:40 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:40:40 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-e2c9a502-78ad-4c18-98f5-ae9665057610","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:40:40 HandleApplyUpload|ApplyUpload|fid: v1-e2c9a502-78ad-4c18-98f5-ae9665057610|fileInfo: {"fid":"v1-e2c9a502-78ad-4c18-98f5-ae9665057610","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_length":2527949,"content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:40:40 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:40:40 rsp ==>> [ 200 /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:41:20 req ==>> [ POST /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:41:20 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-17 15:41:20 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:41:20 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-94b75c5e-4288-4307-9c69-8f508ebbea67","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:41:20 HandleApplyUpload|ApplyUpload|fid: v1-94b75c5e-4288-4307-9c69-8f508ebbea67|fileInfo: {"fid":"v1-94b75c5e-4288-4307-9c69-8f508ebbea67","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_length":2527949,"content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:41:20 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:41:20 rsp ==>> [ 200 /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:41:44 req ==>> [ POST /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:41:44 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-17 15:41:44 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:41:44 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-0c90703c-b21a-4230-9cd5-d53cb2085973","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:41:44 HandleApplyUpload|ApplyUpload|fid: v1-0c90703c-b21a-4230-9cd5-d53cb2085973|fileInfo: {"fid":"v1-0c90703c-b21a-4230-9cd5-d53cb2085973","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_length":2527949,"content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:41:44 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:41:44 rsp ==>> [ 200 /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:41:44 req ==>> [ POST /v1/media/upload/single/v1-0c90703c-b21a-4230-9cd5-d53cb2085973 ][0m
+[1;32m[INFO] 2025-08-17 15:41:44 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;31m[ERROR] 2025-08-17 15:41:44 BoxServer|QueryBoxInfo|FindOne|boxId: |err: mongo: no documents in result[0m
+[1;31m[ERROR] 2025-08-17 15:41:44 StorageCoreServer|SingleUpload|QueryBoxInfo|boxId: |err: box not exist[0m
+[1;31m[ERROR] 2025-08-17 15:41:44 HandleSingleUpload|SingleUpload|fid: v1-0c90703c-b21a-4230-9cd5-d53cb2085973|err: box not exist[0m
+[1;32m[INFO] 2025-08-17 15:41:44 getEmByLang|key:code_for_box_not_exists.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:41:44 rsp ==>> [ 200 /v1/media/upload/single/v1-0c90703c-b21a-4230-9cd5-d53cb2085973 ][0m
+[1;32m[INFO] 2025-08-17 15:44:46 server config:{"Group":"default","Port":"18080","S3":{"Bucket":"file-storage","Endpoint":"http://127.0.0.1:19000","AccessKey":"admin","SecretKey":"14332233","Region":"cn-north"},"Server":{"DBConfig":{"redis":{"host":"127.0.0.1","port":26379,"username":"","password":"1433223"},"mongo":{"host":"127.0.0.1","port":37017,"username":"admin","password":"1433223"},"mysql":null},"Jwt":{"Secret":"123456","Expire":3600},"ConsoleJwt":{"Secret":"console","Expire":3600}},"Admin":{"Username":"aaron","Password":"aaron519"}}[0m
+[1;31m[ERROR] 2025-08-17 15:44:46 BoxServer|CreateBox|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.boxes_db index: _id_ dup key: { _id: "default" }][0m
+[1;31m[ERROR] 2025-08-17 15:44:46 DepotServer|CreateDepot|InsertOne|err: write exception: write errors: [E11000 duplicate key error collection: media_storage.depots_db index: _id_ dup key: { _id: "default" }][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["POST","GET"]] | api=>[处理websocket的handle] | path=>[/v1/ws] | desc=>[处理websocket的handle][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["GET"]] | api=>[程序健康检查] | path=>[/v1/checkalive] | desc=>[程序健康检查][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["GET","POST"]] | api=>[cmd接口，使用统一的结构] | path=>[/v1/cmd] | desc=>[cmd接口，使用统一的结构][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["POST"]] | api=>[登录接口] | path=>[/v1/login] | desc=>[登录接口][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["POST"]] | api=>[创建 depot] | path=>[/v1/media/deport/create] | desc=>[创建 depot][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["POST"]] | api=>[创建 box] | path=>[/v1/media/box/create] | desc=>[创建 box][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["POST","GET","HEAD"]] | api=>[查看文件] | path=>[/v1/media/file/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["GET"]] | api=>[查看文件] | path=>[/v1/media/file/info/:fid] | desc=>[查看文件][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["POST"]] | api=>[申请上传] | path=>[/v1/media/upload/apply] | desc=>[申请上传][0m
+[1;32m[INFO] 2025-08-17 15:44:46 methods=>[["POST"]] | api=>[单文件上传] | path=>[/v1/media/upload/single/:fid] | desc=>[单文件上传][0m
+[1;32m[INFO] 2025-08-17 15:44:46 
+ __     __                 _                 
+ \ \   / /   ___    _ __  | |_    ___  __  __
+  \ \ / /   / _ \  | '__| | __|  / _ \ \ \/ /
+   \ V /   | (_) | | |    | |_  |  __/  >  < 
+    \_/     \___/  |_|     \__|  \___| /_/\_\
+----------------------------------------------
+ Vortex Server Start Success on 18080
+==============================================
+[0m
+[1;32m[INFO] 2025-08-17 15:44:51 req ==>> [ POST /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:44:51 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-17 15:44:51 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:44:51 StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: {"fid":"v1-c6e5de89-d3b6-41c1-b38f-b8025b623019","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:44:51 HandleApplyUpload|ApplyUpload|fid: v1-c6e5de89-d3b6-41c1-b38f-b8025b623019|fileInfo: {"fid":"v1-c6e5de89-d3b6-41c1-b38f-b8025b623019","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_length":2527949,"content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","uploader":"aaron","box_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:44:51 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:44:51 rsp ==>> [ 200 /v1/media/upload/apply ][0m
+[1;32m[INFO] 2025-08-17 15:44:51 req ==>> [ POST /v1/media/upload/single/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019?boxId=default ][0m
+[1;32m[INFO] 2025-08-17 15:44:51 vortex|VerifyMw|VerifyJwt token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU[0m
+[1;32m[INFO] 2025-08-17 15:44:51 BoxServer|QueryBoxInfo|box|{"box_id":"default","box_name":"default","depot_id":"default"}[0m
+[1;32m[INFO] 2025-08-17 15:44:51 getEmByLang|key:code_for_success.zh-cn[0m
+[1;32m[INFO] 2025-08-17 15:44:51 rsp ==>> [ 200 /v1/media/upload/single/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019?boxId=default ][0m
+[1;32m[INFO] 2025-08-17 15:45:31 req ==>> [ GET /v1/media/file/info/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m
+[1;32m[INFO] 2025-08-17 15:45:31 FileIndexServer|QueryFileInfo|info|{"fid":"v1-c6e5de89-d3b6-41c1-b38f-b8025b623019","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"created_ts":1755416691,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:45:31 HandleFileInfo|QueryFileInfo|fid: v1-c6e5de89-d3b6-41c1-b38f-b8025b623019|info: {"fid":"v1-c6e5de89-d3b6-41c1-b38f-b8025b623019","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"created_ts":1755416691,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:45:31 getEmByLang|key:code_for_success.zh-cn,zh;q=0.9,en;q=0.8[0m
+[1;32m[INFO] 2025-08-17 15:45:31 rsp ==>> [ 200 /v1/media/file/info/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m
+[1;32m[INFO] 2025-08-17 15:45:41 req ==>> [ GET /v1/media/file/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m
+[1;32m[INFO] 2025-08-17 15:45:41 FileIndexServer|QueryFileInfo|info|{"fid":"v1-c6e5de89-d3b6-41c1-b38f-b8025b623019","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"created_ts":1755416691,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:45:41 rsp ==>> [ 200 /v1/media/file/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m
+[1;32m[INFO] 2025-08-17 15:45:48 req ==>> [ GET /v1/media/file/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m
+[1;32m[INFO] 2025-08-17 15:45:48 FileIndexServer|QueryFileInfo|info|{"fid":"v1-c6e5de89-d3b6-41c1-b38f-b8025b623019","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"created_ts":1755416691,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:45:48 rsp ==>> [ 200 /v1/media/file/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m
+[1;32m[INFO] 2025-08-17 15:45:48 req ==>> [ GET /v1/media/file/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m
+[1;32m[INFO] 2025-08-17 15:45:48 FileIndexServer|QueryFileInfo|info|{"fid":"v1-c6e5de89-d3b6-41c1-b38f-b8025b623019","file_name":"image_picker_F8030888-437A-4C4B-B76E-84AAC2D6697A-3991-0000025214E8E160.jpg","content_md5":"2df8504757b3c5aaad8b6115e771f9aa","content_type":"image/jpeg","content_length":2527949,"created_ts":1755416691,"box_info":{"box_id":"default","box_name":"default","depot_id":"default"}}[0m
+[1;32m[INFO] 2025-08-17 15:45:48 rsp ==>> [ 200 /v1/media/file/v1-c6e5de89-d3b6-41c1-b38f-b8025b623019 ][0m

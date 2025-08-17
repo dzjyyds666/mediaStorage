@@ -184,6 +184,7 @@ func (s *StorageServer) HandleApplyUpload(ctx *vortex.Context) error {
 
 	payload := ctx.GetSessionPayload()
 	if payload == nil {
+		logx.Errorf("HandleApplyUpload|GetSessionPayload|err|Permission Deny")
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.PermissionDeny), nil)
 	}
 
@@ -219,6 +220,10 @@ func (s *StorageServer) HandleSingleUpload(ctx *vortex.Context) error {
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(proto.SubStatusCodes.BadRequest), nil)
 	}
 	defer fileOpen.Close()
+
+	if len(boxId) == 0 {
+		boxId = "default"
+	}
 
 	err = s.coreServer.SingleUpload(ctx.GetContext(), boxId, fid, fileOpen)
 	if nil != err {
