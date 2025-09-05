@@ -35,20 +35,19 @@ type MediaFileInfo struct {
 	ContentLength *int64     `json:"content_length,omitempty" bson:"content_length,omitempty"`
 	CreatedTs     *int64     `json:"created_ts,omitempty" bson:"created_ts,omitempty"`
 	MetaData      url.Values `json:"meta_data,omitempty" bson:"meta_data,omitempty"`
-	Box           *string    `json:"box,omitempty" bson:"box,omitempty"`
 	Uploader      *string    `json:"uploader,omitempty" bson:"uploader,omitempty"`
-	BoxInfo       *Box       `json:"box_info,omitempty" bson:"box_info,omitempty"` // 属于哪个box
+	Box           *Box       `json:"box,omitempty" bson:"box,omitempty"`
 
 	r io.Reader // 文件的流
 }
 
-// 构建对象的key
+// BuildObjectKey 构建对象键
 func (mfi *MediaFileInfo) BuildObjectKey() string {
-	return path.Join(mfi.GetDepotId(), mfi.BoxInfo.BoxId, mfi.Fid)
+	return path.Join(mfi.GetDepotId(), mfi.Box.BoxId, mfi.Fid)
 }
 
 func (mfi *MediaFileInfo) GetDepotId() string {
-	return ptr.ToString(mfi.BoxInfo.DepotId)
+	return ptr.ToString(mfi.Box.DepotId)
 }
 
 type InitUpload struct {
@@ -109,7 +108,7 @@ func (fs *FileIndexServer) CreatePrepareFileInfo(ctx context.Context, info *Medi
 		return err
 	}
 	// 把文件信息存储到redis中,1个小时之内进行上传
-	ok, err := fs.fileRedis.SetNX(ctx, buildFilePrepareKey(info.GetDepotId(), info.BoxInfo.BoxId, info.Fid), raw, time.Hour).Result()
+	ok, err := fs.fileRedis.SetNX(ctx, buildFilePrepareKey(info.GetDepotId(), info.Box.BoxId, info.Fid), raw, time.Hour).Result()
 	if err != nil {
 		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|Set|err: %v", err)
 		return err
@@ -182,14 +181,14 @@ func (fs *FileIndexServer) SaveFileData(ctx context.Context, info *MediaFileInfo
 // 完成文件上传
 func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 	// 把文件补全文件信息
-	prepareInfo, err := fs.QueryPerpareFileInfo(ctx, info.GetDepotId(), info.BoxInfo.BoxId, info.Fid)
+	prepareInfo, err := fs.QueryPerpareFileInfo(ctx, info.GetDepotId(), info.Box.BoxId, info.Fid)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|QueryPerpareFileInfo|err: %v", err)
 		return err
 	}
 
 	prepareInfo.CreatedTs = ptr.Int64(time.Now().Unix())
-	prepareInfo.BoxInfo = info.BoxInfo
+	prepareInfo.Box = info.Box
 	prepareInfo.MetaData = info.MetaData
 
 	_, err = fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).InsertOne(ctx, prepareInfo)
@@ -199,7 +198,7 @@ func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileIn
 	}
 
 	// 删除存储在redis中的数据
-	err = fs.fileRedis.Del(ctx, buildFilePrepareKey(info.GetDepotId(), info.BoxInfo.BoxId, info.Fid)).Err()
+	err = fs.fileRedis.Del(ctx, buildFilePrepareKey(info.GetDepotId(), info.Box.BoxId, info.Fid)).Err()
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|Del|err: %v", err)
 	}

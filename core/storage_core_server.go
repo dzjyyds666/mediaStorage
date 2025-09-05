@@ -33,7 +33,7 @@ func (ss *StorageCoreServer) ApplyUpload(ctx context.Context, init *InitUpload) 
 		logx.Errorf("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxId: %s|err: %s", ptr.ToString(init.BoxId), err.Error())
 		return "", err
 	}
-	info.BoxInfo = boxInfo
+	info.Box = boxInfo
 
 	return info.Fid, ss.do(
 		ss.fileServer.CreatePrepareFileInfo,
