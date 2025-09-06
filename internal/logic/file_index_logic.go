@@ -15,7 +15,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/Allspark-go/ptr"
 	"github.com/dzjyyds666/mediaStorage/internal/config"
-	"github.com/dzjyyds666/mediaStorage/proto"
+	"github.com/dzjyyds666/mediaStorage/pkg"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
@@ -115,8 +115,8 @@ func (fs *FileIndexServer) CreatePrepareFileInfo(ctx context.Context, info *Medi
 		return err
 	}
 	if !ok {
-		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|SetNX|fid: %s|err: %v", info.Fid, proto.ErrorEnums.ErrFileExist)
-		return proto.ErrorEnums.ErrFileExist
+		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|SetNX|fid: %s|err: %v", info.Fid, pkg.ErrorEnums.ErrFileExist)
+		return pkg.ErrorEnums.ErrFileExist
 	}
 	return nil
 }
@@ -132,7 +132,7 @@ func (fs *FileIndexServer) QueryPerpareFileInfo(ctx context.Context, depotId, bo
 	if err != nil {
 		logx.Errorf("FileIndexServer|QueryPerpareFileInfo|Get|err: %v", err)
 		if errors.Is(err, redis.Nil) {
-			return nil, proto.ErrorEnums.ErrNoPrepareFileInfo
+			return nil, pkg.ErrorEnums.ErrNoPrepareFileInfo
 		}
 		return nil, err
 	}
@@ -149,7 +149,7 @@ func (fs *FileIndexServer) CreateFileInfo(ctx context.Context, info *MediaFileIn
 	for _, opt := range opts {
 		opt(info)
 	}
-	_, err := fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).InsertOne(ctx, info)
+	_, err := fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).InsertOne(ctx, info)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CreateFileInfo|InsertOne|err: %v", err)
 		return err
@@ -161,11 +161,11 @@ func (fs *FileIndexServer) CreateFileInfo(ctx context.Context, info *MediaFileIn
 // 查询文件的信息
 func (fs *FileIndexServer) QueryFileInfo(ctx context.Context, fileId string) (*MediaFileInfo, error) {
 	var info MediaFileInfo
-	err := fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"_id": fileId}).Decode(&info)
+	err := fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"_id": fileId}).Decode(&info)
 	if err != nil {
 		logx.Errorf("FileIndexServer|QueryFileInfo|FindOne|fileId: %s|err: %v", fileId, err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, proto.ErrorEnums.ErrFileNotExist
+			return nil, pkg.ErrorEnums.ErrFileNotExist
 		}
 		return nil, err
 	}
@@ -192,7 +192,7 @@ func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileIn
 	prepareInfo.Box = info.Box
 	prepareInfo.MetaData = info.MetaData
 
-	_, err = fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).InsertOne(ctx, prepareInfo)
+	_, err = fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).InsertOne(ctx, prepareInfo)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|InsertOne|err: %v", err)
 		return err

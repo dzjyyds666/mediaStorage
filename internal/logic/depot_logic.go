@@ -13,7 +13,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/mediaStorage/internal/config"
-	"github.com/dzjyyds666/mediaStorage/proto"
+	"github.com/dzjyyds666/mediaStorage/pkg"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
@@ -147,7 +147,7 @@ func (ds *DepotServer) CreateDepot(ctx context.Context, depot *Depot) error {
 		depot.Permission = ptr.String(DepotPermissions.Public)
 	}
 
-	_, err := ds.depotMongo.Collection(proto.DatabaseName.DepotDataBaseName).InsertOne(ctx, depot)
+	_, err := ds.depotMongo.Collection(pkg.DatabaseName.DepotDataBaseName).InsertOne(ctx, depot)
 	if nil != err {
 		logx.Errorf("DepotServer|CreateDepot|InsertOne|err: %v", err)
 		if mongo.IsDuplicateKeyError(err) {
@@ -163,14 +163,14 @@ func (ds *DepotServer) CreateDepot(ctx context.Context, depot *Depot) error {
 // 查询仓库信息
 func (ds *DepotServer) QueryDepotInfo(ctx context.Context, depotId string) (*Depot, error) {
 	if depotId == "" {
-		return nil, proto.ErrorEnums.ErrDepotNotExist
+		return nil, pkg.ErrorEnums.ErrDepotNotExist
 	}
 	var depot Depot
-	err := ds.depotMongo.Collection(proto.DatabaseName.DepotDataBaseName).FindOne(ctx, bson.M{"_id": depotId}).Decode(&depot)
+	err := ds.depotMongo.Collection(pkg.DatabaseName.DepotDataBaseName).FindOne(ctx, bson.M{"_id": depotId}).Decode(&depot)
 	if err != nil {
 		logx.Errorf("DepotServer|QueryDepotInfo|FindOne|err: %v", err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, proto.ErrorEnums.ErrDepotNotExist
+			return nil, pkg.ErrorEnums.ErrDepotNotExist
 		}
 		return nil, err
 	}

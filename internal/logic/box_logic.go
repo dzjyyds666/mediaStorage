@@ -10,7 +10,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/mediaStorage/internal/config"
-	"github.com/dzjyyds666/mediaStorage/proto"
+	"github.com/dzjyyds666/mediaStorage/pkg"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -69,7 +69,7 @@ func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
 	if box.DepotId == nil {
 		box.DepotId = ptr.String("default")
 	}
-	_, err := bs.boxMongo.Collection(proto.DatabaseName.BoxDataBaseName).InsertOne(ctx, box)
+	_, err := bs.boxMongo.Collection(pkg.DatabaseName.BoxDataBaseName).InsertOne(ctx, box)
 	if nil != err {
 		logx.Errorf("BoxServer|CreateBox|InsertOne|err: %v", err)
 		if mongo.IsDuplicateKeyError(err) {
@@ -85,11 +85,11 @@ func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
 // 查询盒子的信息
 func (bs *BoxServer) QueryBoxInfo(ctx context.Context, boxId string) (*Box, error) {
 	var box Box
-	err := bs.boxMongo.Collection(proto.DatabaseName.BoxDataBaseName).FindOne(ctx, bson.M{"_id": boxId}).Decode(&box)
+	err := bs.boxMongo.Collection(pkg.DatabaseName.BoxDataBaseName).FindOne(ctx, bson.M{"_id": boxId}).Decode(&box)
 	if err != nil {
 		logx.Errorf("BoxServer|QueryBoxInfo|FindOne|boxId: %s|err: %v", boxId, err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, proto.ErrorEnums.ErrBoxNotExist
+			return nil, pkg.ErrorEnums.ErrBoxNotExist
 		}
 		return nil, err
 	}

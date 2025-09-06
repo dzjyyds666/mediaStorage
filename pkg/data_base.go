@@ -1,4 +1,4 @@
-package proto
+package pkg
 
 var DatabaseName = struct {
 	FileDataBaseName  string

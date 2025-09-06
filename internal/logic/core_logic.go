@@ -10,7 +10,8 @@ import (
 	"github.com/dzjyyds666/mediaStorage/internal/config"
 )
 
-type StorageCoreServer struct {
+// 核心的处理逻辑
+type CoreLogic struct {
 	ctx        context.Context
 	fileServer *FileIndexServer
 	boxServ    *BoxServer
@@ -18,26 +19,26 @@ type StorageCoreServer struct {
 	s3Server   *S3Server
 }
 
-func NewStorageCoreServer(ctx context.Context, cfg *config.Config, fileServer *FileIndexServer, boxServ *BoxServer, depotServ *DepotServer, s3Server *S3Server) *StorageCoreServer {
-	return &StorageCoreServer{ctx: ctx, fileServer: fileServer, boxServ: boxServ, depotServ: depotServ, s3Server: s3Server}
+func NewStorageCoreServer(ctx context.Context, cfg *config.Config, fileServer *FileIndexServer, boxServ *BoxServer, depotServ *DepotServer, s3Server *S3Server) *CoreLogic {
+	return &CoreLogic{ctx: ctx, fileServer: fileServer, boxServ: boxServ, depotServ: depotServ, s3Server: s3Server}
 }
 
 // 申请文件上传
-func (ss *StorageCoreServer) ApplyUpload(ctx context.Context, init *InitUpload) (string, error) {
+func (cl *CoreLogic) ApplyUpload(ctx context.Context, init *InitUpload) (string, error) {
 	// 生成文件的fid
 	info := init.ToMediaFileInfo()
 	info.Fid = randFid()
 	init.Fid = info.Fid
 
-	boxInfo, err := ss.boxServ.QueryBoxInfo(ctx, ptr.ToString(init.BoxId))
+	boxInfo, err := cl.boxServ.QueryBoxInfo(ctx, ptr.ToString(init.BoxId))
 	if err != nil {
 		logx.Errorf("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxId: %s|err: %s", ptr.ToString(init.BoxId), err.Error())
 		return "", err
 	}
 	info.Box = boxInfo
 
-	return info.Fid, ss.do(
-		ss.fileServer.CreatePrepareFileInfo,
+	return info.Fid, cl.do(
+		cl.fileServer.CreatePrepareFileInfo,
 		func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 			logx.Infof("StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: %v", conv.ToJsonWithoutError(info))
 			return nil
@@ -45,10 +46,10 @@ func (ss *StorageCoreServer) ApplyUpload(ctx context.Context, init *InitUpload) 
 	)(ctx, info)
 }
 
-func (ss *StorageCoreServer) do(funcs ...FileOption) FileOption {
+func (cl *CoreLogic) do(funcs ...FileOption) FileOption {
 	return func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 		for _, f := range funcs {
-			if err := f(ss.ctx, info, opts...); err != nil {
+			if err := f(cl.ctx, info, opts...); err != nil {
 				return err
 			}
 		}
@@ -57,25 +58,25 @@ func (ss *StorageCoreServer) do(funcs ...FileOption) FileOption {
 }
 
 // 文件直接上传
-func (ss *StorageCoreServer) SingleUpload(ctx context.Context, boxId, fid string, r io.Reader) error {
+func (cl *CoreLogic) SingleUpload(ctx context.Context, boxId, fid string, r io.Reader) error {
 	// 查询对应的box
-	boxInfo, err := ss.boxServ.QueryBoxInfo(ctx, boxId)
+	boxInfo, err := cl.boxServ.QueryBoxInfo(ctx, boxId)
 	if err != nil {
 		logx.Errorf("StorageCoreServer|SingleUpload|QueryBoxInfo|boxId: %s|err: %s", boxId, err.Error())
 		return err
 	}
 
 	// 查询文件的初始化上传信息
-	prepareFileInfo, err := ss.fileServer.QueryPerpareFileInfo(ctx, ptr.ToString(boxInfo.DepotId), boxId, fid)
+	prepareFileInfo, err := cl.fileServer.QueryPerpareFileInfo(ctx, ptr.ToString(boxInfo.DepotId), boxId, fid)
 	if err != nil {
 		logx.Errorf("StorageCoreServer|SingleUpload|QueryPerpareFileInfo|boxId: %s|fid: %s|err: %s", boxId, fid, err.Error())
 		return err
 	}
 
-	return ss.do(
+	return cl.do(
 		// 开始上传文件
 		func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
-			err := ss.fileServer.SaveFileData(ctx, info, r)
+			err := cl.fileServer.SaveFileData(ctx, info, r)
 			if nil != err {
 				logx.Errorf("StorageCoreServer|SingleUpload|SaveFileData|boxId: %s|fid: %s|err: %s", boxId, fid, err.Error())
 				return err
@@ -83,13 +84,13 @@ func (ss *StorageCoreServer) SingleUpload(ctx context.Context, boxId, fid string
 			return nil
 		},
 		// 完成上传之后的文件信息构建
-		ss.fileServer.CompleteUpload,
+		cl.fileServer.CompleteUpload,
 	)(ctx, prepareFileInfo)
 }
 
-func (ss *StorageCoreServer) SignGetFileUrl(ctx context.Context, info *MediaFileInfo) (string, error) {
+func (cl *CoreLogic) SignGetFileUrl(ctx context.Context, info *MediaFileInfo) (string, error) {
 	objectKey := info.BuildObjectKey()
-	presignedURL, err := ss.s3Server.GetPresignedURL(ctx, objectKey)
+	presignedURL, err := cl.s3Server.GetPresignedURL(ctx, objectKey)
 	if err != nil {
 		logx.Errorf("StorageCoreServer|SignGetFileUrl|GetPresignedURL|fid: %s|err: %s", info.Fid, err.Error())
 		return "", err
@@ -98,12 +99,12 @@ func (ss *StorageCoreServer) SignGetFileUrl(ctx context.Context, info *MediaFile
 }
 
 // 查询文件的信息
-func (ss *StorageCoreServer) QueryFileInfo(ctx context.Context, fid string) (*MediaFileInfo, error) {
-	return ss.fileServer.QueryFileInfo(ctx, fid)
+func (cl *CoreLogic) QueryFileInfo(ctx context.Context, fid string) (*MediaFileInfo, error) {
+	return cl.fileServer.QueryFileInfo(ctx, fid)
 }
 
 // 创建depot
-func (ss *StorageCoreServer) CreateDepot(ctx context.Context, info *Depot) error {
+func (ss *CoreLogic) CreateDepot(ctx context.Context, info *Depot) error {
 	if len(info.DepotId) == 0 {
 		info.DepotId = "di_" + generateRandomString(8)
 	}
@@ -111,9 +112,9 @@ func (ss *StorageCoreServer) CreateDepot(ctx context.Context, info *Depot) error
 }
 
 // 创建box
-func (ss *StorageCoreServer) CreateBox(ctx context.Context, info *Box) error {
+func (cl *CoreLogic) CreateBox(ctx context.Context, info *Box) error {
 	if len(info.BoxId) == 0 {
 		info.BoxId = "bi_" + generateRandomString(8)
 	}
-	return ss.boxServ.CreateBox(ctx, info)
+	return cl.boxServ.CreateBox(ctx, info)
 }
