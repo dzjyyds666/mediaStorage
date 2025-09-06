@@ -1,4 +1,4 @@
-package core
+package logic
 
 import (
 	"context"
@@ -9,6 +9,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
+	"github.com/dzjyyds666/mediaStorage/internal/config"
 	"github.com/dzjyyds666/mediaStorage/proto"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
@@ -31,7 +32,7 @@ type BoxServer struct {
 	boxMongo *mongo.Database
 }
 
-func NewBoxServer(ctx context.Context, conf *Config, dsServer *ds.DatabaseServer) *BoxServer {
+func NewBoxServer(ctx context.Context, conf *config.Config, dsServer *ds.DatabaseServer) *BoxServer {
 	boxRedis, ok := dsServer.GetRedis("box")
 	if !ok {
 		panic("redis [box] not found")

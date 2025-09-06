@@ -1,4 +1,4 @@
-package core
+package logic
 
 import (
 	"context"
@@ -7,6 +7,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/Allspark-go/ptr"
+	"github.com/dzjyyds666/mediaStorage/internal/config"
 )
 
 type StorageCoreServer struct {
@@ -17,7 +18,7 @@ type StorageCoreServer struct {
 	s3Server   *S3Server
 }
 
-func NewStorageCoreServer(ctx context.Context, cfg *Config, fileServer *FileIndexServer, boxServ *BoxServer, depotServ *DepotServer, s3Server *S3Server) *StorageCoreServer {
+func NewStorageCoreServer(ctx context.Context, cfg *config.Config, fileServer *FileIndexServer, boxServ *BoxServer, depotServ *DepotServer, s3Server *S3Server) *StorageCoreServer {
 	return &StorageCoreServer{ctx: ctx, fileServer: fileServer, boxServ: boxServ, depotServ: depotServ, s3Server: s3Server}
 }
 

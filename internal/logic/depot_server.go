@@ -1,4 +1,4 @@
-package core
+package logic
 
 import (
 	"context"
@@ -12,6 +12,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
+	"github.com/dzjyyds666/mediaStorage/internal/config"
 	"github.com/dzjyyds666/mediaStorage/proto"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
@@ -104,7 +105,7 @@ type DepotServer struct {
 }
 
 // 仓库
-func NewDepotServer(ctx context.Context, cfg *Config, dsServer *ds.DatabaseServer, boxServer *BoxServer) *DepotServer {
+func NewDepotServer(ctx context.Context, cfg *config.Config, dsServer *ds.DatabaseServer, boxServer *BoxServer) *DepotServer {
 	depotRedis, ok := dsServer.GetRedis("depot")
 	if !ok {
 		panic("redis [depot] not found")

@@ -1,4 +1,4 @@
-package core
+package logic
 
 import (
 	"context"
@@ -14,6 +14,7 @@ import (
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/Allspark-go/ptr"
+	"github.com/dzjyyds666/mediaStorage/internal/config"
 	"github.com/dzjyyds666/mediaStorage/proto"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
@@ -82,7 +83,7 @@ type FileIndexServer struct {
 }
 
 // NewFileIndexServer 创建文件索引服务
-func NewFileIndexServer(ctx context.Context, cfg *Config, dsServer *ds.DatabaseServer, s3Server *S3Server, boxServ *BoxServer, depotServ *DepotServer) *FileIndexServer {
+func NewFileIndexServer(ctx context.Context, cfg *config.Config, dsServer *ds.DatabaseServer, s3Server *S3Server, boxServ *BoxServer, depotServ *DepotServer) *FileIndexServer {
 	fileRedis, ok := dsServer.GetRedis("file")
 	if !ok {
 		panic("redis [file] not found")
