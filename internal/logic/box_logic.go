@@ -65,11 +65,14 @@ func (bs *BoxServer) StartCheck() error {
 }
 
 // 创建盒子
-func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
-	if box.DepotId == nil {
-		box.DepotId = ptr.String("default")
+func (bs *BoxServer) CreateBox(ctx context.Context, info *Box) error {
+	if len(info.BoxId) == 0 {
+		info.BoxId = "bi_" + generateRandomString(8)
 	}
-	_, err := bs.boxMongo.Collection(pkg.DatabaseName.BoxDataBaseName).InsertOne(ctx, box)
+	if info.DepotId == nil {
+		info.DepotId = ptr.String("default")
+	}
+	_, err := bs.boxMongo.Collection(pkg.DatabaseName.BoxDataBaseName).InsertOne(ctx, info)
 	if nil != err {
 		logx.Errorf("BoxServer|CreateBox|InsertOne|err: %v", err)
 		if mongo.IsDuplicateKeyError(err) {
@@ -78,7 +81,7 @@ func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
 		}
 		return err
 	}
-	logx.Infof("BoxServer|CreateBox|box: %s", conv.ToJsonWithoutError(box))
+	logx.Infof("BoxServer|CreateBox|box: %s", conv.ToJsonWithoutError(info))
 	return err
 }
 

@@ -87,34 +87,3 @@ func (cl *CoreLogic) SingleUpload(ctx context.Context, boxId, fid string, r io.R
 		cl.fileServer.CompleteUpload,
 	)(ctx, prepareFileInfo)
 }
-
-func (cl *CoreLogic) SignGetFileUrl(ctx context.Context, info *MediaFileInfo) (string, error) {
-	objectKey := info.BuildObjectKey()
-	presignedURL, err := cl.s3Server.GetPresignedURL(ctx, objectKey)
-	if err != nil {
-		logx.Errorf("StorageCoreServer|SignGetFileUrl|GetPresignedURL|fid: %s|err: %s", info.Fid, err.Error())
-		return "", err
-	}
-	return presignedURL, nil
-}
-
-// 查询文件的信息
-func (cl *CoreLogic) QueryFileInfo(ctx context.Context, fid string) (*MediaFileInfo, error) {
-	return cl.fileServer.QueryFileInfo(ctx, fid)
-}
-
-// 创建depot
-func (ss *CoreLogic) CreateDepot(ctx context.Context, info *Depot) error {
-	if len(info.DepotId) == 0 {
-		info.DepotId = "di_" + generateRandomString(8)
-	}
-	return ss.depotServ.CreateDepot(ctx, info)
-}
-
-// 创建box
-func (cl *CoreLogic) CreateBox(ctx context.Context, info *Box) error {
-	if len(info.BoxId) == 0 {
-		info.BoxId = "bi_" + generateRandomString(8)
-	}
-	return cl.boxServ.CreateBox(ctx, info)
-}

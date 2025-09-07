@@ -16,16 +16,16 @@ import (
 )
 
 type FileHandler struct {
-	ctx       context.Context
-	coreLogic *logic.CoreLogic
-	hcli      *http.Client
+	ctx  context.Context
+	hcli *http.Client
+	file *logic.FileIndexServer
 }
 
-func NewFileHandler(ctx context.Context, coreLogic *logic.CoreLogic, hcli *http.Client) *FileHandler {
+func NewFileHandler(ctx context.Context, file *logic.FileIndexServer, hcli *http.Client) *FileHandler {
 	return &FileHandler{
-		ctx:       ctx,
-		coreLogic: coreLogic,
-		hcli:      hcli,
+		ctx:  ctx,
+		hcli: hcli,
+		file: file,
 	}
 }
 
@@ -39,7 +39,7 @@ func (fh *FileHandler) HandleFile(ctx *vortex.Context) error {
 		})
 	}
 
-	fileInfo, err := fh.coreLogic.QueryFileInfo(ctx.GetContext(), fid)
+	fileInfo, err := fh.file.QueryFileInfo(ctx.GetContext(), fid)
 	if nil != err {
 		logx.Errorf("HandleFile|QueryFileInfo|fid: %s|err: %v", fid, err)
 		if errors.Is(err, pkg.ErrorEnums.ErrFileNotExist) {
@@ -53,9 +53,9 @@ func (fh *FileHandler) HandleFile(ctx *vortex.Context) error {
 		}
 	}
 
-	url, err := fh.coreLogic.SignGetFileUrl(ctx.GetContext(), fileInfo)
+	url, err := fh.file.SignFileUrl(ctx.GetContext(), fileInfo)
 	if nil != err {
-		logx.Errorf("HandleFile|SignGetFileUrl|fid: %s|err: %v", fid, err)
+		logx.Errorf("HandleFile|SignFileUrl|fid: %s|err: %v", fid, err)
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(pkg.SubStatusCodes.InternalError), echo.Map{
 			"msg": "get file url error",
 		})
@@ -99,7 +99,7 @@ func (fh *FileHandler) HandleApplyUpload(ctx *vortex.Context) error {
 	init.Uploader = ptr.String(payload.Uid)
 
 	// 开始申请文件信息
-	fid, err := fh.coreLogic.ApplyUpload(ctx.GetContext(), &init)
+	fid, err := fh.file.ApplyUpload(ctx.GetContext(), &init)
 	if err != nil {
 		logx.Errorf("HandleApplyUpload|ApplyUpload|fid: %s|err: %v", fid, err)
 		if errors.Is(err, pkg.ErrorEnums.ErrFileExist) {
@@ -150,46 +150,8 @@ func (fh *FileHandler) HandleSingleUpload(ctx *vortex.Context) error {
 	})
 }
 
-// 创建deport
-func (fh *FileHandler) HandleDeportCreate(ctx *vortex.Context) error {
-	var info logic.Depot
-	decoder := json.NewDecoder(ctx.Request().Body)
-	if err := decoder.Decode(&info); err != nil {
-		logx.Errorf("HandleDeportCreate|ParamsError|decoder err: %v", err)
-		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BadRequest), nil)
-	}
-
-	err := fh.coreLogic.CreateDepot(ctx.GetContext(), &info)
-	if nil != err {
-		logx.Errorf("HandleDeportCreate|CreateDepot|depotInfo: %s|err: %v", conv.ToJsonWithoutError(info), err)
-		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(pkg.SubStatusCodes.InternalError), nil)
-	}
-	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
-		"depot_id": info.DepotId,
-	})
-}
-
-// 创建box
-func (fh *FileHandler) HandleBoxCreate(ctx *vortex.Context) error {
-	var info logic.Box
-	decoder := json.NewDecoder(ctx.Request().Body)
-	if err := decoder.Decode(&info); err != nil {
-		logx.Errorf("HandleBoxCreate|ParamsError|decoder err: %v", err)
-		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BadRequest), nil)
-	}
-
-	err := fh.coreLogic.CreateBox(ctx.GetContext(), &info)
-	if nil != err {
-		logx.Errorf("HandleBoxCreate|CreateBox|boxInfo: %s|err: %v", conv.ToJsonWithoutError(info), err)
-		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(pkg.SubStatusCodes.InternalError), nil)
-	}
-	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
-		"box_id": info.BoxId,
-	})
-}
-
 // 获取到仓库id
-func (fh *FileHandler) GetDepotId(ctx *vortex.Context) string {
+func GetDepotId(ctx *vortex.Context) string {
 	id := ctx.Param("depot_id")
 	if len(id) == 0 {
 		id = ctx.QueryParam("depot_id")

@@ -142,12 +142,15 @@ func (ds *DepotServer) StartCheck() error {
 }
 
 // 创建仓库
-func (ds *DepotServer) CreateDepot(ctx context.Context, depot *Depot) error {
-	if depot.Permission == nil {
-		depot.Permission = ptr.String(DepotPermissions.Public)
+func (ds *DepotServer) CreateDepot(ctx context.Context, info *Depot) error {
+	if len(info.DepotId) == 0 {
+		info.DepotId = "di_" + generateRandomString(8)
+	}
+	if info.Permission == nil {
+		info.Permission = ptr.String(DepotPermissions.Public)
 	}
 
-	_, err := ds.depotMongo.Collection(pkg.DatabaseName.DepotDataBaseName).InsertOne(ctx, depot)
+	_, err := ds.depotMongo.Collection(pkg.DatabaseName.DepotDataBaseName).InsertOne(ctx, info)
 	if nil != err {
 		logx.Errorf("DepotServer|CreateDepot|InsertOne|err: %v", err)
 		if mongo.IsDuplicateKeyError(err) {
@@ -156,7 +159,7 @@ func (ds *DepotServer) CreateDepot(ctx context.Context, depot *Depot) error {
 		}
 		return err
 	}
-	logx.Infof("DepotServer|CreateDepot|success|depot_info: %s", conv.ToJsonWithoutError(depot))
+	logx.Infof("DepotServer|CreateDepot|success|depot_info: %s", conv.ToJsonWithoutError(info))
 	return nil
 }
 

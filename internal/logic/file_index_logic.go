@@ -205,3 +205,13 @@ func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileIn
 	}
 	return nil
 }
+
+func (fs *FileIndexServer) SignFileUrl(ctx context.Context, info *MediaFileInfo) (string, error) {
+	objectKey := info.BuildObjectKey()
+	presignedURL, err := fs.s3Server.GetPresignedURL(ctx, objectKey)
+	if err != nil {
+		logx.Errorf("StorageCoreServer|SignGetFileUrl|GetPresignedURL|fid: %s|err: %s", info.Fid, err.Error())
+		return "", err
+	}
+	return presignedURL, nil
+}
