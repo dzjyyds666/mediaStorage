@@ -18,14 +18,16 @@ import (
 type FileHandler struct {
 	ctx  context.Context
 	hcli *http.Client
-	file *logic.FileIndexServer
+	file *logic.FileIndexLogic
+	box  *logic.BoxLogic
 }
 
-func NewFileHandler(ctx context.Context, file *logic.FileIndexServer, hcli *http.Client) *FileHandler {
+func NewFileHandler(ctx context.Context, file *logic.FileIndexLogic, box *logic.BoxLogic, hcli *http.Client) *FileHandler {
 	return &FileHandler{
 		ctx:  ctx,
 		hcli: hcli,
 		file: file,
+		box:  box,
 	}
 }
 
@@ -98,8 +100,16 @@ func (fh *FileHandler) HandleApplyUpload(ctx *vortex.Context) error {
 
 	init.Uploader = ptr.String(payload.Uid)
 
+	boxInfo, err := fh.box.QueryBoxInfo(ctx.GetContext(), ptr.ToString(init.BoxId))
+	if err != nil {
+		logx.Errorf("StorageCoreServer|ApplyUpload|QueryBoxInfo|boxId: %s|err: %s", ptr.ToString(init.BoxId), err.Error())
+		if errors.Is(err, pkg.ErrorEnums.ErrBoxNotExist) {
+			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BoxNotExist), nil)
+		}
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.InternalError), nil)
+	}
 	// 开始申请文件信息
-	fid, err := fh.file.ApplyUpload(ctx.GetContext(), &init)
+	fid, err := fh.file.ApplyUpload(ctx.GetContext(), &init, boxInfo)
 	if err != nil {
 		logx.Errorf("HandleApplyUpload|ApplyUpload|fid: %s|err: %v", fid, err)
 		if errors.Is(err, pkg.ErrorEnums.ErrFileExist) {
@@ -133,7 +143,15 @@ func (fh *FileHandler) HandleSingleUpload(ctx *vortex.Context) error {
 		boxId = "default"
 	}
 
-	err = fh.coreLogic.SingleUpload(ctx.GetContext(), boxId, fid, fileOpen)
+	boxInfo, err := fh.box.QueryBoxInfo(ctx.GetContext(), boxId)
+	if nil != err {
+		logx.Errorf("HandleSingleUpload|QueryBoxInfo|boxId: %s|err: %v", boxId, err)
+		if errors.Is(err, pkg.ErrorEnums.ErrBoxNotExist) {
+			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BoxNotExist), nil)
+		}
+		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.InternalError), nil)
+	}
+	err = fh.file.SingleUpload(ctx.GetContext(), boxInfo, fid, fileOpen)
 	if nil != err {
 		logx.Errorf("HandleSingleUpload|SingleUpload|fid: %s|err: %v", fid, err)
 		if errors.Is(err, pkg.ErrorEnums.ErrBoxNotExist) {
@@ -172,7 +190,7 @@ func (fh *FileHandler) HandleFileInfo(ctx *vortex.Context) error {
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BadRequest), nil)
 	}
 
-	info, err := fh.coreLogic.QueryFileInfo(ctx.GetContext(), fid)
+	info, err := fh.file.QueryFileInfo(ctx.GetContext(), fid)
 	if err != nil {
 		logx.Errorf("HandleFileInfo|QueryFileInfo|fid: %s|err: %v", fid, err)
 		if errors.Is(err, pkg.ErrorEnums.ErrFileNotExist) {

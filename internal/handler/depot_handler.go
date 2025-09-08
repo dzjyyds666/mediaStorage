@@ -14,10 +14,10 @@ import (
 
 type DepotHandler struct {
 	ctx   context.Context
-	depot *logic.DepotServer
+	depot *logic.DepotLogic
 }
 
-func NewDepotHandler(ctx context.Context, depot *logic.DepotServer) *DepotHandler {
+func NewDepotHandler(ctx context.Context, depot *logic.DepotLogic) *DepotHandler {
 	return &DepotHandler{
 		ctx:   ctx,
 		depot: depot,

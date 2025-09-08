@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/rand"
 	"errors"
-	"fmt"
 	"math/big"
 	"net/url"
 
@@ -30,11 +29,6 @@ var DepotPermissions = struct {
 	Private:    "private",
 }
 
-// 仓库的信息
-func buildDepotInfoKey(id string) string {
-	return fmt.Sprintf("media:depot:%s:info", id)
-}
-
 // generateRandomString 生成指定长度的随机字符串
 // length: 字符串长度
 // charset: 字符集，如果为空则使用默认字符集（数字+字母）
@@ -56,8 +50,7 @@ func generateRandomString(length int, charset ...string) string {
 		num, err := rand.Int(rand.Reader, big.NewInt(int64(len(charSet))))
 		if err != nil {
 			// 如果随机数生成失败，回退到UUID方式
-			uuidStr := uuid.NewString()
-			uuidStr = uuid.NewString() + uuid.NewString() // 确保有足够长度
+			uuidStr := uuid.NewString() + uuid.NewString() // 确保有足够长度
 			if len(uuidStr) >= length {
 				return uuidStr[:length]
 			}
@@ -66,26 +59,6 @@ func generateRandomString(length int, charset ...string) string {
 		result[i] = charSet[num.Int64()]
 	}
 	return string(result)
-}
-
-// generateHexString 生成指定长度的十六进制字符串
-func generateHexString(length int) string {
-	return generateRandomString(length, "0123456789abcdef")
-}
-
-// generateNumericString 生成指定长度的数字字符串
-func generateNumericString(length int) string {
-	return generateRandomString(length, "0123456789")
-}
-
-// generateAlphaString 生成指定长度的字母字符串
-func generateAlphaString(length int) string {
-	return generateRandomString(length, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
-}
-
-func randDepotId() string {
-	// 使用新的函数生成12位随机字符串，降低碰撞概率
-	return "di_" + generateRandomString(8)
 }
 
 type Depot struct {
@@ -97,15 +70,15 @@ type Depot struct {
 }
 
 // 切片服务，文件存储分为两部分 桶 => 仓库 => 箱子 => file
-type DepotServer struct {
+type DepotLogic struct {
 	ctx        context.Context
 	depotRDB   *redis.Client
 	depotMongo *mongo.Database
-	boxServ    *BoxServer
+	boxServ    *BoxLogic
 }
 
 // 仓库
-func NewDepotServer(ctx context.Context, cfg *config.Config, dsServer *ds.DatabaseServer, boxServer *BoxServer) *DepotServer {
+func NewDepotLogic(ctx context.Context, cfg *config.Config, dsServer *ds.DatabaseServer, boxServer *BoxLogic) *DepotLogic {
 	depotRedis, ok := dsServer.GetRedis("depot")
 	if !ok {
 		panic("redis [depot] not found")
@@ -115,7 +88,7 @@ func NewDepotServer(ctx context.Context, cfg *config.Config, dsServer *ds.Databa
 		panic("mongo [media_storage] not found")
 	}
 
-	ds := &DepotServer{
+	ds := &DepotLogic{
 		ctx:        ctx,
 		depotRDB:   depotRedis,
 		depotMongo: depotMongo,
@@ -131,7 +104,7 @@ func NewDepotServer(ctx context.Context, cfg *config.Config, dsServer *ds.Databa
 }
 
 // 启动检查
-func (ds *DepotServer) StartCheck() error {
+func (ds *DepotLogic) StartCheck() error {
 	// 创建默认的depot
 	defaultDepot := &Depot{
 		DepotId:    "default",
@@ -142,7 +115,7 @@ func (ds *DepotServer) StartCheck() error {
 }
 
 // 创建仓库
-func (ds *DepotServer) CreateDepot(ctx context.Context, info *Depot) error {
+func (ds *DepotLogic) CreateDepot(ctx context.Context, info *Depot) error {
 	if len(info.DepotId) == 0 {
 		info.DepotId = "di_" + generateRandomString(8)
 	}
@@ -164,7 +137,7 @@ func (ds *DepotServer) CreateDepot(ctx context.Context, info *Depot) error {
 }
 
 // 查询仓库信息
-func (ds *DepotServer) QueryDepotInfo(ctx context.Context, depotId string) (*Depot, error) {
+func (ds *DepotLogic) QueryDepotInfo(ctx context.Context, depotId string) (*Depot, error) {
 	if depotId == "" {
 		return nil, pkg.ErrorEnums.ErrDepotNotExist
 	}
@@ -179,4 +152,15 @@ func (ds *DepotServer) QueryDepotInfo(ctx context.Context, depotId string) (*Dep
 	}
 	logx.Infof("DepotServer|QueryDepotInfo|depot: %s", conv.ToJsonWithoutError(depot))
 	return &depot, nil
+}
+
+func do(funcs ...FileOption) FileOption {
+	return func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+		for _, f := range funcs {
+			if err := f(ctx, info, opts...); err != nil {
+				return err
+			}
+		}
+		return nil
+	}
 }

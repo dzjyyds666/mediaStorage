@@ -14,10 +14,10 @@ import (
 
 type BoxHandler struct {
 	ctx context.Context
-	box *logic.BoxServer
+	box *logic.BoxLogic
 }
 
-func NewBoxHandler(ctx context.Context, box *logic.BoxServer) *BoxHandler {
+func NewBoxHandler(ctx context.Context, box *logic.BoxLogic) *BoxHandler {
 	return &BoxHandler{
 		ctx: ctx,
 		box: box,

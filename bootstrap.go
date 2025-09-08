@@ -34,7 +34,7 @@ func main() {
 	})
 
 	storageServer := server.NewStorageServer(ctx, cfg, dsServer)
-	go storageServer.Start()
+	storageServer.Start()
 	// 优雅推出
 	system.GracefulShutdown(storageServer.ShutDown)
 }

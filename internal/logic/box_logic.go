@@ -26,13 +26,13 @@ type Box struct {
 	DepotId    *string    `json:"depot_id,omitempty" bson:"depot_id,omitempty"`
 }
 
-type BoxServer struct {
+type BoxLogic struct {
 	ctx      context.Context
 	boxRDB   *redis.Client
 	boxMongo *mongo.Database
 }
 
-func NewBoxServer(ctx context.Context, conf *config.Config, dsServer *ds.DatabaseServer) *BoxServer {
+func NewBoxLogic(ctx context.Context, conf *config.Config, dsServer *ds.DatabaseServer) *BoxLogic {
 	boxRedis, ok := dsServer.GetRedis("box")
 	if !ok {
 		panic("redis [box] not found")
@@ -41,7 +41,7 @@ func NewBoxServer(ctx context.Context, conf *config.Config, dsServer *ds.Databas
 	if !ok {
 		panic("mongo [media_storage] not found")
 	}
-	bs := &BoxServer{
+	bs := &BoxLogic{
 		ctx:      ctx,
 		boxRDB:   boxRedis,
 		boxMongo: boxMongo,
@@ -54,7 +54,7 @@ func NewBoxServer(ctx context.Context, conf *config.Config, dsServer *ds.Databas
 	return bs
 }
 
-func (bs *BoxServer) StartCheck() error {
+func (bs *BoxLogic) StartCheck() error {
 	// 创建默认的box
 	defaultBox := &Box{
 		BoxId:   "default",
@@ -65,7 +65,7 @@ func (bs *BoxServer) StartCheck() error {
 }
 
 // 创建盒子
-func (bs *BoxServer) CreateBox(ctx context.Context, info *Box) error {
+func (bs *BoxLogic) CreateBox(ctx context.Context, info *Box) error {
 	if len(info.BoxId) == 0 {
 		info.BoxId = "bi_" + generateRandomString(8)
 	}
@@ -86,7 +86,7 @@ func (bs *BoxServer) CreateBox(ctx context.Context, info *Box) error {
 }
 
 // 查询盒子的信息
-func (bs *BoxServer) QueryBoxInfo(ctx context.Context, boxId string) (*Box, error) {
+func (bs *BoxLogic) QueryBoxInfo(ctx context.Context, boxId string) (*Box, error) {
 	var box Box
 	err := bs.boxMongo.Collection(pkg.DatabaseName.BoxDataBaseName).FindOne(ctx, bson.M{"_id": boxId}).Decode(&box)
 	if err != nil {
