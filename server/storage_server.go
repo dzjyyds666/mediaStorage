@@ -21,16 +21,19 @@ type StorageServer struct {
 	v   *vortex.Vortex
 }
 
+// NewStorageServer 创建一个存储服务器
 func NewStorageServer(ctx context.Context, cfg *config.Config, dsServer *ds.DatabaseServer) *StorageServer {
-	s3Server := logic.NewS3Logic(ctx, cfg)
-	boxServer := logic.NewBoxLogic(ctx, cfg, dsServer)
-	depotServer := logic.NewDepotLogic(ctx, cfg, dsServer, boxServer)
-	fileIndexServer := logic.NewFileIndexLogic(ctx, cfg, dsServer, s3Server, boxServer, depotServer)
+	s3Logic := logic.NewS3Logic(ctx, cfg)
+	boxLogic := logic.NewBoxLogic(ctx, cfg, dsServer)
+	depotLogic := logic.NewDepotLogic(ctx, cfg, dsServer, boxLogic)
+	fileIndexLogic := logic.NewFileIndexLogic(ctx, cfg, dsServer, s3Logic, boxLogic, depotLogic)
 
 	hcli := &http.Client{Timeout: 30 * time.Second}
 	loginHandler := handler.NewLoginHandler(ctx, cfg.Server.Jwt, cfg.Server.ConsoleJwt, cfg.Admin)
-	fileHandler := handler.NewFileHandler(ctx, fileIndexServer, boxServer, hcli)
-	routers := api.PrepareRouters(loginHandler, fileHandler) // 创建路由
+	fileHandler := handler.NewFileHandler(ctx, fileIndexLogic, boxLogic, hcli)
+	boxHandler := handler.NewBoxHandler(ctx, boxLogic)
+	depotHandler := handler.NewDepotHandler(ctx, depotLogic)
+	routers := api.PrepareRouters(loginHandler, fileHandler, boxHandler, depotHandler) // 创建路由
 
 	v := vortex.BootStrap(
 		ctx,
