@@ -125,11 +125,11 @@ func (ds *DepotLogic) CreateDepot(ctx context.Context, info *Depot) error {
 
 	_, err := ds.depotMongo.Collection(pkg.DatabaseName.DepotDataBaseName).InsertOne(ctx, info)
 	if nil != err {
-		logx.Errorf("DepotServer|CreateDepot|InsertOne|err: %v", err)
 		if mongo.IsDuplicateKeyError(err) {
 			// 存在了就不插入新的
 			return nil
 		}
+		logx.Errorf("DepotServer|CreateDepot|InsertOne|err: %v", err)
 		return err
 	}
 	logx.Infof("DepotServer|CreateDepot|success|depot_info: %s", conv.ToJsonWithoutError(info))
