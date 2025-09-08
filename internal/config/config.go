@@ -1,4 +1,4 @@
-package core
+package config
 
 import (
 	"github.com/BurntSushi/toml"
@@ -11,10 +11,12 @@ type Config struct {
 	Port   *string `toml:"port"`
 	S3     *S3     `toml:"s3"`
 	Server *Server `toml:"server"`
-	Admin  struct {
-		Username string `toml:"username"`
-		Password string `toml:"password"`
-	} `toml:"admin"`
+	Admin  *Admin  `toml:"admin"`
+}
+
+type Admin struct {
+	Username string `toml:"username"`
+	Password string `toml:"password"`
 }
 
 // S3 结构体定义了S3存储的配置

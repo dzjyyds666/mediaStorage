@@ -1,4 +1,4 @@
-package core
+package logic
 
 import (
 	"context"
@@ -14,7 +14,8 @@ import (
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
 	"github.com/dzjyyds666/Allspark-go/ptr"
-	"github.com/dzjyyds666/mediaStorage/proto"
+	"github.com/dzjyyds666/mediaStorage/internal/config"
+	"github.com/dzjyyds666/mediaStorage/pkg"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
@@ -72,17 +73,15 @@ func (i *InitUpload) ToMediaFileInfo() *MediaFileInfo {
 	}
 }
 
-type FileIndexServer struct {
+type FileIndexLogic struct {
 	ctx       context.Context
 	fileRedis *redis.Client
 	fileMongo *mongo.Database
-	s3Server  *S3Server // s3 服务
-	boxServ   *BoxServer
-	depotServ *DepotServer
+	s3Server  *S3Logic // s3 服务
 }
 
-// NewFileIndexServer 创建文件索引服务
-func NewFileIndexServer(ctx context.Context, cfg *Config, dsServer *ds.DatabaseServer, s3Server *S3Server, boxServ *BoxServer, depotServ *DepotServer) *FileIndexServer {
+// NewFileIndexLogic 创建文件索引服务
+func NewFileIndexLogic(ctx context.Context, cfg *config.Config, dsServer *ds.DatabaseServer, s3Server *S3Logic, boxServ *BoxLogic, depotServ *DepotLogic) *FileIndexLogic {
 	fileRedis, ok := dsServer.GetRedis("file")
 	if !ok {
 		panic("redis [file] not found")
@@ -92,7 +91,7 @@ func NewFileIndexServer(ctx context.Context, cfg *Config, dsServer *ds.DatabaseS
 		panic("mongo [media_storage] not found")
 	}
 
-	return &FileIndexServer{
+	return &FileIndexLogic{
 		ctx:       ctx,
 		fileRedis: fileRedis,
 		fileMongo: fileMongo,
@@ -101,7 +100,7 @@ func NewFileIndexServer(ctx context.Context, cfg *Config, dsServer *ds.DatabaseS
 }
 
 // 申请上传
-func (fs *FileIndexServer) CreatePrepareFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+func (fs *FileIndexLogic) CreatePrepareFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 	raw, err := json.Marshal(info)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|Marshal|err: %v", err)
@@ -114,8 +113,8 @@ func (fs *FileIndexServer) CreatePrepareFileInfo(ctx context.Context, info *Medi
 		return err
 	}
 	if !ok {
-		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|SetNX|fid: %s|err: %v", info.Fid, proto.ErrorEnums.ErrFileExist)
-		return proto.ErrorEnums.ErrFileExist
+		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|SetNX|fid: %s|err: %v", info.Fid, pkg.ErrorEnums.ErrFileExist)
+		return pkg.ErrorEnums.ErrFileExist
 	}
 	return nil
 }
@@ -126,12 +125,12 @@ func randFid() string {
 }
 
 // 查询文件的prepare信息
-func (fs *FileIndexServer) QueryPerpareFileInfo(ctx context.Context, depotId, boxId, fid string) (*MediaFileInfo, error) {
+func (fs *FileIndexLogic) QueryPerpareFileInfo(ctx context.Context, depotId, boxId, fid string) (*MediaFileInfo, error) {
 	raw, err := fs.fileRedis.Get(ctx, buildFilePrepareKey(depotId, boxId, fid)).Bytes()
 	if err != nil {
 		logx.Errorf("FileIndexServer|QueryPerpareFileInfo|Get|err: %v", err)
 		if errors.Is(err, redis.Nil) {
-			return nil, proto.ErrorEnums.ErrNoPrepareFileInfo
+			return nil, pkg.ErrorEnums.ErrNoPrepareFileInfo
 		}
 		return nil, err
 	}
@@ -144,11 +143,11 @@ func (fs *FileIndexServer) QueryPerpareFileInfo(ctx context.Context, depotId, bo
 }
 
 // 文件上传完毕，文件信息写入到mongo
-func (fs *FileIndexServer) CreateFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+func (fs *FileIndexLogic) CreateFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 	for _, opt := range opts {
 		opt(info)
 	}
-	_, err := fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).InsertOne(ctx, info)
+	_, err := fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).InsertOne(ctx, info)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CreateFileInfo|InsertOne|err: %v", err)
 		return err
@@ -158,13 +157,13 @@ func (fs *FileIndexServer) CreateFileInfo(ctx context.Context, info *MediaFileIn
 }
 
 // 查询文件的信息
-func (fs *FileIndexServer) QueryFileInfo(ctx context.Context, fileId string) (*MediaFileInfo, error) {
+func (fs *FileIndexLogic) QueryFileInfo(ctx context.Context, fileId string) (*MediaFileInfo, error) {
 	var info MediaFileInfo
-	err := fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"_id": fileId}).Decode(&info)
+	err := fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"_id": fileId}).Decode(&info)
 	if err != nil {
 		logx.Errorf("FileIndexServer|QueryFileInfo|FindOne|fileId: %s|err: %v", fileId, err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, proto.ErrorEnums.ErrFileNotExist
+			return nil, pkg.ErrorEnums.ErrFileNotExist
 		}
 		return nil, err
 	}
@@ -173,13 +172,13 @@ func (fs *FileIndexServer) QueryFileInfo(ctx context.Context, fileId string) (*M
 }
 
 // 保存文件到s3
-func (fs *FileIndexServer) SaveFileData(ctx context.Context, info *MediaFileInfo, file io.Reader) error {
+func (fs *FileIndexLogic) SaveFileData(ctx context.Context, info *MediaFileInfo, file io.Reader) error {
 	info.r = file
 	return fs.s3Server.SaveFileData(ctx, info)
 }
 
 // 完成文件上传
-func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+func (fs *FileIndexLogic) CompleteUpload(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 	// 把文件补全文件信息
 	prepareInfo, err := fs.QueryPerpareFileInfo(ctx, info.GetDepotId(), info.Box.BoxId, info.Fid)
 	if err != nil {
@@ -191,7 +190,7 @@ func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileIn
 	prepareInfo.Box = info.Box
 	prepareInfo.MetaData = info.MetaData
 
-	_, err = fs.fileMongo.Collection(proto.DatabaseName.FileDataBaseName).InsertOne(ctx, prepareInfo)
+	_, err = fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).InsertOne(ctx, prepareInfo)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|InsertOne|err: %v", err)
 		return err
@@ -203,4 +202,55 @@ func (fs *FileIndexServer) CompleteUpload(ctx context.Context, info *MediaFileIn
 		logx.Errorf("FileIndexServer|CompleteUpload|Del|err: %v", err)
 	}
 	return nil
+}
+
+func (fs *FileIndexLogic) SignFileUrl(ctx context.Context, info *MediaFileInfo) (string, error) {
+	objectKey := info.BuildObjectKey()
+	presignedURL, err := fs.s3Server.GetPresignedURL(ctx, objectKey)
+	if err != nil {
+		logx.Errorf("StorageCoreServer|SignGetFileUrl|GetPresignedURL|fid: %s|err: %s", info.Fid, err.Error())
+		return "", err
+	}
+	return presignedURL, nil
+}
+
+// 申请文件上传
+func (fs *FileIndexLogic) ApplyUpload(ctx context.Context, init *InitUpload, box *Box) (string, error) {
+	// 生成文件的fid
+	info := init.ToMediaFileInfo()
+	info.Fid = randFid()
+	init.Fid = info.Fid
+	info.Box = box
+
+	return info.Fid, do(
+		fs.CreatePrepareFileInfo,
+		func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+			logx.Infof("StorageCoreServer|ApplyUpload|CreatePrepareFileInfo|info: %v", conv.ToJsonWithoutError(info))
+			return nil
+		},
+	)(ctx, info)
+}
+
+// 文件直接上传
+func (fs *FileIndexLogic) SingleUpload(ctx context.Context, box *Box, fid string, r io.Reader) error {
+	// 查询文件的初始化上传信息
+	prepareFileInfo, err := fs.QueryPerpareFileInfo(ctx, ptr.ToString(box.DepotId), box.BoxId, fid)
+	if err != nil {
+		logx.Errorf("StorageCoreServer|SingleUpload|QueryPerpareFileInfo|boxId: %s|fid: %s|err: %s", box.BoxId, fid, err.Error())
+		return err
+	}
+
+	return do(
+		// 开始上传文件
+		func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+			err := fs.SaveFileData(ctx, info, r)
+			if nil != err {
+				logx.Errorf("StorageCoreServer|SingleUpload|SaveFileData|boxId: %s|fid: %s|err: %s", box.BoxId, fid, err.Error())
+				return err
+			}
+			return nil
+		},
+		// 完成上传之后的文件信息构建
+		fs.CompleteUpload,
+	)(ctx, prepareFileInfo)
 }

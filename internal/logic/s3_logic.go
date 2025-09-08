@@ -1,4 +1,4 @@
-package core
+package logic
 
 import (
 	"context"
@@ -9,16 +9,17 @@ import (
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/dzjyyds666/Allspark-go/logx"
+	myconfig "github.com/dzjyyds666/mediaStorage/internal/config"
 )
 
-type S3Server struct {
+type S3Logic struct {
 	ctx    context.Context
 	bucket string
 	client *s3.Client // s3客户端
 }
 
 // 创建s3服务，直接操作s3
-func NewS3Server(ctx context.Context, cfg *Config) *S3Server {
+func NewS3Logic(ctx context.Context, cfg *myconfig.Config) *S3Logic {
 	// 创建s3客户端
 	s3Cfg, err := config.LoadDefaultConfig(ctx,
 		config.WithRegion(cfg.S3.Region),
@@ -45,7 +46,7 @@ func NewS3Server(ctx context.Context, cfg *Config) *S3Server {
 		}
 	}
 
-	return &S3Server{
+	return &S3Logic{
 		ctx:    ctx,
 		bucket: cfg.S3.Bucket,
 		client: s3Client,
@@ -53,7 +54,7 @@ func NewS3Server(ctx context.Context, cfg *Config) *S3Server {
 }
 
 // SaveFileData 保存文件信息到s3
-func (ss *S3Server) SaveFileData(ctx context.Context, info *MediaFileInfo) error {
+func (ss *S3Logic) SaveFileData(ctx context.Context, info *MediaFileInfo) error {
 	if info.r == nil {
 		return errors.New("file data is nil")
 	}
@@ -73,7 +74,7 @@ func (ss *S3Server) SaveFileData(ctx context.Context, info *MediaFileInfo) error
 }
 
 // 获取s3的访问预签名url
-func (ss *S3Server) GetPresignedURL(ctx context.Context, objectKey string) (string, error) {
+func (ss *S3Logic) GetPresignedURL(ctx context.Context, objectKey string) (string, error) {
 	presignClient := s3.NewPresignClient(ss.client)
 	presignedURL, err := presignClient.PresignGetObject(ctx, &s3.GetObjectInput{
 		Bucket: aws.String(ss.bucket),

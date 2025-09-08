@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/dzjyyds666/Allspark-go/ptr"
-	"github.com/dzjyyds666/mediaStorage/core"
+	"github.com/dzjyyds666/mediaStorage/internal/logic"
 	"github.com/smartystreets/goconvey/convey"
 )
 
@@ -55,7 +55,7 @@ func Test_Login(t *testing.T) {
 	})
 }
 
-func LoadFileInfoFromLocal(path string) (*core.InitUpload, error) {
+func LoadFileInfoFromLocal(path string) (*logic.InitUpload, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -89,7 +89,7 @@ func LoadFileInfoFromLocal(path string) (*core.InitUpload, error) {
 		return nil, err
 	}
 
-	return &core.InitUpload{
+	return &logic.InitUpload{
 		FileName:      ptr.String(stat.Name()),
 		ContentLength: ptr.Int64(stat.Size()),
 		ContentMd5:    ptr.String(md5Sum),

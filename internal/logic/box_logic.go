@@ -1,4 +1,4 @@
-package core
+package logic
 
 import (
 	"context"
@@ -9,7 +9,8 @@ import (
 	"github.com/dzjyyds666/Allspark-go/conv"
 	"github.com/dzjyyds666/Allspark-go/ds"
 	"github.com/dzjyyds666/Allspark-go/logx"
-	"github.com/dzjyyds666/mediaStorage/proto"
+	"github.com/dzjyyds666/mediaStorage/internal/config"
+	"github.com/dzjyyds666/mediaStorage/pkg"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -25,13 +26,13 @@ type Box struct {
 	DepotId    *string    `json:"depot_id,omitempty" bson:"depot_id,omitempty"`
 }
 
-type BoxServer struct {
+type BoxLogic struct {
 	ctx      context.Context
 	boxRDB   *redis.Client
 	boxMongo *mongo.Database
 }
 
-func NewBoxServer(ctx context.Context, conf *Config, dsServer *ds.DatabaseServer) *BoxServer {
+func NewBoxLogic(ctx context.Context, conf *config.Config, dsServer *ds.DatabaseServer) *BoxLogic {
 	boxRedis, ok := dsServer.GetRedis("box")
 	if !ok {
 		panic("redis [box] not found")
@@ -40,7 +41,7 @@ func NewBoxServer(ctx context.Context, conf *Config, dsServer *ds.DatabaseServer
 	if !ok {
 		panic("mongo [media_storage] not found")
 	}
-	bs := &BoxServer{
+	bs := &BoxLogic{
 		ctx:      ctx,
 		boxRDB:   boxRedis,
 		boxMongo: boxMongo,
@@ -53,7 +54,7 @@ func NewBoxServer(ctx context.Context, conf *Config, dsServer *ds.DatabaseServer
 	return bs
 }
 
-func (bs *BoxServer) StartCheck() error {
+func (bs *BoxLogic) StartCheck() error {
 	// 创建默认的box
 	defaultBox := &Box{
 		BoxId:   "default",
@@ -64,11 +65,14 @@ func (bs *BoxServer) StartCheck() error {
 }
 
 // 创建盒子
-func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
-	if box.DepotId == nil {
-		box.DepotId = ptr.String("default")
+func (bs *BoxLogic) CreateBox(ctx context.Context, info *Box) error {
+	if len(info.BoxId) == 0 {
+		info.BoxId = "bi_" + generateRandomString(8)
 	}
-	_, err := bs.boxMongo.Collection(proto.DatabaseName.BoxDataBaseName).InsertOne(ctx, box)
+	if info.DepotId == nil {
+		info.DepotId = ptr.String("default")
+	}
+	_, err := bs.boxMongo.Collection(pkg.DatabaseName.BoxDataBaseName).InsertOne(ctx, info)
 	if nil != err {
 		logx.Errorf("BoxServer|CreateBox|InsertOne|err: %v", err)
 		if mongo.IsDuplicateKeyError(err) {
@@ -77,18 +81,18 @@ func (bs *BoxServer) CreateBox(ctx context.Context, box *Box) error {
 		}
 		return err
 	}
-	logx.Infof("BoxServer|CreateBox|box: %s", conv.ToJsonWithoutError(box))
+	logx.Infof("BoxServer|CreateBox|box: %s", conv.ToJsonWithoutError(info))
 	return err
 }
 
 // 查询盒子的信息
-func (bs *BoxServer) QueryBoxInfo(ctx context.Context, boxId string) (*Box, error) {
+func (bs *BoxLogic) QueryBoxInfo(ctx context.Context, boxId string) (*Box, error) {
 	var box Box
-	err := bs.boxMongo.Collection(proto.DatabaseName.BoxDataBaseName).FindOne(ctx, bson.M{"_id": boxId}).Decode(&box)
+	err := bs.boxMongo.Collection(pkg.DatabaseName.BoxDataBaseName).FindOne(ctx, bson.M{"_id": boxId}).Decode(&box)
 	if err != nil {
 		logx.Errorf("BoxServer|QueryBoxInfo|FindOne|boxId: %s|err: %v", boxId, err)
 		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, proto.ErrorEnums.ErrBoxNotExist
+			return nil, pkg.ErrorEnums.ErrBoxNotExist
 		}
 		return nil, err
 	}
