@@ -8,7 +8,6 @@ import (
 	"github.com/dzjyyds666/Allspark-go/ds"
 
 	"github.com/dzjyyds666/Allspark-go/ptr"
-	"github.com/dzjyyds666/mediaStorage/api"
 	"github.com/dzjyyds666/mediaStorage/internal/config"
 	"github.com/dzjyyds666/mediaStorage/internal/handler"
 	"github.com/dzjyyds666/mediaStorage/internal/logic"
@@ -33,7 +32,7 @@ func NewStorageServer(ctx context.Context, cfg *config.Config, dsServer *ds.Data
 	fileHandler := handler.NewFileHandler(ctx, fileIndexLogic, boxLogic, hcli)
 	boxHandler := handler.NewBoxHandler(ctx, boxLogic)
 	depotHandler := handler.NewDepotHandler(ctx, depotLogic)
-	routers := api.PrepareRouters(loginHandler, fileHandler, boxHandler, depotHandler) // 创建路由
+	routers := PrepareRouters(loginHandler, fileHandler, boxHandler, depotHandler) // 创建路由
 
 	v := vortex.BootStrap(
 		ctx,

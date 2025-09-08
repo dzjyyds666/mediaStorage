@@ -19,7 +19,7 @@ import (
 )
 
 var (
-	endpoint = "http://127.0.0.1:18080"
+	endpoint = "http://127.0.0.1:18080/v1"
 	jwtToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNzU0NDA5OTUwLCJ1aWQiOiJhYXJvbiJ9.63e-SoAsLK9WkngTFnbQEJtMbROPg6ASw-NSaiOIxIU"
 	hcli     = &http.Client{
 		Timeout: time.Second * 10,
@@ -144,7 +144,7 @@ func Test_SingleUpload(t *testing.T) {
 		convey.So(err, convey.ShouldBeNil)
 
 		// 创建请求
-		req, err := http.NewRequest(http.MethodPost, endpoint+"/media/upload/single/v1-138e12ff-a2b0-4752-b361-aec47a51b602?boxId=default", body)
+		req, err := http.NewRequest(http.MethodPost, endpoint+"/media/upload/single/v1-46afa2ec-626d-4574-b506-b3d82c53a308?boxId=default", body)
 		convey.So(err, convey.ShouldBeNil)
 
 		// 设置请求头
