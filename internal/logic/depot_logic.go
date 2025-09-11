@@ -3,7 +3,9 @@ package logic
 import (
 	"context"
 	"crypto/rand"
+	"encoding/json"
 	"errors"
+	"fmt"
 	"math/big"
 	"net/url"
 
@@ -15,8 +17,6 @@ import (
 	"github.com/dzjyyds666/mediaStorage/pkg"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var DepotPermissions = struct {
@@ -71,10 +71,10 @@ type Depot struct {
 
 // 切片服务，文件存储分为两部分 桶 => 仓库 => 箱子 => file
 type DepotLogic struct {
-	ctx        context.Context
-	depotRDB   *redis.Client
-	depotMongo *mongo.Database
-	boxServ    *BoxLogic
+	ctx      context.Context
+	group    string
+	depotRDB *redis.Client
+	boxServ  *BoxLogic
 }
 
 // 仓库
@@ -83,16 +83,12 @@ func NewDepotLogic(ctx context.Context, cfg *config.Config, dsServer *ds.Databas
 	if !ok {
 		panic("redis [depot] not found")
 	}
-	depotMongo, ok := dsServer.GetMongo("media_storage")
-	if !ok {
-		panic("mongo [media_storage] not found")
-	}
 
 	ds := &DepotLogic{
-		ctx:        ctx,
-		depotRDB:   depotRedis,
-		depotMongo: depotMongo,
-		boxServ:    boxServer,
+		ctx:      ctx,
+		group:    ptr.ToString(cfg.Group),
+		depotRDB: depotRedis,
+		boxServ:  boxServer,
 	}
 
 	err := ds.StartCheck()
@@ -111,11 +107,16 @@ func (ds *DepotLogic) StartCheck() error {
 		DepotName:  ptr.String("default"),
 		Permission: ptr.String(DepotPermissions.Public),
 	}
-	return ds.CreateDepot(ds.ctx, defaultDepot)
+	_, err := ds.CreateDepot(ds.ctx, defaultDepot)
+	return err
+}
+
+func (ds *DepotLogic) buildDepotInfoKey(id string) string {
+	return fmt.Sprintf("media_Storage:%s:depot:%s:info", ds.group, id)
 }
 
 // 创建仓库
-func (ds *DepotLogic) CreateDepot(ctx context.Context, info *Depot) error {
+func (ds *DepotLogic) CreateDepot(ctx context.Context, info *Depot) (*Depot, error) {
 	if len(info.DepotId) == 0 {
 		info.DepotId = "di_" + generateRandomString(8)
 	}
@@ -123,17 +124,22 @@ func (ds *DepotLogic) CreateDepot(ctx context.Context, info *Depot) error {
 		info.Permission = ptr.String(DepotPermissions.Public)
 	}
 
-	_, err := ds.depotMongo.Collection(pkg.DatabaseName.DepotDataBaseName).InsertOne(ctx, info)
+	raw, err := json.Marshal(info)
 	if nil != err {
-		if mongo.IsDuplicateKeyError(err) {
-			// 存在了就不插入新的
-			return nil
-		}
-		logx.Errorf("DepotServer|CreateDepot|InsertOne|err: %v", err)
-		return err
+		logx.Errorf("DepotServer|CreateDepot|json.Marshal|error|%v|%s", err, conv.ToJsonWithoutError(info))
+		return nil, err
 	}
-	logx.Infof("DepotServer|CreateDepot|success|depot_info: %s", conv.ToJsonWithoutError(info))
-	return nil
+	depotInfoKey := ds.buildDepotInfoKey(info.DepotId)
+	succ, err := ds.depotRDB.SetNX(ctx, depotInfoKey, raw, 0).Result()
+	if nil != err {
+		logx.Errorf("DepotServer|CreateDepot|SetNx|Error|%v|%s", err, conv.ToJsonWithoutError(info))
+		return nil, err
+	}
+
+	if !succ {
+		return ds.QueryDepotInfo(ctx, info.DepotId)
+	}
+	return info, err
 }
 
 // 查询仓库信息
@@ -141,16 +147,21 @@ func (ds *DepotLogic) QueryDepotInfo(ctx context.Context, depotId string) (*Depo
 	if depotId == "" {
 		return nil, pkg.ErrorEnums.ErrDepotNotExist
 	}
-	var depot Depot
-	err := ds.depotMongo.Collection(pkg.DatabaseName.DepotDataBaseName).FindOne(ctx, bson.M{"_id": depotId}).Decode(&depot)
+	infoKey := ds.buildDepotInfoKey(depotId)
+	result, err := ds.depotRDB.Get(ctx, infoKey).Result()
 	if err != nil {
 		logx.Errorf("DepotServer|QueryDepotInfo|FindOne|err: %v", err)
-		if errors.Is(err, mongo.ErrNoDocuments) {
+		if errors.Is(err, redis.Nil) {
 			return nil, pkg.ErrorEnums.ErrDepotNotExist
 		}
 		return nil, err
 	}
-	logx.Infof("DepotServer|QueryDepotInfo|depot: %s", conv.ToJsonWithoutError(depot))
+	var depot Depot
+	err = json.Unmarshal([]byte(result), &depot)
+	if nil != err {
+		logx.Errorf("DepotServer|QueryDepotInfo|json.Unmarshal|error|%v|%s", err, conv.ToJsonWithoutError(result))
+		return nil, err
+	}
 	return &depot, nil
 }
 

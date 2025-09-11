@@ -18,15 +18,14 @@ import (
 	"github.com/dzjyyds666/mediaStorage/pkg"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func buildFilePrepareKey(depot, box, fid string) string {
-	return fmt.Sprintf("file:%s:%s:%s:prepare", depot, box, fid)
-}
-
 type FileOption func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error
+
+// randFid 随机生成文件id
+func randFid() string {
+	return uuid.NewString()
+}
 
 type MediaFileInfo struct {
 	Fid           string     `json:"fid" bson:"_id"` // 文件的fid
@@ -75,8 +74,8 @@ func (i *InitUpload) ToMediaFileInfo() *MediaFileInfo {
 
 type FileIndexLogic struct {
 	ctx       context.Context
+	group     string
 	fileRedis *redis.Client
-	fileMongo *mongo.Database
 	s3Server  *S3Logic // s3 服务
 }
 
@@ -86,47 +85,47 @@ func NewFileIndexLogic(ctx context.Context, cfg *config.Config, dsServer *ds.Dat
 	if !ok {
 		panic("redis [file] not found")
 	}
-	fileMongo, ok := dsServer.GetMongo("media_storage")
-	if !ok {
-		panic("mongo [media_storage] not found")
-	}
-
 	return &FileIndexLogic{
 		ctx:       ctx,
+		group:     ptr.ToString(cfg.Group),
 		fileRedis: fileRedis,
-		fileMongo: fileMongo,
 		s3Server:  s3Server,
 	}
 }
 
+// 构建文件预备key
+func (fl *FileIndexLogic) buildPrepareFileInfoKey(depotId, id string) string {
+	return fmt.Sprintf("media_storage:%s:file:%s:%s:info:prepare", fl.group, depotId, id)
+}
+
+// 构建文件信息key
+func (fl *FileIndexLogic) buildFileInfoKey(depotId, id string) string {
+	return fmt.Sprintf("media_storage:%s:file:%s:%s:info", fl.group, depotId, id)
+}
+
 // 申请上传
 func (fs *FileIndexLogic) CreatePrepareFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+	for _, opt := range opts {
+		opt(info)
+	}
 	raw, err := json.Marshal(info)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|Marshal|err: %v", err)
 		return err
 	}
+
 	// 把文件信息存储到redis中,1个小时之内进行上传
-	ok, err := fs.fileRedis.SetNX(ctx, buildFilePrepareKey(info.GetDepotId(), info.Box.BoxId, info.Fid), raw, time.Hour).Result()
+	_, err = fs.fileRedis.SetNX(ctx, fs.buildPrepareFileInfoKey(info.GetDepotId(), info.Fid), raw, time.Hour).Result()
 	if err != nil {
 		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|Set|err: %v", err)
 		return err
 	}
-	if !ok {
-		logx.Errorf("FileIndexServer|CreatePrepareFileInfo|SetNX|fid: %s|err: %v", info.Fid, pkg.ErrorEnums.ErrFileExist)
-		return pkg.ErrorEnums.ErrFileExist
-	}
 	return nil
 }
 
-// randFid 随机生成文件id
-func randFid() string {
-	return "v1-" + uuid.NewString()
-}
-
 // 查询文件的prepare信息
-func (fs *FileIndexLogic) QueryPerpareFileInfo(ctx context.Context, depotId, boxId, fid string) (*MediaFileInfo, error) {
-	raw, err := fs.fileRedis.Get(ctx, buildFilePrepareKey(depotId, boxId, fid)).Bytes()
+func (fs *FileIndexLogic) QueryPrepareFileInfo(ctx context.Context, depotId, fid string) (*MediaFileInfo, error) {
+	raw, err := fs.fileRedis.Get(ctx, fs.buildPrepareFileInfoKey(depotId, fid)).Bytes()
 	if err != nil {
 		logx.Errorf("FileIndexServer|QueryPerpareFileInfo|Get|err: %v", err)
 		if errors.Is(err, redis.Nil) {
@@ -142,29 +141,18 @@ func (fs *FileIndexLogic) QueryPerpareFileInfo(ctx context.Context, depotId, box
 	return &info, nil
 }
 
-// 文件上传完毕，文件信息写入到mongo
-func (fs *FileIndexLogic) CreateFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
-	for _, opt := range opts {
-		opt(info)
-	}
-	_, err := fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).InsertOne(ctx, info)
-	if err != nil {
-		logx.Errorf("FileIndexServer|CreateFileInfo|InsertOne|err: %v", err)
-		return err
-	}
-	logx.Infof("FileIndexServer|CreateFileInfo|info: %s", conv.ToJsonWithoutError(info))
-	return nil
-}
-
 // 查询文件的信息
-func (fs *FileIndexLogic) QueryFileInfo(ctx context.Context, fileId string) (*MediaFileInfo, error) {
+func (fs *FileIndexLogic) QueryFileInfo(ctx context.Context, depotId, fileId string) (*MediaFileInfo, error) {
+	infoKey := fs.buildPrepareFileInfoKey(depotId, fileId)
+	result, err := fs.fileRedis.Get(ctx, infoKey).Result()
+	if nil != err {
+		logx.Errorf("FileIndexServer|QueryFileInfo|Get|fileId: %s|err: %v", fileId, err)
+		return nil, err
+	}
 	var info MediaFileInfo
-	err := fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).FindOne(ctx, bson.M{"_id": fileId}).Decode(&info)
+	err = json.Unmarshal([]byte(result), &info)
 	if err != nil {
 		logx.Errorf("FileIndexServer|QueryFileInfo|FindOne|fileId: %s|err: %v", fileId, err)
-		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, pkg.ErrorEnums.ErrFileNotExist
-		}
 		return nil, err
 	}
 	logx.Infof("FileIndexServer|QueryFileInfo|info|%s", conv.ToJsonWithoutError(info))
@@ -178,9 +166,9 @@ func (fs *FileIndexLogic) SaveFileData(ctx context.Context, info *MediaFileInfo,
 }
 
 // 完成文件上传
-func (fs *FileIndexLogic) CompleteUpload(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
+func (fs *FileIndexLogic) CompleteFileInfo(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
 	// 把文件补全文件信息
-	prepareInfo, err := fs.QueryPerpareFileInfo(ctx, info.GetDepotId(), info.Box.BoxId, info.Fid)
+	prepareInfo, err := fs.QueryPrepareFileInfo(ctx, info.GetDepotId(), info.Fid)
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|QueryPerpareFileInfo|err: %v", err)
 		return err
@@ -190,14 +178,14 @@ func (fs *FileIndexLogic) CompleteUpload(ctx context.Context, info *MediaFileInf
 	prepareInfo.Box = info.Box
 	prepareInfo.MetaData = info.MetaData
 
-	_, err = fs.fileMongo.Collection(pkg.DatabaseName.FileDataBaseName).InsertOne(ctx, prepareInfo)
+	infoKey := fs.buildFileInfoKey(info.GetDepotId(), info.Fid)
+	_, err = fs.fileRedis.SetNX(ctx, infoKey, conv.ToJsonWithoutError(prepareInfo), time.Hour).Result()
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|InsertOne|err: %v", err)
 		return err
 	}
-
 	// 删除存储在redis中的数据
-	err = fs.fileRedis.Del(ctx, buildFilePrepareKey(info.GetDepotId(), info.Box.BoxId, info.Fid)).Err()
+	err = fs.fileRedis.Del(ctx, fs.buildPrepareFileInfoKey(info.GetDepotId(), info.Fid)).Err()
 	if err != nil {
 		logx.Errorf("FileIndexServer|CompleteUpload|Del|err: %v", err)
 	}
@@ -234,12 +222,11 @@ func (fs *FileIndexLogic) ApplyUpload(ctx context.Context, init *InitUpload, box
 // 文件直接上传
 func (fs *FileIndexLogic) SingleUpload(ctx context.Context, box *Box, fid string, r io.Reader) error {
 	// 查询文件的初始化上传信息
-	prepareFileInfo, err := fs.QueryPerpareFileInfo(ctx, ptr.ToString(box.DepotId), box.BoxId, fid)
+	prepareFileInfo, err := fs.QueryPrepareFileInfo(ctx, ptr.ToString(box.DepotId), fid)
 	if err != nil {
 		logx.Errorf("StorageCoreServer|SingleUpload|QueryPerpareFileInfo|boxId: %s|fid: %s|err: %s", box.BoxId, fid, err.Error())
 		return err
 	}
-
 	return do(
 		// 开始上传文件
 		func(ctx context.Context, info *MediaFileInfo, opts ...func(*MediaFileInfo) *MediaFileInfo) error {
@@ -251,6 +238,6 @@ func (fs *FileIndexLogic) SingleUpload(ctx context.Context, box *Box, fid string
 			return nil
 		},
 		// 完成上传之后的文件信息构建
-		fs.CompleteUpload,
+		fs.CompleteFileInfo,
 	)(ctx, prepareFileInfo)
 }

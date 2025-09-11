@@ -162,7 +162,6 @@ func (fh *FileHandler) HandleSingleUpload(ctx *vortex.Context) error {
 			return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.InternalError), nil)
 		}
 	}
-
 	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
 		"fid": fid,
 	})
@@ -200,4 +199,10 @@ func (fh *FileHandler) HandleFileInfo(ctx *vortex.Context) error {
 	}
 	logx.Infof("HandleFileInfo|QueryFileInfo|fid: %s|info: %s", fid, conv.ToJsonWithoutError(info))
 	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, info)
+}
+
+// 支持文件的分片上传
+func (fh *FileHandler) HandleInitUpload(ctx *vortex.Context) error {
+
+	return nil
 }
