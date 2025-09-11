@@ -40,8 +40,8 @@ func (fh *FileHandler) HandleFile(ctx *vortex.Context) error {
 			"msg": "fid not be null",
 		})
 	}
-
-	fileInfo, err := fh.file.QueryFileInfo(ctx.GetContext(), fid)
+	depotId := GetDepotId(ctx)
+	fileInfo, err := fh.file.QueryFileInfo(ctx.GetContext(), depotId, fid)
 	if nil != err {
 		logx.Errorf("HandleFile|QueryFileInfo|fid: %s|err: %v", fid, err)
 		if errors.Is(err, pkg.ErrorEnums.ErrFileNotExist) {
@@ -189,7 +189,9 @@ func (fh *FileHandler) HandleFileInfo(ctx *vortex.Context) error {
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BadRequest), nil)
 	}
 
-	info, err := fh.file.QueryFileInfo(ctx.GetContext(), fid)
+	depotId := GetDepotId(ctx)
+
+	info, err := fh.file.QueryFileInfo(ctx.GetContext(), depotId, fid)
 	if err != nil {
 		logx.Errorf("HandleFileInfo|QueryFileInfo|fid: %s|err: %v", fid, err)
 		if errors.Is(err, pkg.ErrorEnums.ErrFileNotExist) {

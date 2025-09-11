@@ -33,12 +33,12 @@ func (dh *DepotHandler) HandleDeportCreate(ctx *vortex.Context) error {
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BadRequest), nil)
 	}
 
-	err := dh.depot.CreateDepot(ctx.GetContext(), &info)
+	depot, err := dh.depot.CreateDepot(ctx.GetContext(), &info)
 	if nil != err {
 		logx.Errorf("HandleDeportCreate|CreateDepot|depotInfo: %s|err: %v", conv.ToJsonWithoutError(info), err)
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(pkg.SubStatusCodes.InternalError), nil)
 	}
 	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
-		"depot_id": info.DepotId,
+		"depot_info": depot,
 	})
 }

@@ -33,12 +33,12 @@ func (bh *BoxHandler) HandleBoxCreate(ctx *vortex.Context) error {
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success.WithSubCode(pkg.SubStatusCodes.BadRequest), nil)
 	}
 
-	err := bh.box.CreateBox(ctx.GetContext(), &info)
+	box, err := bh.box.CreateBox(ctx.GetContext(), &info)
 	if nil != err {
 		logx.Errorf("HandleBoxCreate|CreateBox|boxInfo: %s|err: %v", conv.ToJsonWithoutError(info), err)
 		return vortex.HttpJsonResponse(ctx, vortex.Statuses.InternalError.WithSubCode(pkg.SubStatusCodes.InternalError), nil)
 	}
 	return vortex.HttpJsonResponse(ctx, vortex.Statuses.Success, echo.Map{
-		"box_id": info.BoxId,
+		"box_info": box,
 	})
 }
